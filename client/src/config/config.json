@@ -1,0 +1,5 @@
+{
+    "TWITCH_APP_URL_TOKEN": "https://id.twitch.tv/oauth2/token?client_id=rd3cibcx7qznkg2ajouvjm3902pslc&client_secret=cu378g0j5uejc414yn0k9y72tphd6e&grant_type=client_credentials",
+    "CLIENT_SECRET" : "cu378g0j5uejc414yn0k9y72tphd6e",
+    "CLIENT_ID" : "rd3cibcx7qznkg2ajouvjm3902pslc"
+}
