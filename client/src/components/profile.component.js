@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import AuthService from "../services/auth.service";
+import Form from "react-validation/build/form";
+import Input from "react-validation/build/input";
+import TextArea from "react-validation/build/textarea";
 
 export default class Profile extends Component {
   constructor(props) {
@@ -9,7 +12,9 @@ export default class Profile extends Component {
     this.state = {
       redirect: null,
       userReady: false,
-      currentUser: { username: "" }
+      currentUser: { username: "" },
+      isStreamer: false,
+      message: "",
     };
   }
 
@@ -17,65 +22,105 @@ export default class Profile extends Component {
     const currentUser = AuthService.getCurrentUser();
 
     if (!currentUser) this.setState({ redirect: "/home" });
-    
-    this.setState({ currentUser: currentUser, userReady: true })
+
+    if (currentUser.isStreamer == 1) this.setState({ isStreamer: true });
+
+    this.setState({ currentUser: currentUser, userReady: true });
   }
 
   render() {
     if (this.state.redirect) {
-      return <Redirect to={this.state.redirect} />
+      return <Redirect to={this.state.redirect} />;
     }
 
     const { currentUser } = this.state;
+    const isStreamer = this.state.isStreamer;
+
+    console.log(currentUser)
 
     return (
       <div className="container">
-        {(this.state.userReady) ?
-        <div>
-        <header className="jumbotron">
-          <img src={currentUser.profile_image_url} alt="image profile" className="img-thumbnail"></img>
-          <h3>
-            <strong>{currentUser.username}</strong> Profile
-          </h3>
-        </header>
-        <p>
-          <strong>view count:</strong>{" "}
-          {currentUser.views_count}
-        </p>
-        <p>
-          <strong>Type:</strong>{" "}
-          {currentUser.type}
-        </p>
-        <p>
-          <strong>Boradcaster type:</strong>{" "}
-          {currentUser.Broadcaster_type}
-        </p>
-        <p>
-          <strong>Token:</strong>{" "}
-          {currentUser.accessToken}
-        </p>
-        <p>
-          <strong>Id:</strong>{" "}
-          {currentUser.id}
-        </p>
-        <p>
-          <strong>Email:</strong>{" "}
-          {currentUser.email}
-        </p>
-        <strong>Authorities:</strong>
-        <ul>
-          {currentUser.roles &&
-            currentUser.roles.map((role, index) => <li key={index}>{role}</li>)}
-        </ul>
-        <p>
-          <strong>Description:</strong>{" "}
-          {currentUser.description}
-        </p>
-        <p>
-          <strong>isStreamer:</strong>{" "}
-          {currentUser.isStreamer}
-        </p>
-      </div>: null}
+        {this.state.userReady ? (
+          <div>
+           <Form
+                onSubmit={this.handleProfileUpdate}
+                ref={(c) => {
+                  this.form = c;
+                }}
+              >
+                {currentUser.roles.map((role, index) => (
+                <span class="badge badge-pill badge-info">{role}</span>
+              ))}
+                <div className="row">
+                <div className="col-sm">
+                <img
+                    src={currentUser.profile_image_url}
+                    alt="image profile"
+                    className="img-thumbnail"
+                  ></img>
+                <div className="form-group">
+                  <label htmlFor="image-profile">Pick image profile</label>
+                  <Input
+                    type="file"
+                    className="form-control"
+                    name="image-profile"
+                  />
+                </div>
+                </div>
+                <div className="col-sm">
+                <div className="form-group">
+                  <label htmlFor="username">Username</label>
+                  <Input
+                    type="text"
+                    className="form-control"
+                    name="username"
+                    value={currentUser.username}
+                    onChange={this.onChangeUsername}
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="password">Email</label>
+                  <Input
+                    type="mail"
+                    className="form-control"
+                    name="password"
+                    value={currentUser.email}
+                    onChange={this.onChangeEmail}
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="password">Description</label>
+                  <TextArea
+                    type="text"
+                    className="form-control"
+                    name="password"
+                    value={currentUser.description}
+                    onChange={this.onChangeDescription}
+                  />
+                </div>
+
+               
+                </div>
+                </div>
+                
+                <div className="form-group">
+                  <button className="btn btn-primary btn-block">
+                    <span>Modifier mon profile</span>
+                  </button>
+                </div>
+
+                {this.state.message && (
+                  <div className="form-group">
+                    <div className="alert alert-danger" role="alert">
+                      {this.state.message}
+                    </div>
+                  </div>
+                )}
+              </Form>
+          </div>
+        ) : null}
       </div>
     );
   }

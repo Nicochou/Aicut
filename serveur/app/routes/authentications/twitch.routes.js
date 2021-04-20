@@ -1,45 +1,45 @@
 const passport = require("passport");
 const session = require('express-session');
-var colors = require('colors/safe');
-const config = require("../config/auth.config");
-const db = require("../models");
+const config = require("../../config/auth.config");
+const db = require("../../../models");
 const User = db.user;
-const Role = db.role;
 var jwt = require("jsonwebtoken");
 var querystring = require('querystring');
-const { cpuUsage } = require("process");
 
 
 module.exports = function(app, passeport) {
-
-
+  // We authenticate a new twitch user
   app.get('/twitchAuth',
     passport.authenticate('twitch',{forceVerify: true})
-
   );
-
-
+  // After authentication, We get the callBack
   app.get('/twitchAuth/callback', function(req, res, next) {
     passport.authenticate('twitch', function(err, userTemp, info) {
+      // Error trapping
       if (err) { return next(err); }
+      // No user find
       if (!userTemp) { return res.redirect('/'); }
+      // We set the access token in session
       if (info) { 
         req.session.accessToken = info;
       }
-      console.log(req.session);
+      // We logIn the user we got
       req.logIn(userTemp, function(err) {
+        // Error trapping
         if (err) { return next(err); }
+        // We find the user according to his id_twitch
         User.findOne({
           where: {
             id_twitch: userTemp.id
           }
         }).then(user => {
+          // We set the right role
           user.setRoles(4);
-
+          // We generate a Json Web Token
           var token = jwt.sign({ id: user.id }, config.secret, {
             expiresIn: 86400 // 24 hours
           });
-
+          // We create the query to redirect to the client
           const query = querystring.stringify({
             "id": user.id,
             "username": user.username,
@@ -55,9 +55,8 @@ module.exports = function(app, passeport) {
             "views_count": user.views_count,
             "id_twitch": user.id_twitch
         });
-
+          // We redirect to the client
           return res.redirect('http://localhost:3000/twitch?' + query) ;
-
           })      
           .catch(err => {
             res.status(500).send({ message: err.message });

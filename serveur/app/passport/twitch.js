@@ -3,7 +3,7 @@ var twitchStrategy = require( "@d-fischer/passport-twitch" ).Strategy;
 var keys = require( '../config/keys.config' );
 var colors = require('colors/safe');
 
-const db = require("../models");
+const db = require("../../models");
 const User = db.user;
 const Role = db.role;
 const UserRoles = db.user_roles;
@@ -19,8 +19,7 @@ const Op = db.Sequelize.Op;
           scope: "clips:edit"
         },
       function(accessToken, refreshToken, profile, done) {
-        console.log('Profile :' + colors.red(profile))
-        console.log('accessToken :' + colors.red(accessToken))
+        console.log(colors.green(accessToken));
         User.findOrCreate({
            where: { login: profile.login},
            defaults: {login: profile.login,

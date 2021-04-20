@@ -1,4 +1,4 @@
-# Groupe de boulei_n
+# Machine Learning
 Create a file .env with : variables 
 ```
 TWITCH_USERNAME= twitch username of your account

@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
 import api from '../../../api/api';
-import {Link} from 'react-router-dom';
 
 function Games(){
 
@@ -40,7 +39,12 @@ function Games(){
 
                         <div key={index} className="card">
 
-                            <img src={game.thumbnail_url} alt="clip image" className="card-img-top"/>
+                            <iframe
+                                src={"https://clips.twitch.tv/embed?clip=" + game.id + "&parent=localhost"}
+                                height="360"
+                                width="640"
+                                allowfullscreen="true">
+                            </iframe>
 
                             <div className="card-body">
                                 <h5 className="card-title">Titre : {game.title}</h5>
@@ -52,6 +56,7 @@ function Games(){
                                 </ul>
                                 <div className="btnCarte"><a target="_blank" href={game.url} >Voir le clip</a></div>
                             </div>
+                            
                         </div>
 
                     ))}

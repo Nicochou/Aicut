@@ -28,18 +28,18 @@ function Games(){
         fetchData();
 
     }, [])
-// console.log(games);
+ console.log(games);
 
         return (
             <div>
 
             <h1 className="titreGames">Jeux les plus populaires</h1>
 
-                <div className="container">
-
+                <div className="container container-game">
+                    <div class="row">
                     {games.map((game,index) => (
 
-                        <div key={index} className="card">
+                        <div key={index} className="card " >
 
                             <img src={game.box_art_url} alt="jeu profile pic" className="card-img-top"/>
 
@@ -61,7 +61,7 @@ function Games(){
                         </div>
 
                     ))}
-
+                    </div>
                 </div>
 
             </div>

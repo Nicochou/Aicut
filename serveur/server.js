@@ -15,22 +15,23 @@ var corsOptions = {
 app.use(cors(corsOptions));
 
 // parse requests of content-type - application/json
-app.use(bodyParser.json());
+app.use(express.json());
 
 // parse requests of content-type - application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true }));
 
 // passeport initalize
 app.use(passport.initialize());
-app.use(session({secret: 'ssshhhhh',saveUninitialized: true,resave: true}));
+app.use(session({secret: 'ssshhhhh',saveUninitialized: true, resave: true}));
 
 // simple route
 app.get("/", (req, res) => {
   res.json({ message: "Serveur AICUT lancé" });
 });
 
-const db = require("./app/models");
+const db = require("./models");
 const Role = db.role;
+const Libelle = db.libelle;
 
 Role.create({
   id: 1,
@@ -59,6 +60,19 @@ Role.create({
 }).catch(function (err) {
   // handle role error;
 });
+Libelle.create({
+  id: 101,
+  libelle: "Edit"
+}).catch(function (err) {
+  // handle role creation error;
+});
+
+Libelle.create({
+  id: 102,
+  libelle: "Create"
+}).catch(function (err) {
+  // handle role creation error;
+});
 
 
 db.sequelize.sync();
@@ -66,11 +80,11 @@ db.sequelize.sync();
 // passeport
 require('./app/passport/twitch')(passport);
 // routes
-require('./app/routes/auth.routes')(app);
-require('./app/routes/twitch.routes')(app, passport);
+require('./app/routes/authentications/auth.routes')(app);
+require('./app/routes/authentications/twitch.routes')(app, passport);
 require('./app/routes/user.routes')(app);
-require('./app/routes/api/trend_api.routes')(app);
-require('./app/routes/api/create_clip.routes')(app);
+require('./app/routes/clip.routes')(app);
+require('./app/routes/twitch/create_clip.routes')(app);
 
 
 // set port, listen for requests
