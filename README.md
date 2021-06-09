@@ -5,8 +5,10 @@ You can being connecte on the solution with your twitch account, Then you can ac
 
 We also want to have an acces without Twitch account to display trends, analytics and clips on it.
 
+## Process
+
 ## Language and Tools
-https://github.com/Nicochou/aicut/issues/1#issue-916057149
+https://user-images.githubusercontent.com/49341587/121340602-185fcc80-c920-11eb-9c38-3640f521c24c.PNG
 ### The Api
 
 ### The Client
