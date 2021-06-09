@@ -7,8 +7,8 @@ We also want to have an acces without Twitch account to display trends, analytic
 
 ## Language and Tools
 ### The Api
-[![Express Logo](https://i.cloudup.com/zfY6lL7eFa-1000x1000.png)](http://expressjs.com/)
-[![passport Logo](http://cdn.auth0.com/img/passport-banner-github.png)](http://passportjs.org)
+[![Express Logo](https://www.hello-pomelo.com:8080/wp-content/uploads/2019/07/expressjs.png)](http://expressjs.com/)
+[![passport Logo](https://pbs.twimg.com/profile_images/599259952574693376/DMrPoJtc_400x400.png)](http://passportjs.org)
 [![Sequelize Logo](https://sequelize.org/v3/images/logo-small.png)](https://sequelize.org/)
 ### The Client
 
