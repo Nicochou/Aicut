@@ -1,4 +1,30 @@
-# SCRIPTS
+# The API
+## TODO LIST
+
+## INSTALLATION 
+```bash
+npm install
+npm update
+npm audit fix
+```
+## DATABASE
+### Connection
+
+### Migration
+```bash
+npm migrate
+```
+```bash
+npm migrate:reset
+```
+### Fill Datas
+```bash
+npm seed
+```
+```bash
+npm seed:reset
+```
+
 ## PRODUCTION
 Start the API
 ```bash
@@ -14,24 +40,4 @@ Run tests API
 ```bash
 npm test
 ```
-Run the pre-test API (tests & migrate)
-```bash
-npm migrate:reset
-```
-## DATABASE
-Migrate the models to the database
-```bash
-npm migrate
-```
-Reset the migrations
-```bash
-npm migrate:reset
-```
-Fill the database with somes datas
-```bash
-npm seed
-```
-Reset the seeds
-```bash
-npm seed:reset
-```
+
