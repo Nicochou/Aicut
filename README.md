@@ -1,33 +1,27 @@
-# ETNA
-## AICUT
-
+# AICUT
 AIcut is a solution for streamers. The goal is to create an application which is creating clips from live streaming on Twitch.
-You can activate the AI, then it will create a clip automatcly from a complex machine learning. You can edit it and then mount your video with your clips
 
-We also want to have an acces without Twitch account to display trends and analytics on it.
+You can being connecte on the solution with your twitch account, Then you can activate the AI script, and it will create a clip automatcly from a machine learning Python then You can edit it and then mount your video with your clips
 
-Currently in developpement.
+We also want to have an acces without Twitch account to display trends, analytics and clips on it.
 
-## How is it working?
+## Language and Tools
+### The Api
+[![Express Logo](https://i.cloudup.com/zfY6lL7eFa-1000x1000.png)](http://expressjs.com/)
+[![passport Logo](http://cdn.auth0.com/img/passport-banner-github.png)](http://passportjs.org)
+[![Sequelize Logo](https://sequelize.org/v3/images/logo-small.png)](https://sequelize.org/)
+### The Client
 
-We got an API with Express JS, she manage the authentication with twitch and database. She also create the clips and manage tokens from users.
+### The MachineLearning Server
 
-We got a Client in ReactJS, to display the data's user, the trends, the analytics.
+## Installation
 
-We got a other server in Node js, with Python script. This server is call when the user want to activate the autmatic detection for creating a clip.
+## Documentations
 
-## Features
- - API secured by JWT
- - Double authentication (Twitch and local DB)
- - App token twitch with data transfer client side
- - User token ( clip edition ) twitch with data transfer server side
- - Is the streamer in live? ( for Twitch authentication )
- - Create clip with user token Twitch
+## Contributions
 
-## Tech
+## Deployment
 
-- [ReactJS] - HTML enhanced for web apps!
-- [PassportJS] - For OAuth2 authentication
-- [MySQL] - SQL script for database
-- [Express] - fast node.js network app framework
-- [Axios] - requests to my express from client
+## Security Issues
+
+## About Us
