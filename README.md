@@ -8,7 +8,8 @@ We also want to have an acces without Twitch account to display trends, analytic
 ## Process
 
 ## Language and Tools
-https://user-images.githubusercontent.com/49341587/121340602-185fcc80-c920-11eb-9c38-3640f521c24c.PNG
+[![AICUT Tools Logo](https://user-images.githubusercontent.com/49341587/121340602-185fcc80-c920-11eb-9c38-3640f521c24c.PNG)]
+
 ### The Api
 
 ### The Client
