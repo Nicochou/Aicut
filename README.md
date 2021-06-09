@@ -16,12 +16,22 @@ We also want to have an acces without Twitch account to display trends, analytic
 
 ## Installation
 
+Express API ->
+Client React ->
+Machine Learning Server ->
+
 ## Documentations
+
+The documentation is currently in wrinting
 
 ## Contributions
 
+feel free to contribute to the project. Join us to the contribution code or contribution documentation
+
 ## Deployment
+
+The deployment has to be done with AWS. A pipeline is in building right now.
 
 ## Security Issues
 
-## About Us
+If you discover a security vulnerability within Aicut, please follow our disclosure procedure.
