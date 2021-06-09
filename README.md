@@ -16,9 +16,9 @@ We also want to have an acces without Twitch account to display trends, analytic
 
 ## Installation
 
-Express API -> https://github.com/Nicochou/aicut/blob/main/ai-server/README.md#installation                        
+Express API -> https://github.com/Nicochou/aicut/tree/main/server#installation                        
 Client React -> https://github.com/Nicochou/aicut/tree/main/client#installation                         
-Machine Learning Server -> https://github.com/Nicochou/aicut/blob/main/ai-server/README.md#installation             
+AI server -> https://github.com/Nicochou/aicut/tree/main/ai-server#installation             
 
 ## Documentations
 
