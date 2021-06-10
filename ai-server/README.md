@@ -4,8 +4,8 @@
 | Ticket        | Link      | Explication |
 | ------|-----|-----|
 | 001  	| [link ticket](https://trello.com/c/N8rMkKL3)	| Launch the AI server with arguments 	|
-| Gras 	| \*\*Gras\*\* 	| **C'est en bold** 	|
-| Lien 	| \[Description\](url ici) 	|  	|
+| 002  	| [link ticket](https://trello.com/c/kVI9iBSK)	| Launch the AI server from the API 	|
+| 003  	| [link ticket](https://trello.com/c/csaCErc9)	| The Ai server call the API to create a clip 	|
 
 ## .ENV
 Modify the .env file
