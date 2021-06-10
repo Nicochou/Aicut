@@ -32,7 +32,7 @@ feel free to contribute to the project. Join us to the contribution code or cont
 
 The deployment has to be done with AWS. A pipeline is in building right now.
 
-### Deployment
+### Todo
 | Ticket        | Link      | Explication |
 | ------|-----|-----|
 | 001  	| [link ticket](https://trello.com/c/UO48w2j3)	| Deploy the API on AWS 	|
