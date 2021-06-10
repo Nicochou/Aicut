@@ -41,4 +41,4 @@ The deployment has to be done with AWS. A pipeline is in building right now.
 
 ## Security Issues
 
-If you discover a security vulnerability within Aicut, please follow our disclosure procedure.
+If you discover a security vulnerability within Aicut, please follow our disclosure procedure and set up a new issue request on the github.
