@@ -35,9 +35,11 @@ The deployment has to be done with AWS. A pipeline is in building right now.
 
 | Ticket        | Link      | Explication |
 | ------|-----|-----|
-| 001  	| [link ticket](https://trello.com/c/N8rMkKL3)	| Launch the AI server with arguments 	|
-| 002  	| [link ticket](https://trello.com/c/kVI9iBSK)	| Launch the AI server from the API 	|
-| 003  	| [link ticket](https://trello.com/c/csaCErc9)	| The Ai server call the API to create a clip 	|
+| 001  	| [link ticket](https://trello.com/c/UO48w2j3)	| Deploy the API on AWS 	|
+| 002  	| [link ticket](https://trello.com/c/uy3n18Oi)	| Deploy the Client on AWS 	|
+| 003  	| [link ticket](https://trello.com/c/pNw21uMj)	| Deploy the AI server on AWS 	|
+| 004  	| [link ticket](https://trello.com/c/kXzH9NFm)	| Run tests and build (PR & Push [main][develop]) 	|
+| 005  	| [link ticket](https://trello.com/c/97thv4ZB)	| Create continue integration with github and Aws 	|
 
 ## Security Issues
 
