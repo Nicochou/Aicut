@@ -32,6 +32,13 @@ feel free to contribute to the project. Join us to the contribution code or cont
 
 The deployment has to be done with AWS. A pipeline is in building right now.
 
+
+| Ticket        | Link      | Explication |
+| ------|-----|-----|
+| 001  	| [link ticket](https://trello.com/c/N8rMkKL3)	| Launch the AI server with arguments 	|
+| 002  	| [link ticket](https://trello.com/c/kVI9iBSK)	| Launch the AI server from the API 	|
+| 003  	| [link ticket](https://trello.com/c/csaCErc9)	| The Ai server call the API to create a clip 	|
+
 ## Security Issues
 
 If you discover a security vulnerability within Aicut, please follow our disclosure procedure.
