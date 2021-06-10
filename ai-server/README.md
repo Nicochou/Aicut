@@ -1,9 +1,9 @@
 # Machine Learning Server
 
 ## TODO LIST
-| Format        | Link      | Exemple |
+| Ticket        | Link      | Explication |
 | ------|-----|-----|
-| Italique  	| [link ticket](https://trello.com/c/N8rMkKL3)	| *C'est en italique* 	|
+| 001  	| [link ticket](https://trello.com/c/N8rMkKL3)	| Launch the AI server with arguments 	|
 | Gras 	| \*\*Gras\*\* 	| **C'est en bold** 	|
 | Lien 	| \[Description\](url ici) 	|  	|
 
