@@ -3,9 +3,9 @@
 ## TODO LIST
 | Format        | Link      | Exemple |
 | ------|-----|-----|
-| Italique  	| \*Texte\* 	| *C'est en italique* 	|
+| Italique  	| [link ticket](https://trello.com/c/N8rMkKL3)	| *C'est en italique* 	|
 | Gras 	| \*\*Gras\*\* 	| **C'est en bold** 	|
-| Lien 	| \[Description\](url ici) 	| Un [lien](http://www.github.com) 	|
+| Lien 	| \[Description\](url ici) 	|  	|
 
 ## .ENV
 Modify the .env file
