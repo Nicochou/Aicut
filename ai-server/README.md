@@ -1,7 +1,7 @@
 # Machine Learning Server
 
 ## TODO LIST
-| Format        | Syntaxe      | Exemple |
+| Format        | Link      | Exemple |
 | ------|-----|-----|
 | Italique  	| \*Texte\* 	| *C'est en italique* 	|
 | Gras 	| \*\*Gras\*\* 	| **C'est en bold** 	|
