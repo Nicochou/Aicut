@@ -15,10 +15,23 @@ We also want to have an acces without Twitch account to display trends, analytic
 ![AICUT Algo](https://user-images.githubusercontent.com/49341587/121345569-50b5d980-c925-11eb-821e-d12eba52abe5.PNG)
 
 ## Installation
+To launch the application, you got 2 options:
 
-Express API -> https://github.com/Nicochou/aicut/tree/main/server#installation                        
-Client React -> https://github.com/Nicochou/aicut/tree/main/client#installation                         
-AI server -> https://github.com/Nicochou/aicut/tree/main/ai-server#installation             
+Option 1:
+    launch all the components so use Docker
+```
+docker compose up
+```
+and to shut down
+```
+docker compose down
+```
+
+Option 2
+    Launch one or a few of components so check the install one per one
+Express API -> [API INSTALLATION](https://github.com/Nicochou/aicut/tree/main/server#installation)                        
+Client React -> [CLIENT INSTALLATION](https://github.com/Nicochou/aicut/tree/main/client#installation)                         
+AI server -> [AISERVER INSTALLATION](https://github.com/Nicochou/aicut/tree/main/ai-server#installation)            
 
 ## Documentations
 

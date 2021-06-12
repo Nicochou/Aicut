@@ -1,0 +1,73 @@
+# We specify the version of docker compose
+version: "3.9"
+# We specify the different services
+services: 
+    # The api
+    server:
+        # the build folder
+        build: server
+        container_name: server_
+        # the ports to map
+        ports: 
+            - 8082:8082
+            - 9229:9229
+            - 9230:9230
+        # start after the database
+        depends_on: 
+            - db
+        # The differents networks
+        networks:
+            - private
+            - public
+    # The client
+    client:
+        # the build folder
+        build: client
+        container_name: client_
+        # the ports to map
+        ports: 
+            - 3000:3000
+        # start after the database
+        depends_on:
+            - db
+        # The differents networks
+        networks:
+            - public
+    # The machine learning server
+    aiserver:
+        # the build folder
+        build: ai-server
+        container_name: aiserver_
+        # the ports to map
+        ports: 
+            - 8080:8080
+        # start after the database
+        depends_on:
+            - db
+        # The differents networks
+        networks:
+            - private
+            - public
+    # The database
+    db:
+        # https://hub.docker.com/_/mysql
+        image: mysql:latest
+        container_name: mysqldb_
+        restart: always
+        # The differents networks
+        networks:
+            - private
+        # The shared folder
+        volumes:
+            - db-data:/var/lib/mysql
+        environment:
+            - MYSQL_ROOT_PASSWORD=root
+# We specify the different networks
+networks:
+    public:
+    private:
+# We specify the differents shared folders
+volumes:
+    db-data:
+
+    
