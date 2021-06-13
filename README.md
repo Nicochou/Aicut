@@ -45,6 +45,15 @@ feel free to contribute to the project. Join us to the contribution code or cont
 
 The deployment has to be done with AWS. A pipeline is in building right now.
 
+### Todo
+| Ticket        | Link      | Explication |
+| ------|-----|-----|
+| 001  	| [link ticket](https://trello.com/c/UO48w2j3)	| Deploy the API on AWS 	|
+| 002  	| [link ticket](https://trello.com/c/uy3n18Oi)	| Deploy the Client on AWS 	|
+| 003  	| [link ticket](https://trello.com/c/pNw21uMj)	| Deploy the AI server on AWS 	|
+| 004  	| [link ticket](https://trello.com/c/kXzH9NFm)	| Run tests and build (PR & Push [main][develop]) 	|
+| 005  	| [link ticket](https://trello.com/c/97thv4ZB)	| Create continue integration with github and Aws 	|
+
 ## Security Issues
 
-If you discover a security vulnerability within Aicut, please follow our disclosure procedure.
+If you discover a security vulnerability within Aicut, please follow our disclosure procedure and set up a new issue request on the github.
