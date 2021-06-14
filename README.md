@@ -39,20 +39,18 @@ The documentation is currently in wrinting
 
 ## Contributions
 
-feel free to contribute to the project. Join us to the contribution code or contribution documentation
+Feel free to contribute to the project.
+    Step 1: Fork the project to your github
+    Step 2: Create a new local branch according to the bugfix, features ... from the project forked
+    Step 3: Modify the branch, ( w
+    Step 4: Push the branch to your remote repository
+    Step 5: Create a Pull Request from your branch to the base branch : [develop]
 
 ## Deployment
 
-The deployment has to be done with AWS. A pipeline is in building right now.
+On every Pull request or Push to the [main] branch, an build aws is launched.
 
-### Todo
-| Ticket        | Link      | Explication |
-| ------|-----|-----|
-| 001  	| [link ticket](https://trello.com/c/UO48w2j3)	| Deploy the API on AWS 	|
-| 002  	| [link ticket](https://trello.com/c/uy3n18Oi)	| Deploy the Client on AWS 	|
-| 003  	| [link ticket](https://trello.com/c/pNw21uMj)	| Deploy the AI server on AWS 	|
-| 004  	| [link ticket](https://trello.com/c/kXzH9NFm)	| Run tests and build (PR & Push [main][develop]) 	|
-| 005  	| [link ticket](https://trello.com/c/97thv4ZB)	| Create continue integration with github and Aws 	|
+Please, wait the build ended before merge the branches.
 
 ## Security Issues
 
