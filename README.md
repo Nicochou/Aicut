@@ -27,9 +27,7 @@ and to shut down
 docker compose down
 ```
 
-Option 2
-
-- Launch one or a few of components so check the install one per one
+Option 2 : Launch one or a few of components so check the install one per one
 - Express API -> [API INSTALLATION](https://github.com/Nicochou/aicut/tree/main/server#installation)                        
 - Client React -> [CLIENT INSTALLATION](https://github.com/Nicochou/aicut/tree/main/client#installation)                         
 - AI server -> [AISERVER INSTALLATION](https://github.com/Nicochou/aicut/tree/main/ai-server#installation)            
