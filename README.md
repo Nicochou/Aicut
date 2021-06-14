@@ -40,10 +40,15 @@ The documentation is currently in wrinting
 ## Contributions
 
 Feel free to contribute to the project.
+
     Step 1: Fork the project to your github
+    
     Step 2: Create a new local branch according to the bugfix, features ... from the project forked
-    Step 3: Modify the branch, ( w
+    
+    Step 3: Modify the branch
+    
     Step 4: Push the branch to your remote repository
+    
     Step 5: Create a Pull Request from your branch to the base branch : [develop]
 
 ## Deployment
