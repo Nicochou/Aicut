@@ -27,11 +27,10 @@ and to shut down
 docker compose down
 ```
 
-Option 2
-    Launch one or a few of components so check the install one per one
-Express API -> [API INSTALLATION](https://github.com/Nicochou/aicut/tree/main/server#installation)                        
-Client React -> [CLIENT INSTALLATION](https://github.com/Nicochou/aicut/tree/main/client#installation)                         
-AI server -> [AISERVER INSTALLATION](https://github.com/Nicochou/aicut/tree/main/ai-server#installation)            
+Option 2 : Launch one or a few of components so check the install one per one
+- Express API -> [API INSTALLATION](https://github.com/Nicochou/aicut/tree/main/server#installation)                        
+- Client React -> [CLIENT INSTALLATION](https://github.com/Nicochou/aicut/tree/main/client#installation)                         
+- AI server -> [AISERVER INSTALLATION](https://github.com/Nicochou/aicut/tree/main/ai-server#installation)            
 
 ## Documentations
 
@@ -39,12 +38,24 @@ The documentation is currently in wrinting
 
 ## Contributions
 
-feel free to contribute to the project. Join us to the contribution code or contribution documentation
+Feel free to contribute to the project.
+
+    Step 1: Fork the project to your github
+    
+    Step 2: Create a new local branch according to the bugfix, features ... from the project forked
+    
+    Step 3: Modify the branch
+    
+    Step 4: Push the branch to your remote repository
+    
+    Step 5: Create a Pull Request from your branch to the base branch : [develop]
 
 ## Deployment
 
-The deployment has to be done with AWS. A pipeline is in building right now.
+On every Pull request or Push to the [main] branch, an build aws is launched.
+
+Please, wait the build ended before merge the branches.
 
 ## Security Issues
 
-If you discover a security vulnerability within Aicut, please follow our disclosure procedure.
+If you discover a security vulnerability within Aicut, please follow our disclosure procedure and set up a new issue request on the github.
