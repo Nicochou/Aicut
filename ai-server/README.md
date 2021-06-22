@@ -29,3 +29,10 @@ npm install
 ```
  node app.js <TheChannelName>
 ```
+
+## DATA
+-nb message entre db/bot
+-nb viewer entre db/bot 
+-nb follower entre db/bot
+-nb sub entre db/bot
+-(nb emote entre db/bot)
