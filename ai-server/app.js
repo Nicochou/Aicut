@@ -88,8 +88,8 @@ client.on('message', (channel, tags, message, self) => {
     }*/
 	// We set the second time variable
     t2 = t1 - t2;
-    console.log(colors.bgCyan.magenta(t2));
-    if (t2 >= 200) {
+    console.log(colors.bgWhite.magenta(t1));
+    console.log(colors.bgWhite.magenta(t2));
         nbMessage = nbMessage1 - nbMessage2;
         nbMessageSec = nbMessage / 30;
         // var dataReceive;
@@ -129,7 +129,6 @@ client.on('message', (channel, tags, message, self) => {
             }
         });
 
-    }
     t2 = t1;
     nbMessage2 = nbMessage1;
 });
