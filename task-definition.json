@@ -3,52 +3,64 @@
     "executionRoleArn": null,
     "containerDefinitions": [
       {
-        "dnsSearchDomains": null,
-        "environmentFiles": null,
-        "logConfiguration": null,
-        "entryPoint": null,
-        "portMappings": [
-          {
-            "hostPort": 80,
-            "protocol": "tcp",
-            "containerPort": 80
-          }
-        ],
-        "command": null,
-        "linuxParameters": null,
-        "cpu": 0,
-        "environment": [],
-        "resourceRequirements": null,
-        "ulimits": null,
-        "dnsServers": null,
-        "mountPoints": [],
-        "workingDirectory": null,
-        "secrets": null,
-        "dockerSecurityOptions": null,
-        "memory": null,
-        "memoryReservation": null,
-        "volumesFrom": [],
-        "stopTimeout": null,
-        "image": "999111338687.dkr.ecr.eu-west-3.amazonaws.com/ai-cut",
-        "startTimeout": null,
-        "firelensConfiguration": null,
-        "dependsOn": null,
-        "disableNetworking": null,
-        "interactive": null,
-        "healthCheck": null,
-        "essential": true,
-        "links": null,
-        "hostname": null,
-        "extraHosts": null,
-        "pseudoTerminal": null,
-        "user": null,
-        "readonlyRootFilesystem": null,
-        "dockerLabels": null,
-        "systemControls": null,
-        "privileged": null,
-        "name": "AiCutContainer"
+          "essential": true,
+          "image": "aiserver",
+          "name": "aiserver",
+          "portMappings": [
+              {
+                  "containerPort": 8080,
+                  "hostPort": 8080
+              }
+          ]
+      },
+      {
+          "essential": true,
+          "image": "client",
+          "name": "client",
+          "portMappings": [
+              {
+                  "containerPort": 3000,
+                  "hostPort": 3000
+              }
+          ]
+      },
+      {
+          "environment": [
+              {
+                  "name": "MYSQL_ROOT_PASSWORD",
+                  "value": "root"
+              }
+          ],
+          "essential": true,
+          "image": "mysql:latest",
+          "mountPoints": [
+              {
+                  "containerPath": "/var/lib/mysql",
+                  "sourceVolume": "Db-Data"
+              }
+          ],
+          "name": "db"
+      },
+      {
+          "essential": true,
+          "image": "server",
+          "name": "server",
+          "portMappings": [
+              {
+                  "containerPort": 8082,
+                  "hostPort": 8082
+              },
+              {
+                  "containerPort": 9229,
+                  "hostPort": 9229
+              },
+              {
+                  "containerPort": 9230,
+                  "hostPort": 9230
+              }
+          ]
       }
-    ],
+  ],
     "placementConstraints": [],
     "memory": "128",
     "taskRoleArn": null,
@@ -76,5 +88,9 @@
     "status": "ACTIVE",
     "inferenceAccelerators": null,
     "proxyConfiguration": null,
-    "volumes": []
-  }
+    "volumes": [
+      {
+          "name": "Db-Data"
+      }
+  ]
+}

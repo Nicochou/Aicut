@@ -20,4 +20,4 @@ RUN npm ci
 COPY . ./ai-server
 
 # start the ai-server
-CMD ["node", "app.js"]
+CMD ["node", "app.js", "Ponce"]
