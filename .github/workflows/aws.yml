@@ -51,12 +51,13 @@ jobs:
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v1
 
-    - name: Build, tag, and push image to Amazon ECR
-      id: build-image
+    - name: Build, tag, and push image aiserver to Amazon ECR
+      id: build-image-aiserver
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         ECR_REPOSITORY: ai-cut
         IMAGE_TAG: ${{ github.sha }}
+      working-directory: ai-server
       run: |
         # Build a docker container and
         # push it to ECR so that it can
@@ -65,18 +66,64 @@ jobs:
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
         echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
 
-    - name: Fill in the new image ID in the Amazon ECS task definition
-      id: task-def
+    - name: Build, tag, and push image client to Amazon ECR	
+      id: build-image-client	
+      env:	
+        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}	
+        ECR_REPOSITORY: ai-cut	
+        IMAGE_TAG: ${{ github.sha }}	
+      working-directory: client	
+      run: |	
+        # Build a docker container and	
+        # push it to ECR so that it can	
+        # be deployed to ECS.	
+        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .	
+        docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG	
+        echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
+
+    - name: Build, tag, and push image server to Amazon ECR	
+          id: build-image-server	
+          env:	
+            ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}	
+            ECR_REPOSITORY: ai-cut	
+            IMAGE_TAG: ${{ github.sha }}	
+          working-directory: server	
+          run: |	
+            # Build a docker container and	
+            # push it to ECR so that it can	
+            # be deployed to ECS.	
+            docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .	
+            docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG	
+            echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
+
+    - name: Fill in the new image ID in the Amazon ECS task definition of the aiserver
+      id: render-aiserver
       uses: aws-actions/amazon-ecs-render-task-definition@v1
       with:
         task-definition: task-definition.json
-        container-name: AiCutContainer
-        image: ${{ steps.build-image.outputs.image }}
+        container-name: aiserver
+        image: ${{ steps.build-image-aiserver.outputs.image }}
+
+    - name: Fill in the new image ID in the Amazon ECS task definition of the server
+      id: render-server
+      uses: aws-actions/amazon-ecs-render-task-definition@v1
+      with:
+        task-definition: ${{ steps.render-aiserver.outputs.task-definition }}
+        container-name: server
+        image: ${{ steps.build-image-server.outputs.image }}
+
+    - name: Fill in the new image ID in the Amazon ECS task definition of the client
+      id: render-client
+      uses: aws-actions/amazon-ecs-render-task-definition@v1
+      with:
+        task-definition: ${{ steps.render-aiserver.outputs.task-definition }}
+        container-name: client
+        image: ${{ steps.build-image-client.outputs.image }}
 
     - name: Deploy Amazon ECS task definition
       uses: aws-actions/amazon-ecs-deploy-task-definition@v1
       with:
-        task-definition: ${{ steps.task-def.outputs.task-definition }}
+        task-definition: ${{ steps.render-client.outputs.task-definition }}
         service: AiCutService
         cluster: AiCutCluster
         wait-for-service-stability: true
