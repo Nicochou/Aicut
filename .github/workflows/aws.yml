@@ -82,19 +82,19 @@ jobs:
         echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
 
     - name: Build, tag, and push image server to Amazon ECR	
-          id: build-image-server
-          env:
-            ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}	
-            ECR_REPOSITORY: ai-cut	
-            IMAGE_TAG: ${{ github.sha }}	
-          working-directory: server	
-          run: |	
-            # Build a docker container and	
-            # push it to ECR so that it can	
-            # be deployed to ECS.	
-            docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .	
-            docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG	
-            echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
+      id: build-image-server
+      env:
+        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}	
+        ECR_REPOSITORY: ai-cut	
+        IMAGE_TAG: ${{ github.sha }}	
+      working-directory: server	
+      run: |	
+        # Build a docker container and	
+        # push it to ECR so that it can	
+        # be deployed to ECS.	
+        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .	
+        docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG	
+        echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
 
     - name: Fill in the new image ID in the Amazon ECS task definition of the aiserver
       id: render-aiserver
