@@ -1,5 +1,5 @@
 {
-  "name": "aicut",
+  "name": "apiaicut",
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
@@ -33,6 +33,7 @@
     "nocache": "^3.0.0",
     "nodemon": "^2.0.7",
     "passport": "^0.4.1",
+    "passport-twitch-new": "0.0.2",
     "request": "^2.88.2",
     "sequelize": "^6.6.2",
     "supertest": "^6.1.3"

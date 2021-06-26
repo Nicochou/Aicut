@@ -20,7 +20,7 @@ To launch the application, you got 2 options:
 Option 1:
     launch all the components so use Docker
 ```
-docker compose up
+docker compose up --build
 ```
 and to shut down
 ```
@@ -44,9 +44,9 @@ Feel free to contribute to the project.
     
     Step 2: Create a new local branch according to the bugfix, features ... from the project forked
     
-    Step 3: Modify the branch
+    Step 3: Code the feature.
     
-    Step 4: Push the branch to your remote repository
+    Step 4: Push the branch to your remote repository.
     
     Step 5: Create a Pull Request from your branch to the base branch : [develop]
 
