@@ -1,5 +1,5 @@
-var passport = require( "passport" );
-var twitchStrategy = require( "@d-fischer/passport-twitch" ).Strategy;
+var passport = require("passport");
+var twitchStrategy = require("passport-twitch-new").Strategy;
 var keys = require( '../config/keys.config' );
 var colors = require('colors/safe');
 
@@ -19,7 +19,7 @@ const Op = db.Sequelize.Op;
           scope: "clips:edit"
         },
       function(accessToken, refreshToken, profile, done) {
-        console.log(colors.green(accessToken));
+        console.log(colors.bgBlue(accessToken));
         User.findOrCreate({
            where: { login: profile.login},
            defaults: {login: profile.login,

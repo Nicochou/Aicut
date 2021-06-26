@@ -123,7 +123,7 @@ jobs:
     - name: Deploy Amazon ECS task definition
       uses: aws-actions/amazon-ecs-deploy-task-definition@v1
       with:
-        task-definition: ${{ steps.render-client.task-definition }}
+        task-definition: ${{ steps.render-client.outputs.task-definition }}
         service: AiCutService
         cluster: AiCutCluster
         wait-for-service-stability: true

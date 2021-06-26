@@ -3,7 +3,7 @@
     "username": "root",
     "password": "root",
     "database": "aicutdb_development",
-    "host": "localhost",
+    "host": "db",
     "dialect": "mysql",
     "pool": {
       "max": 5,
@@ -16,7 +16,7 @@
     "username": "root",
     "password": "root",
     "database": "aicutdb_test",
-    "host": "127.0.0.1",
+    "host": "db",
     "dialect": "mysql",
     "pool": {
       "max": 5,
@@ -28,8 +28,8 @@
   "production": {
     "username": "root",
     "password": "root",
-    "database": "database_production",
-    "host": "127.0.0.1",
+    "database": "aicutdb_production",
+    "host": "db",
     "dialect": "mysql",
     "pool": {
       "max": 5,
