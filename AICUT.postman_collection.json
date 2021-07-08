@@ -1,0 +1,183 @@
+{
+	"info": {
+		"_postman_id": "52963a9a-0fbc-42df-9f76-d391c9735b10",
+		"name": "AICUT",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "[AUTH] Twitch authentification",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/profile/api/isOnline/515098280",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"profile",
+						"api",
+						"isOnline",
+						"515098280"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[AUTH] Twitch authentification callback",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/twitchAuth/callback?code=k3a7lios7p6mqdudmn7ex5xv1thy7w&scope=user_read",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"twitchAuth",
+						"callback"
+					],
+					"query": [
+						{
+							"key": "code",
+							"value": "k3a7lios7p6mqdudmn7ex5xv1thy7w"
+						},
+						{
+							"key": "scope",
+							"value": "user_read"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[AUTH] Login User",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/profile/api/getStreams/515098280",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"profile",
+						"api",
+						"getStreams",
+						"515098280"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[TRENDS] get_top_games",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8082/api/topgames",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"api",
+						"topgames"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[TRENDS] get_clips_from_games",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/api/getclipsfromgame/161690240/21779",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"getclipsfromgame",
+						"161690240",
+						"21779"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[USERS] get_clips_from_broadcaster",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/api/getclipsfromgame/161690240/21779",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"getclipsfromgame",
+						"161690240",
+						"21779"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[USERS] create_clip",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/api/getclipsfromgame/161690240/21779",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"getclipsfromgame",
+						"161690240",
+						"21779"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
