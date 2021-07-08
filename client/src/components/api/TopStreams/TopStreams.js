@@ -89,7 +89,7 @@ function TopStreams(){
             <h1 className="titreGames">Stream les plus populaires</h1>
            
             <div className="container">
-
+                <div className="row">
                 {channels.map((channel, index) => (
 
                     <div key={index} className="card">
@@ -120,7 +120,7 @@ function TopStreams(){
                     </div>
 
                 ))}
-
+                </div>
             </div>
         </div>
     )

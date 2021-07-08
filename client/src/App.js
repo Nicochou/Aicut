@@ -112,7 +112,7 @@ class App extends Component {
           </div>
 
           {currentUser ? (
-            <div className="navbar-nav ml-auto">
+            <div className="navbar-nav my-2">
               {showStreamerBoard && (
               <li className="nav-item">
                 <Link to={"/cut"} className="nav-link bg-primary">
