@@ -1,4 +1,7 @@
 # AICUT
+
+![AICUT Process ](https://user-images.githubusercontent.com/49341587/125423783-b184198e-d5a9-4753-9eec-a079ea1baa1d.png =100x20)
+
 AIcut is a solution for streamers. The goal is to create an application which is creating clips from live streaming on Twitch.
 
 You can being connecte on the solution with your twitch account, Then you can activate the AI script, and it will create a clip automatcly from a machine learning Python then You can edit it and then mount your video with your clips
