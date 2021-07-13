@@ -26,15 +26,12 @@ module.exports = function(app) {
     // variables
     var id = req.query.id;
     var message;
-    let twitchToken = 'hhfklwkbpq8edcey3vg7knr7rayeys';
+    var token = req.session;
+    console.log(token);
+    let twitchToken = 'adv9i386qwojxgwz8li45u3lirc746';
     var users = [];
     // Retrieve User
     User.findByPk(id).then(function (user) {
-      if (user.length <= 0) {
-        // Message no user
-        message = 'Pas de User trouvé'
-      } else {
-        message = 'User trouvé'
         // Request twitch
         var headers = {
             'Authorization': 'Bearer ' + twitchToken,
@@ -48,7 +45,6 @@ module.exports = function(app) {
         };
         // send request
         request(options, callback);
-      }
     });
     // Callback
     function callback(error, response, body) {
@@ -63,10 +59,7 @@ module.exports = function(app) {
               clip.setUsers(id);
             })
         }
-        else{
-          message = 'Pas de User trouvé'
-        }
-        res.send({ id: id, status: response.statusCode, message: message, data: JSON.parse(body) });
+        res.send({ id: id, status: response.statusCode, data: JSON.parse(body) });
     }
   });
 }

@@ -18,7 +18,7 @@ We also want to have an acces without Twitch account to display trends, analytic
 To launch the application, you got 2 options:
 
 Option 1:
-    launch all the components so use Docker
+launch all the components so use Docker
 ```
 docker compose up --build
 ```
