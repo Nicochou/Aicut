@@ -20,7 +20,8 @@ const chatBot = new tmi.Client({
     },
     connection: {
         reconnect: true,
-        secure: true
+        secure: true,
+        cluster:'aws'
     },
     // Bot indentity
     identity: {
@@ -42,22 +43,22 @@ chatBot
         console.log(self, channel);
     if (self) return;
     t1 = Date.now()
-    console.log(colors.bgCyan.red(message));
-	console.log(colors.bgCyan.red(tags));
+    console.log(message);
+	console.log(tags);
 	// We add the message to the an array
     tab.push(message);
-	console.log("The number of messages ->" + colors.bgCyan.green(tab.length));
+	console.log("The number of messages ->" + tab.length);
 	// We set the Messages variables
     nbMessage1 = tab.length;
     nbMessage2 = tab.length;
     t2 = t1 - t2;
-    console.log(colors.bgWhite.magenta(t1));
-    console.log(colors.bgWhite.magenta(t2));
+    console.log(t1);
+    console.log(t2);
         nbMessage = nbMessage1 - nbMessage2;
         nbMessageSec = nbMessage / 30;
         nbMessageSec1 = nbMessageSec
-		console.log(colors.bgMagenta.blue(nbMessage));
-		console.log(colors.bgMagenta.blue(nbMessageSec1));
+		console.log(nbMessage);
+		console.log(nbMessageSec1);
 
         var options = {
             mode: 'text',
@@ -66,18 +67,18 @@ chatBot
             args: ['2554','532','874']
         };
 
-        PythonShell.run('algorithme.py', options, function(err, results) {
+        /*PythonShell.run('algorithme.py', options, function(err, results) {
             if (err){
                 logger.log('error', 'Error executing the ML Script ', { message: err });
             };
             // If the machine learning detect smthing
             if(results[0] == "True"){
-                logger.log('error', 'Error executing the ML Script ', { message: err });
+                logger.log('info', 'Cut detection', { message: 'Cut launched' });
             }
             else{
-                logger.log('error', 'Error executing the ML Script ', { message: err });
+                logger.log('info', 'Cut detection', { message: 'Cut not launched, nothing happened' });
             }
-        });
+        });*/
 
     t2 = t1;
     nbMessage2 = nbMessage1;
