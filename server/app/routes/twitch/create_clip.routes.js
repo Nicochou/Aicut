@@ -1,7 +1,8 @@
-const session = require('express-session');
+var session = require('express-session');
 var request = require('request');
 const db = require("../../../models");
 const config = require("../../config/auth.config");
+var colors = require('colors/safe');
 const User = db.user;
 const Role = db.role;
 const UserRoles = db.user_roles;
@@ -27,7 +28,7 @@ module.exports = function(app) {
     var id = req.query.id;
     var message;
     var token = req.session;
-    console.log(token);
+    console.log(colors.bgGreen(token));
     let twitchToken = 'adv9i386qwojxgwz8li45u3lirc746';
     var users = [];
     // Retrieve User
