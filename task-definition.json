@@ -1,6 +1,6 @@
 {
     "ipcMode": null,
-    "executionRoleArn": null,
+    "executionRoleArn": "arn:aws:iam::999111338687:role/ecsTaskExecutionRole",
     "containerDefinitions": [
       {
           "essential": true,
@@ -62,16 +62,16 @@
       }
   ],
     "placementConstraints": [],
-    "memory": "128",
-    "taskRoleArn": null,
+    "memory": "512",
+    "taskRoleArn": "",
     "family": "DeploymentContainer",
     "pidMode": null,
     "requiresCompatibilities": [
       "EC2"
     ],
-    "networkMode": null,
-    "cpu": "1024",
-    "inferenceAccelerators": null,
+    "networkMode": "awsvpc",
+    "cpu": "256",
+    "inferenceAccelerators": [],
     "proxyConfiguration": null,
     "volumes": [
       {
