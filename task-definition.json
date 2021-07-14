@@ -69,7 +69,7 @@
     "requiresCompatibilities": [
       "EC2"
     ],
-    "networkMode": "awsvpc",
+    "networkMode": null,
     "cpu": "256",
     "inferenceAccelerators": [],
     "proxyConfiguration": null,
