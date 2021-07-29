@@ -149,7 +149,8 @@ PARTIE HEADER
 }
 #ProfilePic{
   border-radius: 50%;
-  width: 10%;
+  height: auto;
+  width: 2em;
 }
 
 /* 
@@ -234,6 +235,7 @@ PARTIE FOOTER
 ///////////////////////////////
 */
 #footer {
+  margin-top: 50px;
   display: block;
   position: relative;
   background-color: #f8f9fa;
@@ -724,4 +726,36 @@ PARTIE RESULTATS
  padding-top: 50px;
 }
 
+#streamOff{
+  margin-top:5%;
+  margin-bottom:10%;
+  background-color:#ffeaa7;
+  padding:15px;
+  border-radius: 10px;
+}
 
+#streamOn{
+  margin-top:5%;
+  margin-bottom:10%;
+  background-color: #dfe6e9;
+  padding:15px;
+  border-radius: 10px;
+}
+
+#tuto-clip{
+  margin-top:5%;
+  margin-bottom:10%;
+  background-color: #dfe6e9;
+  padding:15px;
+  border-radius: 10px;
+}
+
+#appRoute{
+  display: inline-flex;
+  list-style-type: none;
+}
+
+hr{
+  margin-top: 40px;
+  margin-bottom: 40px;
+}

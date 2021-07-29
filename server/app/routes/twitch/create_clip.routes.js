@@ -29,7 +29,7 @@ module.exports = function(app) {
     var message;
     var token = req.session;
     console.log(colors.bgGreen(token));
-    let twitchToken = 'adv9i386qwojxgwz8li45u3lirc746';
+    let twitchToken = '4dmvxi9yd9r7z5ee6a5zqgrl5ua345';
     var users = [];
     // Retrieve User
     User.findByPk(id).then(function (user) {

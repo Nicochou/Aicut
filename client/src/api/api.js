@@ -40,7 +40,7 @@ else{
     })
     .then(response => {
       // Si on une réponse 200 au revoke du app token
-      if (response.status == 200) {
+      if (response.status === 200) {
           axios
           .post(config.TWITCH_APP_URL_TOKEN, {
               client_id : client_id,

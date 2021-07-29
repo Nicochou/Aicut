@@ -31,6 +31,7 @@ require('./app/routes/user.routes')(app);
 require('./app/routes/default.routes')(app);
 require('./app/routes/clip.routes')(app);
 require('./app/routes/twitch/create_clip.routes')(app);
+require('./app/routes/twitch/activate_ml.routes')(app);
 
 const db = require("./models");
 const Role = db.ROLES;

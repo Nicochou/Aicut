@@ -49,7 +49,7 @@ export default class Profile extends Component {
                 }}
               >
                 {currentUser.roles.map((role, index) => (
-                <span class="badge badge-pill badge-info">{role}</span>
+                <span class="badge badge-pill bg-secondary">{role}</span>
               ))}
                 <div className="row">
                 <div className="col-sm">

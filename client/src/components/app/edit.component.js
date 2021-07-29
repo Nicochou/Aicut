@@ -38,7 +38,7 @@ export default class Edit extends Component {
     const currentUser = this.state.currentUser;
     const clipsEdit = this.state.clips;
     const clips = Array.from(clipsEdit);
-
+    console.log(clips);
     return (
       <div className="container">
         <header className="jumbotron">
