@@ -11,30 +11,33 @@ We also want to have an acces without Twitch account to display trends, analytic
 ## Diagrams
 ![AICUT Process ](https://user-images.githubusercontent.com/49341587/121345215-df762680-c924-11eb-8666-07b8ca8f21e9.PNG)
 
-![AICUT Tools ](https://user-images.githubusercontent.com/49341587/121340602-185fcc80-c920-11eb-9c38-3640f521c24c.PNG)
-
-![AICUT Authentication](https://user-images.githubusercontent.com/49341587/121345509-3aa81900-c925-11eb-93bb-a118fde25d32.PNG)
-
-![AICUT Algo](https://user-images.githubusercontent.com/49341587/121345569-50b5d980-c925-11eb-821e-d12eba52abe5.PNG)
-
 ## Installation
-To launch the application, you got 2 options:
-
-Option 1:
-launch all the components so use Docker
+Option 1 - Docker (Recommanded for production):
+launch all the containers
 ```
-docker compose up --build
+docker compose up
+--build : Build a new image
+--detach : Run containers in the background
 ```
 and to shut down
 ```
-docker compose down
+docker compose down 
+--rmi type: Remove images with type 'all', 'local' or '<tags>'
+--volumes : Remove volumes
 ```
 
-Option 2 : Launch one or a few of components so check the install one per one
+Option 2 - One by one (Recommanded for developpement)
 - Express API -> [API INSTALLATION](https://github.com/Nicochou/aicut/tree/main/server#installation)                        
 - Client React -> [CLIENT INSTALLATION](https://github.com/Nicochou/aicut/tree/main/client#installation)                         
 - AI server -> [AISERVER INSTALLATION](https://github.com/Nicochou/aicut/tree/main/ai-server#installation)            
 
+## Environments
+```
+3 environment :
+  -- PROD
+  -- TEST
+  -- DEV
+```
 ## Documentations
 
 The documentation is currently in wrinting

@@ -1,9 +1,9 @@
 {
   "development": {
     "username": "root",
-    "password": "",
+    "password": "root",
     "database": "aicutdb_development",
-    "host": "localhost",
+    "host": "db",
     "dialect": "mysql",
     "pool": {
       "max": 5,
