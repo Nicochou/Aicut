@@ -42,24 +42,24 @@ services:
         networks:
             - public
     # The machine learning server
-    aiserver:
+    #aiserver:
         # the build folder
-        image: aiserver
-        build: 
-            context: ./ai-server
-            dockerfile: ./Dockerfile
-        container_name: aiserver
+        #image: aiserver
+        #build: 
+            #context: ./ai-server
+            #dockerfile: ./Dockerfile
+        #container_name: aiserver
         # the ports to map
-        ports: 
-            - 8080:8080
+        #ports: 
+            #- 8080:8080
         # start after the database
-        depends_on:
-            - db
-            - phpmyadmin
+        #depends_on:
+            #- db
+            #- phpmyadmin
         # The differents networks
-        networks:
-            - private
-            - public
+        #networks:
+            #- private
+            #- public
     # The database
     db:
         # https://hub.docker.com/_/mysql

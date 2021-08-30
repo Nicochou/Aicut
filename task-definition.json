@@ -2,7 +2,7 @@
     "ipcMode": null,
     "executionRoleArn": "arn:aws:iam::999111338687:role/ecsTaskExecutionRole",
     "containerDefinitions": [
-      {
+     /* {
           "essential": true,
           "image": "aiserver",
           "name": "aiserver",
@@ -12,7 +12,7 @@
                   "hostPort": 8080
               }
           ]
-      },
+      },*/
       {
           "essential": true,
           "image": "client",
