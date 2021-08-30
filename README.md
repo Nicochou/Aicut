@@ -1,5 +1,6 @@
 # AICUT
 
+<img src="https://user-images.githubusercontent.com/49341587/125423783-b184198e-d5a9-4753-9eec-a079ea1baa1d.png" width="140px" />
 ![Logo AICUT](https://user-images.githubusercontent.com/49341587/125423783-b184198e-d5a9-4753-9eec-a079ea1baa1d.png)
 
 AIcut is a solution for streamers. The goal is to create an application which is creating clips from live streaming on Twitch.
@@ -12,7 +13,7 @@ We also want to have an acces without Twitch account to display trends, analytic
 ![AICUT Process ](https://user-images.githubusercontent.com/49341587/121345215-df762680-c924-11eb-8666-07b8ca8f21e9.PNG)
 
 ## Installation
-Option 1 - Docker (Recommanded for production):
+Option 1 - Docker (Recommanded for production):<br />
 launch all the containers
 ```
 docker compose up
@@ -26,7 +27,7 @@ docker compose down
 --volumes : Remove volumes
 ```
 
-Option 2 - One by one (Recommanded for developpement)
+Option 2 - One by one (Recommanded for developpement):<br />
 - Express API -> [API INSTALLATION](https://github.com/Nicochou/aicut/tree/main/server#installation)                        
 - Client React -> [CLIENT INSTALLATION](https://github.com/Nicochou/aicut/tree/main/client#installation)                         
 - AI server -> [AISERVER INSTALLATION](https://github.com/Nicochou/aicut/tree/main/ai-server#installation)            
