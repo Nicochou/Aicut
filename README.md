@@ -1,7 +1,6 @@
 # AICUT
 
 <img src="https://user-images.githubusercontent.com/49341587/125423783-b184198e-d5a9-4753-9eec-a079ea1baa1d.png" width="140px" />
-![Logo AICUT](https://user-images.githubusercontent.com/49341587/125423783-b184198e-d5a9-4753-9eec-a079ea1baa1d.png)
 
 AIcut is a solution for streamers. The goal is to create an application which is creating clips from live streaming on Twitch.
 
