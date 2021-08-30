@@ -17,9 +17,6 @@ class ClipService {
     .get(API_URL_CLIP , {  
         params: {
             id: currentUser.id
-        },
-        headers: { 
-          'x-access-token': accessToken['x-access-token']
         }
     })
     .then(response => {

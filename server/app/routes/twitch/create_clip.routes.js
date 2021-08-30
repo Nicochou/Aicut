@@ -26,10 +26,10 @@ module.exports = function(app) {
   app.get("/api/createclip", function(req, res, next) {
     // variables
     var id = req.query.id;
-    var message;
-    var token = req.session;
-    console.log(colors.bgGreen(token));
-    let twitchToken = '4dmvxi9yd9r7z5ee6a5zqgrl5ua345';
+    let twitchToken = JSON.stringify(req.cookies.accessToken);
+    console.log(req.cookies);
+    console.log(JSON.stringify(req.cookies))
+    console.log(twitchToken);
     var users = [];
     // Retrieve User
     User.findByPk(id).then(function (user) {
@@ -38,7 +38,7 @@ module.exports = function(app) {
             'Authorization': 'Bearer ' + twitchToken,
             'Client-Id': keys.twitch.clientID
         };
-
+        console.log(headers);
         var options = {
             headers: headers,
             url: 'https://api.twitch.tv/helix/clips?broadcaster_id=' + user.id_twitch,
@@ -59,8 +59,12 @@ module.exports = function(app) {
             .then(clip => {
               clip.setUsers(id);
             })
+            res.send({ id: id, status: response.statusCode, data: JSON.parse(body) });
         }
-        res.send({ id: id, status: response.statusCode, data: JSON.parse(body) });
+        else{
+          res.send({ id: id, status: 400, data: error });
+        }
+        
     }
   });
 }

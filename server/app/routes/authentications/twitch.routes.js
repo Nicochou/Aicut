@@ -1,5 +1,4 @@
 const passport = require("passport");
-const session = require('express-session');
 var colors = require('colors/safe');
 const config = require("../../config/auth.config");
 const db = require("../../../models");
@@ -10,7 +9,7 @@ var querystring = require('querystring');
 module.exports = function(app, passeport) {
   // We authenticate a new twitch user
   app.get('/twitchAuth',
-    passport.authenticate('twitch',{forceVerify: true})
+    passport.authenticate('twitch', {forceVerify: true})
   );
   // After authentication, We get the callBack
   app.get('/twitchAuth/callback', function(req, res, next) {
@@ -19,10 +18,9 @@ module.exports = function(app, passeport) {
       if (err) { return next(err); }
       // No user find
       if (!userTemp) { return res.redirect('/'); }
-      // We set the access token in session
-      console.log(colors.bgYellow(info));
-      req.session.accessToken = info;
-      req.session.save();
+      // We set the access token in cookie
+      res.cookie('accessToken', info, { maxAge: 900000, httpOnly: true });
+      console.log(colors.bgRed(JSON.stringify(req.cookies)));
       // We logIn the user we got
       req.logIn(userTemp, function(err) {
         // Error trapping

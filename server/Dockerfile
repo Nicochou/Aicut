@@ -7,7 +7,7 @@ WORKDIR /usr/backend
 
 # set our node environment, either development or production or test
 # defaults to production, compose overrides this to development on build and run
-ARG NODE_ENV=development
+ARG NODE_ENV=PROD
 ENV NODE_ENV $NODE_ENV
 
 # copy the packages dependancies

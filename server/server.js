@@ -1,26 +1,32 @@
 const express = require("express");
 const session = require('express-session');
-const cors = require("cors");
-
+const cookieParser = require('cookie-parser');
+const cors = require('cors');
 const app = express();
 const passport = require("passport");
 
-
 var corsOptions = {
-  origin: "http://localhost:3003"
-};
+  origin: 'http://localhost:3003',
+  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+}
 
-app.use(cors(corsOptions));
-
+app.use(cors(corsOptions))
 // parse requests of content-type - application/json
 app.use(express.json());
 
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
 
+app.use(cookieParser());
+
 // passeport initalize
 app.use(passport.initialize());
-app.use(session({secret: 'ssshhhhh',saveUninitialized: true, resave: true, cookie: { secure: false }}));
+app.use(session({secret: 'aicut-cookies-session',
+                 saveUninitialized: true, 
+                 resave: false, 
+                 cookie: { secure: false }
+                })
+        );
 
 // passeport
 require('./app/passport/twitch')(passport);
@@ -34,14 +40,19 @@ require('./app/routes/twitch/create_clip.routes')(app);
 require('./app/routes/twitch/activate_ml.routes')(app);
 
 const db = require("./models");
-const Role = db.ROLES;
+const { cp } = require("shelljs");
+const Role = db.role;
 
-db.sequelize.sync();
-// force: true will drop the table if it already exists
- //db.sequelize.sync({force: true}).then(() => {
-   //console.log('Drop and Resync Database with { force: true }');
-   //initial();
- //});
+if(process.env.NODE_ENV == "DEV" ){
+  db.sequelize.sync({force: true}).then(() => {
+   console.log('Drop and Resync Database with { force: true }');
+   initial();
+ });
+}
+else{
+  db.sequelize.sync();
+}
+
 function initial() {
   Role.create({
     id: 1,

@@ -59,7 +59,7 @@ export default class Cut extends Component {
                 Irure fugiat dolore ea commodo sunt exercitation officia do voluptate eu do velit magna.
               </p>
               <button
-                onClick={CutService.createClip}activateML
+                onClick={CutService.createClip}
                 className="btn btn-primary btn-block"
               >
                 Create Clips
