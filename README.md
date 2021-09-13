@@ -31,7 +31,7 @@ Option 2 - One by one (Recommanded for developpement):<br />
 - Client React -> [CLIENT INSTALLATION](https://github.com/Nicochou/aicut/tree/main/client#installation)                         
 - AI server -> [AISERVER INSTALLATION](https://github.com/Nicochou/aicut/tree/main/ai-server#installation)            
 
-## Environments
+## Environment
 ```
 3 environment :
   -- PROD
