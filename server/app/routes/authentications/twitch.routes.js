@@ -19,7 +19,7 @@ module.exports = function(app, passeport) {
       // No user find
       if (!userTemp) { return res.redirect('/'); }
       // We set the access token in cookie
-      res.cookie('accessToken', info, { maxAge: 900000, httpOnly: true });
+      res.cookie('accessToken', info);
       console.log(colors.bgRed(JSON.stringify(req.cookies)));
       // We logIn the user we got
       req.logIn(userTemp, function(err) {
