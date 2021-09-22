@@ -3,19 +3,34 @@ const controller = require("../controllers/clip.controller");
 
 module.exports = function(app) {
 
- // We get all clips
+ // Route : get all clips
   app.get(
     "/api/getAllClip",
     [authJwt.verifyToken],
     controller.getAllClips
   );
 
- // We get a clip by his id
+ // Route : get a clip by his id
   app.get(
     "/api/getClipById",
     [authJwt.verifyToken],
-    controller.getClipById
+    controller.getOneClipById
   );
+
+   // Route : get all published clips
+   app.get(
+    "/api/getAllPublishedClip",
+    [authJwt.verifyToken],
+    controller.getAllPublishedClips
+  );
+
+  // Route : update one clip
+  app.put(
+  "/api/updateOneClip/:id",
+  [authJwt.verifyToken],
+  controller.updateOneClip
+);
+
 
  // We get all edits clips by user id
   app.get(

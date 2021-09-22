@@ -5,8 +5,9 @@ module.exports = (sequelize, Sequelize) => {
         primaryKey: true,
         autoIncrement: true
       },
-      status:{
-        type: Sequelize.STRING,
+      published:{
+        type: Sequelize.INTEGER,
+        defaultValue: 0
       },
       provider:{
         type: Sequelize.STRING,
@@ -53,6 +54,9 @@ module.exports = (sequelize, Sequelize) => {
       thumbnail_url:{
         type: Sequelize.STRING,
       },
+      tags:{
+        type: Sequelize.STRING,
+      }
     });
     return Clip;
   };

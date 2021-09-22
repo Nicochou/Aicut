@@ -1,4 +1,10 @@
-{
+{  
+  "name": "aiserver",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+
+  },
   "dependencies": {
     "child-process": "^1.0.2",
     "colors": "^1.4.0",
@@ -9,5 +15,7 @@
     "python-shell": "^3.0.0",
     "tmi.js": "^1.8.3",
     "winston": "^3.3.3"
-  }
+  },
+  "author": "",
+  "license": "ISC"
 }

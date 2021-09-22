@@ -19,6 +19,3 @@ RUN npm ci
 
 # copy in our source code last, as it changes the most
 COPY . .
-
-# start the ai-server
-CMD ["node", "app.js"]

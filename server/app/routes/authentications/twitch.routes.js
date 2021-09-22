@@ -1,16 +1,15 @@
 const passport = require("passport");
-const session = require('express-session');
+var colors = require('colors/safe');
 const config = require("../../config/auth.config");
 const db = require("../../../models");
 const User = db.user;
 var jwt = require("jsonwebtoken");
 var querystring = require('querystring');
 
-
 module.exports = function(app, passeport) {
   // We authenticate a new twitch user
   app.get('/twitchAuth',
-    passport.authenticate('twitch',{forceVerify: true})
+    passport.authenticate('twitch', {forceVerify: true})
   );
   // After authentication, We get the callBack
   app.get('/twitchAuth/callback', function(req, res, next) {
@@ -19,10 +18,9 @@ module.exports = function(app, passeport) {
       if (err) { return next(err); }
       // No user find
       if (!userTemp) { return res.redirect('/'); }
-      // We set the access token in session
-      if (info) { 
-        req.session.accessToken = info;
-      }
+      // We set the access token in cookie
+      res.cookie('accessToken', info, { maxAge: 900000, httpOnly: true });
+      console.log(colors.bgRed(JSON.stringify(req.cookies)));
       // We logIn the user we got
       req.logIn(userTemp, function(err) {
         // Error trapping
@@ -34,7 +32,7 @@ module.exports = function(app, passeport) {
           }
         }).then(user => {
           // We set the right role
-          user.setRoles(4);
+          user.setRoles('4');
           // We generate a Json Web Token
           var token = jwt.sign({ id: user.id }, config.secret, {
             expiresIn: 86400 // 24 hours
@@ -56,7 +54,7 @@ module.exports = function(app, passeport) {
             "id_twitch": user.id_twitch
         });
           // We redirect to the client
-          return res.redirect('http://localhost:3000/twitch?' + query) ;
+          return res.redirect('http://localhost:3003/twitch?' + query) ;
           })      
           .catch(err => {
             res.status(500).send({ message: err.message });

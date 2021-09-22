@@ -67,11 +67,13 @@ class App extends Component {
 
     return (
       <div>
-        <nav className="navbar navbar-expand navbar-dark bg-dark">
+         {/* A modifier pour explication de création d'un clip 
+         <nav className="navbar sticky-top navbar-expand navbar-dark bg-dark">
           <Link to={"/"} className="navbar-brand">
             AICUT
           </Link>
-          <div className="navbar-nav mr-auto">
+          <div className="navbar-nav">
+            <ul className="navbar-nav mr-auto">
             <li className="nav-item">
               <Link to={"/home"} className="nav-link">
                 Home
@@ -109,8 +111,8 @@ class App extends Component {
                 </Link>
               </li>
             )}
+            </ul>
           </div>
-
           {currentUser ? (
             <div className="navbar-nav my-2">
               {showStreamerBoard && (
@@ -141,7 +143,7 @@ class App extends Component {
                 </Link>
               </li>
               
-              <li className="nav-item">
+              <li className="nav-item ml-auto">
                 <a href="/login" className="nav-link" onClick={this.logOut}>
                   LogOut
                 </a>
@@ -162,7 +164,102 @@ class App extends Component {
               </li>
             </div>
           )}
-        </nav>
+          </nav> */}
+      <nav class="navbar sticky-top navbar-expand-md navbar-dark bg-dark">
+        <ul class="navbar-nav mr-auto">
+            <li className="nav-item">
+              <Link to={"/home"} className="nav-link">
+                Home
+              </Link>
+            </li>
+            {showModeratorBoard && (
+              <li className="nav-item">
+                <Link to={"/mod"} className="nav-link">
+                  Moderator Board
+                </Link>
+              </li>
+            )}
+            {showAdminBoard && (
+              <li className="nav-item">
+                <Link to={"/admin"} className="nav-link">
+                  Admin Board
+                </Link>
+              </li>
+            )}
+            {showStreamerBoard && (
+              <li className="nav-item">
+                <Link to={"/stre"} className="nav-link">
+                  Streamer Board
+                </Link>
+              </li>
+            )}
+            {currentUser && (
+              <li className="nav-item">
+                <Link to={"/user"} className="nav-link">
+                  User Board
+                </Link>
+              </li>
+            )}
+        </ul>
+        <a class="navbar-brand mx-auto" href="/">AICUT
+        {currentUser && (
+          <div id="appRoute">
+          {showStreamerBoard && (
+                <li className="nav-item">
+                  <Link to={"/cut"} className="nav-link">
+                    Cut
+                  </Link>
+                </li>
+              )}
+          {showStreamerBoard && (
+            <li className="nav-item">
+              <Link to={"/edit"} className="nav-link">
+                Edit
+              </Link>
+            </li>
+            )}
+          {showStreamerBoard && (
+            <li className="nav-item">
+              <Link to={"/mount"} className="nav-link">
+                Mount
+              </Link>
+            </li>
+          )}
+        </div>
+         )}
+        </a>
+        {currentUser ? (
+          <ul class="navbar-nav ml-auto">
+            <li className="nav-item">
+                <Link to={"/profile"} className="nav-link">
+                  <div>
+                  {currentUser.username}
+                  <img src={currentUser.profile_image_url} alt="Avatar" id="ProfilePic" align="center" />
+                  </div>
+                  
+                </Link>
+            </li>
+            <li className="nav-item ml-auto">
+                <a href="/login" className="nav-link" onClick={this.logOut}>
+                  LogOut
+                </a>
+            </li>
+          </ul>
+        ):(
+          <ul class="navbar-nav ml-auto">
+            <li className="nav-item">
+              <Link to={"/login"} className="nav-link">
+                Login
+              </Link>
+            </li>
+            <li className="nav-item">
+            <Link to={"/register"} className="nav-link">
+              Sign Up
+            </Link>
+          </li>
+        </ul>
+        )}
+      </nav>
         <Header />
         <div className="container mt-3">
           <Switch>
