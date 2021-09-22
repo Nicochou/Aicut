@@ -1,12 +1,5 @@
 # Machine Learning Server
 
-## TODO LIST
-| Ticket        | Link      | Explication |
-| ------|-----|-----|
-| 001  	| [link ticket](https://trello.com/c/N8rMkKL3)	| Launch the AI server with arguments 	|
-| 002  	| [link ticket](https://trello.com/c/kVI9iBSK)	| Launch the AI server from the API 	|
-| 003  	| [link ticket](https://trello.com/c/csaCErc9)	| The Ai server call the API to create a clip 	|
-
 ## .ENV
 Modify the .env file
 ```
@@ -32,7 +25,11 @@ npm install
 
 ## DATA
 -nb message entre db/bot
+
 -nb viewer entre db/bot 
+
 -nb follower entre db/bot
+
 -nb sub entre db/bot
+
 -(nb emote entre db/bot)
