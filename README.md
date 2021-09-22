@@ -8,8 +8,6 @@ You can being connecte on the solution with your twitch account, Then you can ac
 
 We also want to have an acces without Twitch account to display trends, analytics and clips on it.
 
-## Diagrams
-![AICUT Process ](https://user-images.githubusercontent.com/49341587/121345215-df762680-c924-11eb-8666-07b8ca8f21e9.PNG)
 
 ## Installation
 Option 1 - Docker (Recommanded for production):<br />
@@ -40,7 +38,9 @@ Option 2 - One by one (Recommanded for developpement):<br />
 ```
 ## Documentations
 
-The documentation is currently in wrinting
+You can see the official documentation in the github wiki of the repository. 
+
+You can also read the documentation here -> [Aicut doc](https://nicochou.github.io/Aicut/)
 
 ## Contributions
 
