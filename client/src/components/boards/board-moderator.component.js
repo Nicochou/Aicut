@@ -7,7 +7,8 @@ export default class BoardModerator extends Component {
     super(props);
 
     this.state = {
-      content: ""
+      content: "",
+      message: ""
     };
   }
 
@@ -15,7 +16,8 @@ export default class BoardModerator extends Component {
     UserService.getModeratorBoard().then(
       response => {
         this.setState({
-          content: response.data
+          content: JSON.stringify(response.data.data),
+          message: JSON.stringify(response.data.message)
         });
       },
       error => {
@@ -34,9 +36,11 @@ export default class BoardModerator extends Component {
   render() {
     return (
       <div className="container">
-        <header className="jumbotron">
-          <h3>{this.state.content}</h3>
-        </header>
+        <div class="alert alert-dismissible alert-success">
+          <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+          <strong>Well done!</strong> {this.state.message}.
+        </div>
+        {this.state.content}
       </div>
     );
   }
