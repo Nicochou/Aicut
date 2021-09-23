@@ -15,7 +15,6 @@ export default class Profile extends Component {
 
   componentDidMount() {
     let params = queryString.parse(this.props.location.search)
-    console.log(params);
     if(params) {
         params['roles'] = params['roles'].split(',');
         localStorage.setItem("user", JSON.stringify(params));
