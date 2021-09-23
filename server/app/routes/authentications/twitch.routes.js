@@ -6,6 +6,7 @@ const User = db.user;
 var jwt = require("jsonwebtoken");
 var querystring = require('querystring');
 
+
 module.exports = function(app, passeport) {
   // We authenticate a new twitch user
   app.get('/twitchAuth',
@@ -43,7 +44,7 @@ module.exports = function(app, passeport) {
             "username": user.username,
             "email": user.email,
             "roles" : "ROLE_STREAMER,ROLE_USER",
-            "accessToken" : token,
+            "accessTokenJWT" : token,
             "isStreamer": user.isStreamer,
             "description": user.description,
             "profile_image_url": user.profile_image_url,
@@ -51,7 +52,8 @@ module.exports = function(app, passeport) {
             "type": user.type,
             "Broadcaster_type": user.Broadcaster_type,
             "views_count": user.views_count,
-            "id_twitch": user.id_twitch
+            "id_twitch": user.id_twitch,
+            "accessTokenTwitch": info
         });
           // We redirect to the client
           return res.redirect('http://localhost:3003/twitch?' + query) ;
@@ -63,3 +65,5 @@ module.exports = function(app, passeport) {
     })(req, res, next);
   });
 };
+
+
