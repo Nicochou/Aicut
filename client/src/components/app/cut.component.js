@@ -29,7 +29,7 @@ export default class Cut extends Component {
           this.setState({
             currentUser: currentUser,
             userReady: true,
-            isLive: "true",
+            isLive: "false",
           });
         } else {
           this.setState({
