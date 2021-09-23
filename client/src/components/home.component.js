@@ -11,6 +11,7 @@ export default class Home extends Component {
       content: "",
       message: ""
     };
+   
   }
 
   componentDidMount() {
@@ -23,7 +24,7 @@ export default class Home extends Component {
       },
       error => {
         this.setState({
-          content:
+          message:
             (error.response && error.response.data) ||
             error.message ||
             error.toString()
@@ -34,14 +35,15 @@ export default class Home extends Component {
   }
 
   render() {
+    const { content, message } = this.state;
     return (
 
       <div className="container">
         <div class="alert alert-dismissible alert-success">
           <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-          <strong>Well done!</strong> {this.state.message}.
+          <strong>Well done!</strong> {message}.
         </div>
-        {this.state.content}
+        {content}
       </div>
     );
   }
