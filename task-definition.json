@@ -47,8 +47,8 @@
   ],
   "inferenceAccelerators": [],
   "networkMode": "",
-  "memory": "512",
-  "cpu": "256",
+  "memory": "3250",
+  "cpu": "1800",
   "executionRoleArn": "arn:aws:iam::999111338687:role/ecsTaskExecutionRole",
   "family": "DeploymentContainer",
   "placementConstraints": []
