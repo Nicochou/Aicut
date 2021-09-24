@@ -34,11 +34,7 @@ export default class Launch extends Component {
               Lorem officia sit in proident eu eiusmod incididunt.
             </h3>
             <p>
-              Ea dolore aliquip anim qui nostrud commodo magna exercitation 
-              Lorem. Veniam mollit duis excepteur in et quis in laborum veniam 
-              aliqua laborum. Aliqua excepteur cillum eu reprehenderit id velit 
-              Lorem reprehenderit ex enim labore eiusmod esse voluptate. Incididunt 
-              labore voluptate cupidatat 
+              le esport français est incroyable
             </p>
           </div>
           <div class="col-lg-2">
