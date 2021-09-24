@@ -80,11 +80,11 @@ export default class Profile extends Component {
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="password">Email</label>
+                  <label htmlFor="email">Email</label>
                   <Input
                     type="mail"
                     className="form-control"
-                    name="password"
+                    name="email"
                     value={currentUser.email}
                     onChange={this.onChangeEmail}
                   />
@@ -98,6 +98,28 @@ export default class Profile extends Component {
                     name="password"
                     value={currentUser.description}
                     onChange={this.onChangeDescription}
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="token">Token Twitch</label>
+                  <Input
+                    disabled="disabled"
+                    type="text"
+                    className="form-control"
+                    name="TwitchToken"
+                    value={currentUser.accessTokenTwitch}
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="token">Token JWT</label>
+                  <Input
+                    disabled="disabled"
+                    type="text"
+                    className="form-control"
+                    name="JWTToken"
+                    value={currentUser.accessTokenJWT}
                   />
                 </div>
 

@@ -16,7 +16,9 @@ class ClipService {
     return axios
     .get(API_URL_CLIP , {  
         params: {
-            id: currentUser.id
+            id: currentUser.id,
+            twitchToken: currentUser.accessTokenTwitch,
+            jwtToken: currentUser.accessTokenJWT
         }
     })
     .then(response => {

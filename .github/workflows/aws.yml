@@ -108,7 +108,7 @@ jobs:
       id: render-server
       uses: aws-actions/amazon-ecs-render-task-definition@v1
       with:
-        task-definition: ${{ steps.render-aiserver.outputs.task-definition }}
+        task-definition: task-definition.json
         container-name: server
         image: ${{ steps.build-image-server.outputs.image }}
 
@@ -116,7 +116,7 @@ jobs:
       id: render-client
       uses: aws-actions/amazon-ecs-render-task-definition@v1
       with:
-        task-definition: ${{ steps.render-aiserver.outputs.task-definition }}
+        task-definition: task-definition.json
         container-name: client
         image: ${{ steps.build-image-client.outputs.image }}
 
