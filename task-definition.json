@@ -29,17 +29,6 @@
           "name": "db"
       },
       {
-        "environment": [
-            {
-                "PMA_HOST": "db",
-                "PMA_PORT": "3306"
-            }
-        ],
-        "essential": true,
-        "image": "phpmyadmin:latest",
-        "name": "pma"
-    },
-      {
           "essential": true,
           "image": "999111338687.dkr.ecr.eu-west-3.amazonaws.com/ai-cut:server",
           "name": "server",
