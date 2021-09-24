@@ -71,7 +71,7 @@ jobs:
       env:	
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}	
         ECR_REPOSITORY: ai-cut	
-        IMAGE_TAG: ${{ github.sha }}	
+        IMAGE_TAG: client
       working-directory: client	
       run: |	
         # Build a docker container and	
@@ -86,7 +86,7 @@ jobs:
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}	
         ECR_REPOSITORY: ai-cut	
-        IMAGE_TAG: ${{ github.sha }}	
+        IMAGE_TAG: server	
       working-directory: server	
       run: |	
         # Build a docker container and	
