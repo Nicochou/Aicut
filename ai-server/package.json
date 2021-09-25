@@ -1,9 +1,9 @@
-{  
+{
   "name": "aiserver",
   "version": "1.0.0",
   "main": "app.js",
   "scripts": {
-
+    "start": "node app.js etoiles"
   },
   "dependencies": {
     "child-process": "^1.0.2",
