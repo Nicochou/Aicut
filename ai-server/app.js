@@ -19,7 +19,7 @@ var Username = process.argv.slice(2);
 Username = Username[0];
 logger.log('info', 'Arguments', { message: 'UserId receipt :' + Username });
 
-
+//log
 // Bot message creation
 require('./app/bots/chatBot/chatbot.js')(Username);
 
