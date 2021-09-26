@@ -29,6 +29,11 @@ Option 2 - One by one (Recommanded for developpement):<br />
 - Client React -> [CLIENT INSTALLATION](https://github.com/Nicochou/aicut/tree/main/client#installation)                         
 - AI server -> [AISERVER INSTALLATION](https://github.com/Nicochou/aicut/tree/main/ai-server#installation)            
 
+## Production
+
+The solution is currently runnning with AWS ECS & AWS ECR
+- Open [http://13.37.251.205:3000](http://13.37.251.205:3000) to view the client in the browser.
+- Open [http://13.37.251.205:3000](http://13.37.251.205:8082) to view the api in the browser.
 ## Environment
 ```
 3 environment :
