@@ -1,0 +1,48 @@
+{
+  "name": "apiaicut",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "prod": "echo \"Error: no prod specified\" && exit 1",
+    "start": "cross-env NODE_ENV=PROD node start.js",
+    "start:dev": "cross-env NODE_ENV=DEV node start.js",
+    "migrate": "npx sequelize-cli db:migrate",
+    "migrate:reset": "npx sequelize-cli db:migrate:undo:all && npm run migrate",
+    "test": "cross-env NODE_ENV=test jest",
+    "pretest": "cross-env NODE_ENV=test npm run migrate:reset",
+    "seed:all": "npx sequelize-cli db:seed:all",
+    "seed:reset": "npx sequelize-cli db:seed:undo:all && npm run seed",
+    "seed:undo": "npx sequelize-cli db:seed:undo:all",
+    "seed:wording": "npx sequelize db:seed --seed 20210420131634-roles.js && npx sequelize db:seed --seed 20210420133221-libelles.js",
+    "seed:users": "npx sequelize db:seed --seed 20210418120757-demo-user.js && npx sequelize db:seed --seed 20210418141530-demo-modo.js && npx sequelize db:seed --seed 20210418141853-demo-admin.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@d-fischer/passport-twitch": "^1.0.5",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "colors": "^1.4.0",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "express-session": "^1.17.2",
+    "https-proxy-agent": "^5.0.0",
+    "jest": "^27.0.4",
+    "jsonwebtoken": "^8.5.1",
+    "mysql2": "^2.2.5",
+    "nocache": "^3.0.0",
+    "nodemon": "^2.0.7",
+    "passport": "^0.4.1",
+    "passport-twitch-new": "0.0.2",
+    "request": "^2.88.2",
+    "sequelize": "^6.6.2",
+    "shelljs": "^0.8.4",
+    "supertest": "^6.1.3",
+    "winston": "^3.3.3"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3"
+  },
+  "description": ""
+}

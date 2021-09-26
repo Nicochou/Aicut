@@ -1,0 +1,108 @@
+# We specify the version of docker compose
+version: "3.9"
+# We specify the different services
+services: 
+    # The api
+    server:
+        # the build folder
+        image: server
+        build: 
+            context: ./server
+            dockerfile: ./Dockerfile
+        container_name: server
+        # the ports to map
+        ports: 
+            - 8082:8082
+            - 9229:9229
+            - 9230:9230
+        # start after the database
+        depends_on: 
+            - db
+            - phpmyadmin
+        # The differents networks
+        networks:
+            - private
+            - public
+    # The client
+    client:
+        # the build folder
+        image: client
+        build: 
+            context: ./client
+            dockerfile: ./Dockerfile
+        container_name: client
+        # the ports to map
+        ports: 
+            - 3000:3000
+        # start after the database
+        depends_on:
+            - db
+            - phpmyadmin
+        # The differents networks
+        networks:
+            - public
+    # The machine learning server
+    #aiserver:
+        # the build folder
+        #image: aiserver
+        #build: 
+            #context: ./ai-server
+            #dockerfile: ./Dockerfile
+        #container_name: aiserver
+        # the ports to map
+        #ports: 
+            #- 8080:8080
+        # start after the database
+        #depends_on:
+            #- db
+            #- phpmyadmin
+        # The differents networks
+        #networks:
+            #- private
+            #- public
+    # The database
+    db:
+        # https://hub.docker.com/_/mysql
+        image: mysql:latest
+        container_name: db
+        # The differents networks
+        networks:
+            - private
+        # Ports
+        ports:
+            - "6033:3306"
+        # The shared folder
+        volumes:
+            - db-data:/var/lib/mysql
+        environment:
+            - MYSQL_ROOT_PASSWORD=root
+    # The database
+    phpmyadmin:
+        # https://hub.docker.com/_/phpmyadmin
+        image: phpmyadmin:latest
+        container_name: pma
+        restart: always
+        # The differents networks
+        networks:
+            - private
+        # start after the database
+        depends_on:
+            - db
+        # Links to the db
+        links:
+            - db
+        environment:
+            PMA_HOST: db
+            PMA_PORT: 3306
+        # Set up the port
+        ports:
+            - 30002:80
+# We specify the different networks
+networks:
+    public:
+    private:
+# We specify the differents shared folders
+volumes:
+    db-data:
+
+    
