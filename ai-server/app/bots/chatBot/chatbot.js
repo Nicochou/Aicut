@@ -1,25 +1,41 @@
 const tmi = require('tmi.js');
+var request = require('request');
+//const { userMl } = require('../../../../server/models');
 const logger = require('../../../config/logger');
+const machine_learning = require('../../services/machine_learning_chatbot');
+const UserId = require('../../services/user');
+const { exitOnError } = require('../../../config/logger');
+
 
 // We instance the Datas 
-var tab = new Array();
-var t1;
-var t2;
-var nbMessage;
-var nbMessage1;
-var nbMessage2;
-var nbMessageSec;
-var nbMessageSec1 = 0;
+var number_total = 0;
+var number_subscriber = 0;
+var number_emot = 0 ;
+var id_user;
 
-module.exports = function (Username){
-// Bot message creation
+
+module.exports = function (Username, Token){
+
+var user_ml = {
+ 'username' : Username,
+ 'nb_messages_total' : number_total,
+ 'nb_messages_subscriber' : number_subscriber,
+ 'nb_messages_emot' : number_emot  
+}
+var user_ml_init = {
+    'username' : Username,
+    'nb_messages_total' : number_total,
+    'nb_messages_subscriber' : number_subscriber,
+    'nb_messages_emot' : number_emot  
+   }
 const chatBot = new tmi.Client({
     options: {
         debug: true,
-        messagesLogLevel: "info"
+        messagesLogLevel: "info",
+        maxReconnectAttempts:Infinity
     },
     connection: {
-        reconnect: true,
+        reconnect: false,
         secure: true,
         cluster:'aws'
     },
@@ -32,56 +48,68 @@ const chatBot = new tmi.Client({
     channels: [Username]
 });
 
-// We connect the bot
-chatBot
-    .connect()
-    .catch(console.error);
+chatBot.connect();
 
-// On each message in the Live Stream
-chatBot
+chatBot.once("connected", function (address, port) {
+    UserId.getId(Username, function(err, request_user){
+        console.log(request_user);
+        id_user = request_user;
+    });
+    machine_learning.recup(Username, function(err, req){
+        console.log("req : "+req);
+        console.log(err);
+    if(req === null){
+        machine_learning.init(Username, function(err, request_init){
+            console.log(err);
+        });
+    }else{
+        user_ml_init.username = Username,
+        user_ml_init.nb_messages_total = req[2];
+        user_ml_init.nb_messages_subscriber = req[3]
+        user_ml_init.nb_messages_emot = req[4]
+    }
+   });
+    console.log(address);
+    console.log(port);
+    setTimeout(function() {chatBot.disconnect();}, 20000);
+    });
+
+ chatBot
     .on('message', (channel, tags, message, self) => {
-        console.log(self, channel);
     if (self) return;
-    t1 = Date.now()
-    console.log(message);
-	console.log(tags);
-	// We add the message to the an array
-    tab.push(message);
-	console.log("The number of messages ->" + tab.length);
-	// We set the Messages variables
-    nbMessage1 = tab.length;
-    nbMessage2 = tab.length;
-    t2 = t1 - t2;
-    console.log(t1);
-    console.log(t2);
-        nbMessage = nbMessage1 - nbMessage2;
-        nbMessageSec = nbMessage / 30;
-        nbMessageSec1 = nbMessageSec
-		console.log(nbMessage);
-		console.log(nbMessageSec1);
+    if(tags.subscriber){
+        user_ml.nb_messages_subscriber++;
+    }
+    if(tags.emotes){
+        user_ml.nb_messages_emot++;
+    }
+  user_ml.nb_messages_total++;
 
-        var options = {
-            mode: 'text',
-            pythonOptions: ['-u'],
-            scriptPath: './',
-            args: ['2554','532','874']
-        };
-
-        /*PythonShell.run('algorithme.py', options, function(err, results) {
-            if (err){
-                logger.log('error', 'Error executing the ML Script ', { message: err });
-            };
-            // If the machine learning detect smthing
-            if(results[0] == "True"){
-                logger.log('info', 'Cut detection', { message: 'Cut launched' });
-            }
-            else{
-                logger.log('info', 'Cut detection', { message: 'Cut not launched, nothing happened' });
-            }
-        });*/
-
-    t2 = t1;
-    nbMessage2 = nbMessage1;
 });
+chatBot
+    .on("disconnected", function (reason) {
+    var options = {
+        url: 'http://localhost:8082/api/createclip?id=' + id_user +'&twitchToken='+ Token,
+        method: 'GET',
+    };
+    machine_learning.inte(user_ml, function(err, request_init){
+    if((user_ml.nb_messages_total + 
+        user_ml.nb_messages_subscriber +
+         user_ml.nb_messages_emot) >
+       (user_ml_init.nb_messages_total + 
+        user_ml_init.nb_messages_subscriber + 
+        user_ml_init.nb_messages_emot)){
+        console.log("creation clip")
+        request(options, callback);
+       }
+       else{
+        console.log("pas de creation clip")
+        
+       }
+       function callback(error, response, body) {
+            process.exit(1);
+    }
+    
+    });
+    });
 }
-
