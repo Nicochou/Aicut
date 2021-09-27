@@ -16,13 +16,17 @@ const db = require("./app/database/connexion.js");
   
 // We get the first argument
 var Username = process.argv.slice(2);
+var Token = process.argv.slice(3);
+Token = Token[0];
 Username = Username[0];
 logger.log('info', 'Arguments', { message: 'UserId receipt :' + Username });
 
 //log
 // Bot message creation
-require('./app/bots/chatBot/chatbot.js')(Username);
-
+require('./app/bots/chatBot/chatbot.js')(Username, Token);
+//require('./app/database/init_machine_learning')(Username);
+//require('./app/database/inte_machine_learning')(Username);
+//require('./app/database/recup_machine_learning')(Username);
 const port = process.env.port || 8080;
 app.listen(port, () => {
     logger.log('info', { message: 'Server is running on port ' + port});

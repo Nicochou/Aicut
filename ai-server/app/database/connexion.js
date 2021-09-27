@@ -9,8 +9,8 @@ try {
         host: config.development.host,
         user: config.development.username,
         password: config.development.password,
-        database: config.development.database,
-        port : 8889
+        database: config.development.database
+        //port : 8889
       });
       //console.log(connection);
 } catch (error) {

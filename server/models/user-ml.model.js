@@ -5,12 +5,20 @@ module.exports = (sequelize, Sequelize) => {
       primaryKey: true,
       autoIncrement: true
     },
-    id_user: {
+    username: {
       type: Sequelize.STRING,
       allowNull: true
     },
-    username: {
-      type: Sequelize.STRING,
+    nb_messages_total: {
+      type: Sequelize.INTEGER,
+      allowNull: true
+    },
+    nb_messages_subscriber: {
+      type: Sequelize.INTEGER,
+      allowNull: true
+    },
+    nb_messages_emot: {
+      type: Sequelize.INTEGER,
       allowNull: true
     }
   });
