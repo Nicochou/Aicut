@@ -3,7 +3,7 @@
       "username": "root",
       "password": "root",
       "database": "aicutdb_development",
-      "host": "db",
+      "host": "localhost",
       "dialect": "mysql",
       "pool": {
         "max": 5,
