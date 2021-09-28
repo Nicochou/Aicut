@@ -16,7 +16,7 @@ export default class Launch extends Component {
 
             <div class="container container-fullscreen text-center">
                 <div class="text-middle">
-                    <h1 class="text-uppercase text-lg text">TOTO APPLICATION</h1>
+                    <h1 class="text-uppercase text-lg text">A.I CUT</h1>
                     <p class="lead text">La solution adapté au monde du streaming pour créer du contenue facilement.</p>
                 </div>
             </div>
@@ -24,21 +24,21 @@ export default class Launch extends Component {
         <hr />
         <section className="logoGroup">
             <div className="row">
-                <img className="col-sm-6" src={'./AfficheGPE.png'} alt="image"/>
+                <img className="col-sm-6" class="center" src={'./AfficheGPE.png'} alt="image" height={1000} />
             </div>
         </section>
         <hr />
         <div class="row">
           <div class="col-lg-10">
             <h3>
-              Lorem officia sit in proident eu eiusmod incididunt.
+              Contribuer
             </h3>
             <p>
-              le esport français est incroyable
+              Si tu souhaite contribuer au projet de dévellopement tu peux nous rejoindre sur github pour et essaye de crée une feature pour que la platforme grandisse et permettent plus de choses
             </p>
           </div>
           <div class="col-lg-2">
-            <button className="btn btn-primary btn-block">Rejoins-nous</button>
+            <button onClick="https://github.com/Nicochou/Aicut" className="btn btn-primary btn-block">Rejoins-nous</button>
           </div>
         </div>
         <hr />
@@ -48,19 +48,19 @@ export default class Launch extends Component {
                 <div class="col-lg-4">
                     <h1 class="text-lg text-uppercase">01.</h1>
                     <h3>CUT</h3>
-                    <span>The most happiest time of the day!. Morbi sagittis, sem quis lacinia faucibus, orci ipsum gravida tortor, vel interdum mi sapien ut justo. Nulla varius consequat magna, id molestie ipsum volutpat quis. A true story, that never been told!. </span>
+                    <span>Vous avez la possibilité de faire des cut de façon automatique ou manuelle de votre live. </span>
                 </div>
 
                 <div class="col-lg-4">
                     <h1 class="text-lg text-uppercase">02.</h1>
                     <h3>EDIT</h3>
-                    <span>The most happiest time of the day!. Morbi sagittis, sem quis lacinia faucibus, orci ipsum gravida tortor, vel interdum mi sapien ut justo. Nulla varius consequat magna, id molestie ipsum volutpat quis. A true story, that never been told!. </span>
+                    <span>Il seront alors automatiquement stocké dans un dossier afin que vous puissier les editer(raccoucir la taille par exemple). </span>
                 </div>
 
                 <div class="col-lg-4">
                     <h1 class="text-lg text-uppercase">03.</h1>
                     <h3>MOUNT</h3>
-                    <span>The most happiest time of the day!. Morbi sagittis, sem quis lacinia faucibus, orci ipsum gravida tortor, vel interdum mi sapien ut justo. Nulla varius consequat magna, id molestie ipsum volutpat quis. A true story, that never been told!. </span>
+                    <span>Et enfin vous pourrez assembler tout vos clip que vous aurez éditer dans une seul et même vidéo qu'il ne vous resteras plus qu'a uploader sur votre chaîne youtube. </span>
                 </div>
             </div>
         </section>
@@ -70,50 +70,26 @@ export default class Launch extends Component {
                 <div class="row">
                     <div class="col-lg-4">
                         <div>
-                            <h4>Gère ton contenue facilement</h4>
-                            <p>Lorem ipsum dolor sit amet, blandit 
-                                vel sapien vitae, condimentum ultricies magna 
-                                et. Quisque euismod orci ut et lobortis aliquam.</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div>
                             <h4>Créer des clips automatiquement</h4>
-                            <p>Lorem ipsum dolor sit amet, blandit 
-                                vel sapien vitae, condimentum ultricies 
-                                magna et. Quisque euismod orci ut et lobortis aliquam.</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div>
-                            <h4>Monte tes vidéos rapidement</h4>
-                            <p>Lorem ipsum dolor sit amet, blandit 
-                                vel sapien vitae, condimentum ultricies 
-                                magna et. Quisque euismod orci ut et lobortis aliquam.</p>
+                            <p>Un algorithme de machine learning vas analyser certain données de votre live et ensuite feras des calculs qui jugerons si un clip dois être enregitré.</p>
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <div>
                             <h4>Ajoute tes présets de vidéos</h4>
-                            <p>Lorem ipsum dolor sit amet, blandit vel 
-                                sapien vitae, condimentum ultricies magna et. 
-                                Quisque euismod orci ut et lobortis aliquam.</p>
+                            <p>Vous pouvez ajouter un intro, une transition et une outro, cela vous permettras en un click de confectionner votre best-of, il vous resteras plus qu'a selectionné vos clip dans l'ordre et ensuite notre programme se chargeras d'assembler le tous.</p>
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <div>
                             <h4>Partage tes clips</h4>
-                            <p>Lorem ipsum dolor sit amet, blandit vel 
-                                sapien vitae, condimentum ultricies magna et. 
-                                Quisque euismod orci ut et lobortis aliquam.</p>
+                            <p>Vous pouvez a tous moment selectionné un clip et le partager à votre communité.</p>
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <div>
                             <h4>Toujours plus d'intelligence artificielle</h4>
-                            <p>Lorem ipsum dolor sit amet, blandit vel 
-                                sapien vitae, condimentum ultricies magna et. 
-                                Quisque euismod orci ut et lobortis aliquam.</p>
+                            <p>Plus vous utiliseré la platforme et le system de clip automatique plus la machine deviendras précises car elle apprend de ces erreurs.</p>
                         </div>
                     </div>
                 </div>
