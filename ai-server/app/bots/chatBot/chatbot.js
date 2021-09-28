@@ -103,8 +103,8 @@ chatBot
         request(options, callback);
        }
        else{
-        console.log("pas de creation clip")
-        
+            console.log("pas de creation clip")
+            process.exit(1);
        }
        function callback(error, response, body) {
             process.exit(1);
