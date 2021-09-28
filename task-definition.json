@@ -4,7 +4,6 @@
           "essential": true,
           "image": "999111338687.dkr.ecr.eu-west-3.amazonaws.com/ai-cut:client",
           "name": "client",
-          "cpu": 600,
           "portMappings": [
               {
                   "containerPort": 3000,
@@ -28,7 +27,6 @@
               }
           ],
           "name": "db",
-          "cpu": 600,
           "portMappings": [
             {
                 "containerPort": 3306,
@@ -40,7 +38,6 @@
           "essential": true,
           "image": "999111338687.dkr.ecr.eu-west-3.amazonaws.com/ai-cut:server",
           "name": "server",
-          "cpu": 600,
           "portMappings": [
               {
                   "containerPort": 8082,
@@ -57,8 +54,8 @@
   ],
   "inferenceAccelerators": [],
   "networkMode": "",
-  "memory": "3250",
-  "cpu": "1800",
+  "memory": "634",
+  "cpu": "248",
   "executionRoleArn": "arn:aws:iam::999111338687:role/ecsTaskExecutionRole",
   "family": "DeploymentContainer",
   "placementConstraints": []
