@@ -56,7 +56,6 @@
   "networkMode": "",
   "memory": "634",
   "cpu": "248",
-  "startedBy": "ecs-svc/8794002498897227749",
   "executionRoleArn": "arn:aws:iam::999111338687:role/ecsTaskExecutionRole",
   "family": "DeploymentContainer",
   "placementConstraints": []
