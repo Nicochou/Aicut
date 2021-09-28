@@ -45,16 +45,16 @@ function Games(){
         return (
             <div>
 
-            <h1 className="titreGames">Clips les plus populaires</h1>
+            <h1 classNameName="titreGames">Clips les plus populaires</h1>
 
-                <div className="container">
+                <div classNameName="container">
                   
-                  <h2 className="">Les plus vues</h2>
-                  <h3 className="">Filtres</h3>
-                  <form class="form-inline" role="form">
-                        <div class="form-group">
-                            <label class="filter-col" >Jeux:</label>
-                            <select id="pref-perpage" class="form-control">
+                  <h2 classNameName="">Les plus vues</h2>
+                  <h3 classNameName="">Filtres</h3>
+                  <form className="form-inline" role="form">
+                        <div className="form-group">
+                            <label className="filter-col" >Jeux:</label>
+                            <select id="pref-perpage" className="form-control">
                                 <option value="2">2</option>
                                 <option value="3">3</option>
                                 <option value="4">4</option>
@@ -65,8 +65,8 @@ function Games(){
                                 <option value="9">9</option>
                                 <option selected="selected" value="10">10</option>
                             </select> 
-                            <input type="text" class="form-control input-sm" id="pref-search"></input>         
-                            <select id="pref-orderby" class="form-control">
+                            <input type="text" className="form-control input-sm" id="pref-search"></input>         
+                            <select id="pref-orderby" className="form-control">
                                 <option>Descendent</option>
                             </select>       
                         </div> 
@@ -74,24 +74,24 @@ function Games(){
                     <Carousel responsive={responsive}>
                     {games.map((game,index) => (
 
-                        <div key={index} className="card">
+                        <div key={index} classNameName="card">
 
                             <iframe
                                 src={"https://clips.twitch.tv/embed?clip=" + game.id + "&parent=localhost"}
                                 height="300"
                                 width="350"
-                                allowfullscreen="true">
+                                allowFullScreen="true">
                             </iframe>
 
-                            <div className="card-body">
-                                <h5 className="card-title">Titre : {game.title}</h5>
-                                <ul class="list-group list-group-flush">
-                                    <li class="list-group-item">Streamer : {game.broadcaster_name}</li>
-                                    <li class="list-group-item">Vues : {game.view_count}</li>
-                                    <li class="list-group-item">Creator : {game.creator_name}</li>
-                                    <li class="list-group-item">Created at : {game.created_at}</li>
+                            <div classNameName="card-body">
+                                <h5 classNameName="card-title">Titre : {game.title}</h5>
+                                <ul className="list-group list-group-flush">
+                                    <li className="list-group-item">Streamer : {game.broadcaster_name}</li>
+                                    <li className="list-group-item">Vues : {game.view_count}</li>
+                                    <li className="list-group-item">Creator : {game.creator_name}</li>
+                                    <li className="list-group-item">Created at : {game.created_at}</li>
                                 </ul>
-                                <div className="btnCarte"><a target="_blank" href={game.url} >Sur Twitch</a></div>
+                                <div classNameName="btnCarte"><a target="_blank" href={game.url} >Sur Twitch</a></div>
                             </div>
                             
                         </div>
