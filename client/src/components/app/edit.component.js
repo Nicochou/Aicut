@@ -9,6 +9,7 @@ export default class Edit extends Component {
     this.state = {
       redirect: null,
       userReady: false,
+      currentUser: { username: "" },
       clips: { clip: "" },
     };
   }
@@ -20,8 +21,9 @@ export default class Edit extends Component {
     clipsUser
       .then((clipsuser) => {
         this.setState({
+          currentUser: clipsuser.data.clips[0],
           userReady: true,
-          clips: clipsuser.data.data.clips,
+          clips: clipsuser.data.clips[0].clips,
         });
       })
       .catch((error) => {
@@ -33,11 +35,10 @@ export default class Edit extends Component {
     if (this.state.redirect) {
       return <Redirect to={this.state.redirect} />;
     }
+    const currentUser = this.state.currentUser;
     const clipsEdit = this.state.clips;
-    var clips = Object.values(clipsEdit);
- 
-
-    console.log('clip :',clips);
+    const clips = Array.from(clipsEdit);
+    console.log(clips);
     return (
       <div className="container">
         <header className="jumbotron">
@@ -52,9 +53,15 @@ export default class Edit extends Component {
               <th scope="col">Edit</th>
             </tr>
           </thead>
-          <tbody>  
-      
-          
+          <tbody>
+          {clips.map((clips) => (
+            <tr>
+            <th scope="row">{clips.status}</th>
+            <td>{clips.id_twitch.substring(0,10)}...{clips.id_twitch.substring(clips.id_twitch.length - 10)}</td>
+            <td>{clips.createdAt}</td>
+            <td><a target="_blank" href={clips.url}>Edit</a></td>
+          </tr>
+            ))}
           </tbody>
         </table>
       </div>

@@ -6,7 +6,7 @@ const Op = db.Sequelize.Op;
 
 // Manage Pagination Controller
 const getPagination = (page, size) => {
-  const limit = size ? +size : 3;
+  const limit = size ? +size : 10;
   const offset = page ? +page : 0;
 
   return { limit, offset };
@@ -88,14 +88,10 @@ exports.getAllClipByUserId = (req, res) => {
 // We get clip by user id and status
  exports.getClipStatusByUserId = (req, res) => {
     let id = req.query.id;
-    let status = req.query.status;
     User.findAll({ 
       include: [{
         model: Clip,
         required: false,
-        where: {
-          status: status
-        }
       }],
       where: {
         id: id

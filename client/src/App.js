@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import { Switch, Route, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./App.css";
+import "./css/App.css";
+import "./css/Theme.css";
+import "./css/Plugin.css";
 
 // Services
 import AuthService from "./services/auth.service";
@@ -67,104 +69,6 @@ class App extends Component {
 
     return (
       <div>
-         {/* A modifier pour explication de création d'un clip 
-         <nav className="navbar sticky-top navbar-expand navbar-dark bg-dark">
-          <Link to={"/"} className="navbar-brand">
-            AICUT
-          </Link>
-          <div className="navbar-nav">
-            <ul className="navbar-nav mr-auto">
-            <li className="nav-item">
-              <Link to={"/home"} className="nav-link">
-                Home
-              </Link>
-            </li>
-
-            {showModeratorBoard && (
-              <li className="nav-item">
-                <Link to={"/mod"} className="nav-link">
-                  Moderator Board
-                </Link>
-              </li>
-            )}
-
-            {showAdminBoard && (
-              <li className="nav-item">
-                <Link to={"/admin"} className="nav-link">
-                  Admin Board
-                </Link>
-              </li>
-            )}
-
-            {showStreamerBoard && (
-              <li className="nav-item">
-                <Link to={"/stre"} className="nav-link">
-                  Streamer Board
-                </Link>
-              </li>
-            )}
-
-            {currentUser && (
-              <li className="nav-item">
-                <Link to={"/user"} className="nav-link">
-                  User Board
-                </Link>
-              </li>
-            )}
-            </ul>
-          </div>
-          {currentUser ? (
-            <div className="navbar-nav my-2">
-              {showStreamerBoard && (
-              <li className="nav-item">
-                <Link to={"/cut"} className="nav-link bg-primary">
-                  Cut
-                </Link>
-              </li>
-              )}
-              {showStreamerBoard && (
-              <li className="nav-item">
-                <Link to={"/edit"} className="nav-link bg-primary">
-                  Edit
-                </Link>
-              </li>
-              )}
-              {showStreamerBoard && (
-              <li className="nav-item">
-                <Link to={"/mount"} className="nav-link bg-primary">
-                  Mount
-                </Link>
-              </li>
-              )}
-              <li className="nav-item">
-                <Link to={"/profile"} className="nav-link">
-                  {currentUser.username}
-                  <img src={currentUser.profile_image_url} alt="Avatar" id="ProfilePic"/>
-                </Link>
-              </li>
-              
-              <li className="nav-item ml-auto">
-                <a href="/login" className="nav-link" onClick={this.logOut}>
-                  LogOut
-                </a>
-              </li>
-            </div>
-          ) : (
-            <div className="navbar-nav ml-auto">
-              <li className="nav-item">
-                <Link to={"/login"} className="nav-link">
-                  Login
-                </Link>
-              </li>
-
-              <li className="nav-item">
-                <Link to={"/register"} className="nav-link">
-                  Sign Up
-                </Link>
-              </li>
-            </div>
-          )}
-          </nav> */}
       <nav class="navbar sticky-top navbar-expand-md navbar-dark bg-dark">
         <ul class="navbar-nav mr-auto">
             <li className="nav-item">
@@ -261,7 +165,7 @@ class App extends Component {
         )}
       </nav>
         <Header />
-        <div className="container mt-3">
+        <div className="">
           <Switch>
             <Route exact path="/" component={Launch} />
             <Route exact path="/home" component={Home} />
@@ -343,28 +247,6 @@ class App extends Component {
                 <p>Weekly breaking news, analysis and cutting edge advices on job searching.
                 </p>
               </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="copyright-content">
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-6">
-              <div className="social-icons social-icons">
-                <ul>
-                  <li className="social-rss"><i className="fa fa-rss"></i></li>
-                  <li className="social-facebook"><i className="fab fa-facebook-f"></i></li>
-                  <li className="social-twitter"><i className="fab fa-twitter"></i></li>
-                  <li className="social-vimeo"><i className="fab fa-vimeo"></i></li>
-                  <li className="social-youtube"><i className="fab fa-youtube"></i></li>
-                  <li className="social-pinterest"><i className="fab fa-pinterest"></i></li>
-                  <li className="social-gplus"><i className="fab fa-google-plus-g"></i></li>
-                </ul>
-              </div>
-            </div>
-            <div className="col-lg-6 text-light">
-              <div className="copyright-text">© 2019 POLO HTML5 Template. All Rights Reserved. </div>
             </div>
           </div>
         </div>
