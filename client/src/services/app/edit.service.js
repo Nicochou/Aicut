@@ -2,7 +2,7 @@ import axios from 'axios';
 import AuthService from "../auth.service";
 import AuthHeader from '../auth-header';
 
-const API_URL = 'http://localhost:8082/api/getEditClipByUserId';
+const API_URL = 'http://localhost:8082/api/getAllClipByUserId';
 const STATUS_EDITION = 101;
 
 let accessToken = AuthHeader();
@@ -17,19 +17,16 @@ class EditClipService {
     return axios
     .get(API_URL , {  
         params: {
-            id: currentUser.id,
-            status: STATUS_EDITION
+            id: currentUser.id
         },
         headers: { 
           'x-access-token': accessToken['x-access-token']
         }
     })
     .then(response => {
-        console.log(response)
         return response;
       })
     .catch(err=> {
-        console.log(err)
     });
   }
 }

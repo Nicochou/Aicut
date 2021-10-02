@@ -71,12 +71,13 @@ jobs:
       env:	
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}	
         ECR_REPOSITORY: ai-cut	
-        IMAGE_TAG: ${{ github.sha }}	
+        IMAGE_TAG: client
       working-directory: client	
       run: |	
         # Build a docker container and	
         # push it to ECR so that it can	
         # be deployed to ECS.	
+        aws ecr get-login-password --region eu-west-3 | docker login --username AWS --password-stdin 999111338687.dkr.ecr.eu-west-3.amazonaws.com/ai-cut
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .	
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG	
         echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
@@ -86,7 +87,7 @@ jobs:
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}	
         ECR_REPOSITORY: ai-cut	
-        IMAGE_TAG: ${{ github.sha }}	
+        IMAGE_TAG: server	
       working-directory: server	
       run: |	
         # Build a docker container and	
@@ -96,19 +97,11 @@ jobs:
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG	
         echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
 
-    #- name: Fill in the new image ID in the Amazon ECS task definition of the aiserver
-      #id: render-aiserver
-      #uses: aws-actions/amazon-ecs-render-task-definition@v1
-      #with:
-        #task-definition: task-definition.json
-        #container-name: aiserver
-        #image: ${{ steps.build-image-aiserver.outputs.image }}
-
     - name: Fill in the new image ID in the Amazon ECS task definition of the server
       id: render-server
       uses: aws-actions/amazon-ecs-render-task-definition@v1
       with:
-        task-definition: ${{ steps.render-aiserver.outputs.task-definition }}
+        task-definition: task-definition.json
         container-name: server
         image: ${{ steps.build-image-server.outputs.image }}
 
@@ -116,14 +109,14 @@ jobs:
       id: render-client
       uses: aws-actions/amazon-ecs-render-task-definition@v1
       with:
-        task-definition: ${{ steps.render-aiserver.outputs.task-definition }}
+        task-definition: task-definition.json
         container-name: client
         image: ${{ steps.build-image-client.outputs.image }}
 
     - name: Deploy Amazon ECS task definition
       uses: aws-actions/amazon-ecs-deploy-task-definition@v1
       with:
-        task-definition: ${{ steps.render-client.outputs.task-definition }}
-        service: AiCutService
-        cluster: AiCutCluster
+        task-definition: task-definition.json
+        service: AiCutService1
+        cluster: AiCutCluster1
         wait-for-service-stability: true

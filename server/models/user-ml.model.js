@@ -1,16 +1,24 @@
 module.exports = (sequelize, Sequelize) => {
-  const UserMl = sequelize.define("user_machinelearning", {
+  const UserMl = sequelize.define("user-ml", {
     id: {
       type: Sequelize.INTEGER,
       primaryKey: true,
       autoIncrement: true
     },
-    id_user: {
+    username: {
       type: Sequelize.STRING,
       allowNull: true
     },
-    username: {
-      type: Sequelize.STRING,
+    nb_messages_total: {
+      type: Sequelize.INTEGER,
+      allowNull: true
+    },
+    nb_messages_subscriber: {
+      type: Sequelize.INTEGER,
+      allowNull: true
+    },
+    nb_messages_emot: {
+      type: Sequelize.INTEGER,
       allowNull: true
     }
   });

@@ -55,30 +55,11 @@ function Header(){
 
     return (
         <div>
-            <nav className="navbar navbar-expand navbar-primary bg-primary">
+            
                 {(menu || !smallScreen) && (
 
-            <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul className="listeMenu">
-                    <div className="navbar-nav">
-                        <li onClick={hideMenu} className="nav-item">
-                            <Link className="lien" to="/game">
-                            Games
-                            </Link>
-                        </li>
-                        <li onClick={hideMenu} className="nav-item">
-                            <Link className="lien" to="/top-streams">
-                            Streams
-                            </Link>
-                        </li>
-                        {/* set up middlewar and rooting */}
-                        <li onClick={hideMenu} className="nav-item">
-                            <Link className="lien" to="/clip">
-                            Clips
-                            </Link>
-                        </li>
-                    </div>
-                    <div className="navbar-nav ml-auto">
+                <ul className="nav nav-pills flex-column" id="box-trend">
+                        <h3>Tendances</h3>
                         <li className="nav-item">
                             <form className="formSubmit" onSubmit={handleSubmit}>
 
@@ -96,14 +77,33 @@ function Header(){
                             </Link>
                             </form>
                         </li>
-                    </div>
+                        <li onClick={hideMenu} className="nav-item">
+                            <Link className="nav-link" to="/game">
+                            Games
+                            </Link>
+                        </li>
+                        <li onClick={hideMenu} className="nav-item dropdown">
+                            <Link class="nav-link dropdown-toggle" data-bs-toggle="dropdown" to="/top-streams" role="button" aria-haspopup="true" aria-expanded="false">Streamer</Link>
+                            <div class="dropdown-menu" data-popper-placement="bottom-start">
+                                <Link class="dropdown-item" href="#">Action</Link>
+                                <Link class="dropdown-item" href="#">Another action</Link>
+                                <Link class="dropdown-item" href="#">Something else here</Link>
+                                <div class="dropdown-divider"></div>
+                                <Link class="dropdown-item" href="#">Separated link</Link>
+                            </div>
+                        </li>
+                        {/* set up middlewar and rooting */}
+                        <li onClick={hideMenu} className="nav-item">
+                            <Link className="nav-link" to="/clip">
+                            Clips
+                            </Link>
+                        </li>
+
                     
 
                 </ul>
-            </div>
             )}
 
-            </nav>
 
         <div className="menuResBtn">
             <img onClick={toggleNavRes} src={!menu ? menuIco : croix} alt="icone menu responsive" className="menuIco"/>
