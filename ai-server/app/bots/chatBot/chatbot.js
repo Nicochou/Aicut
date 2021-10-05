@@ -69,8 +69,7 @@ chatBot.once("connected", function (address, port) {
         user_ml_init.nb_messages_emot = req[4]
     }
    });
-    console.log(address);
-    console.log(port);
+
     setTimeout(function() {chatBot.disconnect();}, 20000);
     });
 

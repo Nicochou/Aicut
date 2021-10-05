@@ -6,8 +6,8 @@ module.exports = (sequelize, Sequelize) => {
         autoIncrement: true
       },
       published:{
-        type: Sequelize.INTEGER,
-        defaultValue: 0
+        type: Sequelize.BOOLEAN,
+        defaultValue: false
       },
       provider:{
         type: Sequelize.STRING,

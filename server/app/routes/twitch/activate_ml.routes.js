@@ -1,7 +1,7 @@
 const session = require('express-session');
 var request = require('request');
 const shell = require('shelljs');
-const { exec } = require('child_process');
+const { execFileSync } = require('child_process');
 const db = require("../../../models");
 const config = require("../../config/auth.config");
 const User = db.user;
@@ -28,7 +28,7 @@ module.exports = function(app) {
     var id = req.query.id;
     
     console.log(id);
-    const dir = exec('cmd', ['/c', './bash/start-ml.cmd']);
+    const dir = execFileSync('/app/routes/twitch/bash/init-ml.cmd');
     console.log(`Stdout: ${JSON.stringify(dir.stdout)}`);
     console.log(`Stderr: ${JSON.stringify(dir.stderr)}`);  
   });

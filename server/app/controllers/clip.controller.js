@@ -12,6 +12,9 @@ const getPagination = (page, size) => {
   return { limit, offset };
 };
 
+/*
+  GET CONTROLLER
+*/
 // Retrieve all clips from the database
 exports.getAllClips = async function (req, res, next) {
   // We validate request parameters
@@ -27,27 +30,10 @@ exports.getAllClips = async function (req, res, next) {
   }
 };
 
-// Retrieve all published clips from the database
-exports.getAllPublishedClips = async function (req, res, next) {
-  // We validate request parameters
-  const { page, size, published } = req.query;
-  var condition = published ? published : 1
-  // We set the pagination
-  const { limit, offset } = getPagination(page, size);
-  try {
-      var clips = await Clipservices.findAllPublishedClips({where : condition}, limit, offset)
-      return res.status(200).json({ status: 200, data: clips, message: "Succesfully Clips Published Retrieved" });
-  } catch (e) {
-      return res.status(400).json({ status: 400, message: e.message });
-  }
-};
-
 // Find a single Clip with an id
 exports.getOneClipById = async function (req, res, next) {
   // We validate request parameters
   const id = req.query.id;
-  // We set the pagination
-  const { limit, offset } = getPagination(page, size);
   try {
     var clip = await Clipservices.findOneClip(id)
     return res.status(200).json({ status: 200, data: clip, message: "Succesfully Clip Retrieved" });
@@ -56,9 +42,141 @@ exports.getOneClipById = async function (req, res, next) {
   }
 }
 
-
 // Retrieve all published clips from the database
+exports.getAllPublishedClips = async function (req, res, next) {
+  // We validate request parameters
+  const { page, size, published } = req.query;
+  const condition = published ? { published: { [Op.eq]: published} } : {  published: 1 }
+
+  // We set the pagination
+  const { limit, offset } = getPagination(page, size);
+  try {
+      var clips = await Clipservices.findAllPublishedClips(condition, limit, offset)
+      return res.status(200).json({ status: 200, data: clips, message: "Succesfully Clips Published Retrieved" });
+  } catch (e) {
+      return res.status(400).json({ status: 400, message: e.message });
+  }
+};
+
+// We get all clip by user id
+exports.getAllClipByUserId = async function (req, res) {
+  const { page, size, userid} = req.query;
+  const condition = userid ? { id: userid } : null;
+
+  // We set the pagination
+  const { limit, offset } = getPagination(page, size);
+  try {
+    var clips = await Clipservices.getAllClipByUserId(condition, limit, offset)
+    return res.status(200).json({ status: 200, data: clips, message: "Succesfully Clips Published By User Id Retrieved" });
+  } catch (e) {
+        return res.status(400).json({ status: 400, message: e.message });
+  }
+};
+
+// We get all published clip by user id
+exports.getAllPublishedClipByUserId = async function (req, res) {
+  const { page, size, userid, published} = req.query;
+  const UserCondition = userid ? { id: userid } : null;
+  const ClipCondition = published ? { published: { [Op.eq]: published} } : {  published: 1 };
+
+  // We set the pagination
+  const { limit, offset } = getPagination(page, size);
+  try {
+    var clips = await Clipservices.getAllPublishedClipByUserId(ClipCondition, UserCondition, limit, offset)
+    return res.status(200).json({ status: 200, data: clips, message: "Succesfully Clips Published By User Id Retrieved" });
+  } catch (e) {
+        return res.status(400).json({ status: 400, message: e.message });
+  }
+};
+/*
+  PUT CONTROLLER
+*/
+// Modify one clip from the database
 exports.updateOneClip = async function (req, res, next) {
+  // Validate request
+    if (!req.body) {
+      res.status(400).send({
+        message: "Content can not be empty!"
+      });
+      return;
+    }
+  // Create objet
+  const { clipId } = req.query;
+  const condition =  clipId ? { id: clipId } : null;
+  var clip = {
+    published: req.body.published ? req.body.published : false,
+    provider: req.body.provider ? req.body.provider : null,
+    id_twitch: req.body.id_twitch ? req.body.id_twitch : null,
+    url: req.body.url ? req.body.url : null,
+    embed_url: req.body.embed_url ? req.body.embed_url : null,
+    broadcaster_id: req.body.broadcaster_id ? req.body.broadcaster_id : null,
+    broadcaster_name: req.body.broadcaster_name ? req.body.broadcaster_name : null,
+    creator_id: req.body.creator_id ? req.body.creator_id : null,
+    creator_name: req.body.creator_name ? req.body.creator_name : null,
+    video_id: req.body.video_id ? req.body.video_id : null,
+    game_id: req.body.game_id ? req.body.game_id : null,
+    language: req.body.language ? req.body.language : null,
+    title: req.body.title ? req.body.title : null,
+    view_count: req.body.view_count ? req.body.view_count : null,
+    created_at_on_twitch: req.body.created_at_on_twitch ? req.body.created_at_on_twitch : null,
+    thumbnail_url: req.body.thumbnail_url ? req.body.thumbnail_url : null,
+    tags: req.body.tags ? req.body.tags : null,
+  };
+  try {
+      var clips = await Clipservices.update(condition, clip)
+      return res.status(200).json({ status: 200, data: clips, message: "Succesfully Clip Modified" });
+  } catch (e) {
+      return res.status(400).json({ status: 400, message: e.message });
+  }
+};
+
+/*
+  POST CONTROLLER
+*/
+// Add one clips to the database
+exports.addOneClip = async function (req, res, next) {
+  
+  // Validate request
+    if (!req.body) {
+      res.status(400).send({
+        message: "Content can not be empty!"
+      });
+      return;
+    }
+  // Create object
+  var clip = {
+    published: req.body.published ? req.body.published : false,
+    provider: req.body.provider ? req.body.provider : null,
+    id_twitch: req.body.id_twitch ? req.body.id_twitch : null,
+    url: req.body.url ? req.body.url : null,
+    embed_url: req.body.embed_url ? req.body.embed_url : null,
+    broadcaster_id: req.body.broadcaster_id ? req.body.broadcaster_id : null,
+    broadcaster_name: req.body.broadcaster_name ? req.body.broadcaster_name : null,
+    creator_id: req.body.creator_id ? req.body.creator_id : null,
+    creator_name: req.body.creator_name ? req.body.creator_name : null,
+    video_id: req.body.video_id ? req.body.video_id : null,
+    game_id: req.body.game_id ? req.body.game_id : null,
+    language: req.body.language ? req.body.language : null,
+    title: req.body.title ? req.body.title : null,
+    view_count: req.body.view_count ? req.body.view_count : null,
+    created_at_on_twitch: req.body.created_at_on_twitch ? req.body.created_at_on_twitch : null,
+    thumbnail_url: req.body.thumbnail_url ? req.body.thumbnail_url : null,
+    tags: req.body.tags ? req.body.tags : null,
+  };
+  // Call service
+  try {
+      var clips = await Clipservices.add(clip)
+      return res.status(200).json({ status: 200, data: clips, message: "Succesfully Clips Added" });
+  } catch (e) {
+      return res.status(400).json({ status: 400, message: e.message });
+  }
+};
+
+/*
+  DELETE CONTROLLER
+*/
+// Delete one clip from the database
+exports.deleteOneClip = async function (req, res, next) {
   // We validate request parameters
   const id = req.params.id;
   const body = req.body;
@@ -66,60 +184,41 @@ exports.updateOneClip = async function (req, res, next) {
   // We set the pagination
   const { limit, offset } = getPagination(page, size);
   try {
-      var clips = await Clipservices.update({where : condition}, body)
+      var clips = await Clipservices.delOne({where : condition}, body)
       return res.status(200).json({ status: 200, data: clips, message: "Succesfully Clips Published Retrieved" });
   } catch (e) {
       return res.status(400).json({ status: 400, message: e.message });
   }
 };
-// We get edit clip by user id
-exports.getAllClipByUserId = async function (req, res) {
-  const { id } = req.params;
-  const { page, size} = req.query;
+
+// Delete all clips by user id from the database
+exports.deleteAllClipByUserId = async function (req, res, next) {
+  // We validate request parameters
+  const id = req.params.id;
+  const body = req.body;
   var condition = `id:`+ id;
   // We set the pagination
   const { limit, offset } = getPagination(page, size);
   try {
-    var clips = await Clipservices.getAllClipByUserId({where : condition}, limit, offset)
-    return res.status(200).json({ status: 200, data: clips, message: "Succesfully Clips Published Retrieved" });
+      var clips = await Clipservices.delAllByUserId({where : condition}, body)
+      return res.status(200).json({ status: 200, data: clips, message: "Succesfully Clips Published Retrieved" });
   } catch (e) {
-        return res.status(400).json({ status: 400, message: e.message });
+      return res.status(400).json({ status: 400, message: e.message });
   }
 };
 
-// We get clip by user id and status
- exports.getClipStatusByUserId = (req, res) => {
-    let id = req.query.id;
-    User.findAll({ 
-      include: [{
-        model: Clip,
-        required: false,
-      }],
-      where: {
-        id: id
-      }
-    })
-    .then(function (clips) {
-        res.send({clips});
-      });
-  };
-
-// We get edit clip by user id
- exports.postClip = (req, res) => {
-  let id = req.query.id;
-  User.findAll({ 
-    include: [{
-      model: Clip,
-      required: false,
-      where: {
-        status_clip: '102'
-      }
-    }],
-    where: {
-      id: id
-    }
-  })
-  .then(function (clips) {
-      res.send({clips});
-    });
+// Delete all clips the database
+exports.deleteAllClip = async function (req, res, next) {
+  // We validate request parameters
+  const id = req.params.id;
+  const body = req.body;
+  var condition = `id:`+ id;
+  // We set the pagination
+  const { limit, offset } = getPagination(page, size);
+  try {
+      var clips = await Clipservices.delAll({where : condition}, body)
+      return res.status(200).json({ status: 200, data: clips, message: "Succesfully Clips Published Retrieved" });
+  } catch (e) {
+      return res.status(400).json({ status: 400, message: e.message });
+  }
 };
