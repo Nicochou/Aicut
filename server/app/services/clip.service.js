@@ -9,17 +9,21 @@ const getPagingData = (data, offset, limit) => {
     const { count: totalItems, rows: clips } = data;
     const currentPage = offset ? +offset : 0;
     const totalPages = Math.ceil(totalItems / limit);
-  
+
     return { totalItems, clips, totalPages, currentPage };
   };
 
+/*
+  GET SERVICE
+*/
 // service : get all clips
 exports.findAllClips = async function (query, limit, offset) {
     try {
         var clips = await Clip.findAndCountAll({
             query, 
             limit, 
-            offset })
+            offset 
+        })
         response = getPagingData(clips, offset, limit);
         return response;
     } catch (e) {
@@ -35,18 +39,18 @@ exports.findOneClip = async function (id) {
         return clip;
     } catch (e) {
         // Log Errors
-        throw Error('Error while retriving the clip' + id)
+        throw Error('Error while retriving the clip' + e)
     }
 };
 
 // service : get all published clips
 exports.findAllPublishedClips = async function (query, limit, offset) {
     try {
-        console.log(query);
         var clips = await Clip.findAndCountAll({
-            query, 
-            limit, 
-            offset })
+            where: query,
+            limit,
+            offset
+        })
         response = getPagingData(clips, offset, limit);
         return response;
     } catch (e) {
@@ -55,75 +59,111 @@ exports.findAllPublishedClips = async function (query, limit, offset) {
     }
 };
 
-
-// service : get edit clip by user id
-exports.getAllClipByUserId = async function (req, res) {
-  id 
+// service : get all clips by user id
+exports.getAllClipByUserId = async function (query, limit, offset) {
   try {
-    var clip = await User.findAll({ 
+    var clips = await User.findAndCountAll({ 
       include: [{
         model: Clip,
-        required: false
+        required: true
        }],
-       where: {
-        id: id
-      }
+       where: query,
+       limit,
+       offset
     })
-    return clip;
+    console.log(clips);
+    response = getPagingData(clips, offset, limit);
+    return response;
+
   } catch (e) {
       // Log Errors
-      throw Error('Error while retriving the clip from user' + id)
+      throw Error('Error while retriving the clip from user' + e)
   }
 };
 
-// service : update one clip by id
-exports.update = async function (where, params) {
+// service : get all clips by user id
+exports.getAllPublishedClipByUserId = async function (queryClip, queryUser, limit, offset) {
   try {
-      var clip = await Clip.update(params, where)
+    var clips = await User.findAndCountAll({ 
+      include: [{
+        model: Clip,
+        required: true,
+        where:queryClip
+       }],
+       where: queryUser,
+       limit,
+       offset
+    })
+    console.log(clips);
+    response = getPagingData(clips, offset, limit);
+    return response;
+
+  } catch (e) {
+      // Log Errors
+      throw Error('Error while retriving the clip from user' + e)
+  }
+};
+
+/*
+  PUT SERVICE
+*/
+// service : update one clip by id
+exports.update = async function (condition, clip) {
+  try {
+      var clip = await Clip.update(clip, {where: condition})
       return clip;
   } catch (e) {
       // Log Errors
-      throw Error('Error while retriving the clip' + id)
+      throw Error('Error while retriving the clip' + e)
   }
 };
 
-// service : get clip by user id and status
- exports.getClipStatusByUserId = (req, res) => {
-    let id = req.query.id;
-    let status = req.query.status;
-    User.findAll({ 
-      include: [{
-        model: Clip,
-        required: false,
-        where: {
-          status: status
-        }
-      }],
-      where: {
-        id: id
-      }
-    })
-    .then(function (clips) {
-        res.send({clips});
-      });
-  };
+/*
+  POST SERVICE
+*/
+// service : add one clip
+ exports.add = async function (clip) {
+  try {
+    var clip = await Clip.create(clip)
+    return clip;
+  } catch (e) {
+      // Log Errors
+      throw Error('Error while retriving the clip' + e)
+  }
+};
 
-// We get edit clip by user id
- exports.addClip = (req, res) => {
-  let id = req.query.id;
-  User.findAll({ 
-    include: [{
-      model: Clip,
-      required: false,
-      where: {
-        status_clip: '102'
-      }
-    }],
-    where: {
-      id: id
-    }
-  })
-  .then(function (clips) {
-      res.send({clips});
-    });
+/*
+  DELETE SERVICE
+*/
+// service : delete one clip
+exports.delOne = async function (where, params) {
+  try {
+    var clip = await Clip.update(params, where)
+    return clip;
+  } catch (e) {
+      // Log Errors
+      throw Error('Error while retriving the clip' + e)
+  }
+};
+
+// service : delete all clips by user id
+exports.delAllByUserId = async function (where, params) {
+  try {
+    var clip = await Clip.update(params, where)
+    return clip;
+  } catch (e) {
+      // Log Errors
+      throw Error('Error while retriving the clip' + e)
+  }
+};
+
+// service : delete all clips by user id
+exports.delAll = async function (where, params) {
+  try {
+    var clip = await Clip.update(params, where)
+    return clip;
+  } catch (e) {
+      // Log Errors
+      throw Error('Error while retriving the clip' + e)
+  }
 };
