@@ -60,7 +60,7 @@ function Header(){
 
                 <ul className="nav nav-pills flex-column" id="box-trend">
                         <h3>Tendances</h3>
-                        <li className="nav-item">
+                        <li className="navigation">
                             <form className="formSubmit" onSubmit={handleSubmit}>
 
                                 <input required value={searchInput} onChange={(e) => handleKeyPress(e)} type="text" className="inputRecherche"/>
@@ -78,12 +78,12 @@ function Header(){
                             </form>
                         </li>
                         <li onClick={hideMenu} className="nav-item">
-                            <Link className="nav-link" to="/game">
+                            <Link to="/game">
                             Games
                             </Link>
                         </li>
                         <li onClick={hideMenu} className="nav-item dropdown">
-                            <Link class="nav-link dropdown-toggle" data-bs-toggle="dropdown" to="/top-streams" role="button" aria-haspopup="true" aria-expanded="false">Streamer</Link>
+                            <Link class="dropdown-toggle" data-bs-toggle="dropdown" to="/top-streams" role="button" aria-haspopup="true" aria-expanded="false">Streamer</Link>
                             <div class="dropdown-menu" data-popper-placement="bottom-start">
                                 <Link class="dropdown-item" href="#">Action</Link>
                                 <Link class="dropdown-item" href="#">Another action</Link>
@@ -94,7 +94,7 @@ function Header(){
                         </li>
                         {/* set up middlewar and rooting */}
                         <li onClick={hideMenu} className="nav-item">
-                            <Link className="nav-link" to="/clip">
+                            <Link to="/clip">
                             Clips
                             </Link>
                         </li>

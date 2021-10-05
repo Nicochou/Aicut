@@ -18,6 +18,7 @@ export default class Launch extends Component {
   render() {
     return (
       <div className="">
+        <section id="carousel-launch">
         {/* Carousel - Launch page */}
         <Carousel 
             autoPlay 
@@ -69,26 +70,27 @@ export default class Launch extends Component {
                 </div>
             </Carousel>
             {/* :End Carousel - Launch page */}
+        </section>
         <section>
             {/* Introduce - Launch page */}
             <div className="heading-text heading-section text-center">
-                <h2 className="text-lg text-uppercase">AICUT</h2>
+                <h2 className="text-md text-uppercase"><img src={'./logoGPE-large.png'} />AICUT</h2>
                 <span className="lead">Gère toi même ta bibliothèque de clips</span>
             </div>
-            <div className="row">
+            <div className="row text-center">
                 <div className="col-lg-4">
-                    <h3 className="text-lg text-uppercase"><FcClapperboard /> CUT</h3>
-                    <span>Vous avez la possibilité de faire des cut de façon automatique ou manuelle de votre live. </span>
+                    <h3 className="text-md text-uppercase"><FcClapperboard /> CUT</h3>
+                    <p>Vous avez la possibilité de faire des cut de façon automatique ou manuelle de votre live. </p>
                 </div>
 
                 <div className="col-lg-4">
-                    <h3 className="text-lg text-uppercase"><FcFilmReel /> EDIT</h3>
-                    <span>Il seront alors automatiquement stocké dans un dossier afin que vous puissier les editer(raccoucir la taille par exemple). </span>
+                    <h3 className="text-md text-uppercase"><FcFilmReel /> EDIT</h3>
+                    <p>Il seront alors automatiquement stocké dans un dossier afin que vous puissier les editer(raccoucir la taille par exemple). </p>
                 </div>
 
                 <div className="col-lg-4">
-                    <h3 className="text-lg text-uppercase"><FcFilm /> MOUNT</h3>
-                    <span>Et enfin vous pourrez assembler tout vos clip que vous aurez éditer dans une seul et même vidéo qu'il ne vous resteras plus qu'a uploader sur votre chaîne youtube. </span>
+                    <h3 className="text-md text-uppercase"><FcFilm /> MOUNT</h3>
+                    <p>Et enfin vous pourrez assembler tout vos clip que vous aurez éditer dans une seul et même vidéo qu'il ne vous resteras plus qu'a uploader sur votre chaîne youtube. </p>
                 </div>
             </div>
             {/* :End Introduce - Launch page */}
@@ -247,34 +249,34 @@ export default class Launch extends Component {
 				</div>
                 <ul className="grid grid-5-columns">
                     <li>
-                        <img src={'./img/streamers/kameto.jpg'} />      
+                        <img src={'./img/streamers/ponce.png'} />      
 					</li>
                     <li>
                         <img src={'./img/streamers/ponce.png'} />      
 					</li>
                     <li>
-                        <img src={'./img/streamers/maglha.png'} />      
+                        <img src={'./img/streamers/ponce.png'} />      
 					</li>
                     <li>
-						<img src={'./img/streamers/locklear.jpg'} />
+						<img src={'./img/streamers/ponce.png'} />
 					</li>
                     <li>
-                        <img src={'./img/streamers/squeezie.jpg'} />      
+                        <img src={'./img/streamers/ponce.png'} />      
 					</li>
                     <li>
-                        <img src={'./img/streamers/domingo.jpg'} />      
+                        <img src={'./img/streamers/ponce.png'} />      
 					</li>
                     <li>
-                        <img src={'./img/streamers/zerator.jpg'} />      
+                        <img src={'./img/streamers/ponce.png'} />      
 					</li>
                     <li>
-						<img src={'./img/streamers/sardoche.jpg'} />
+						<img src={'./img/streamers/ponce.png'} />
 					</li>
                     <li>
-                        <img src={'./img/streamers/julia.jpg'} />      
+                        <img src={'./img/streamers/ponce.png'} />      
 					</li>
                     <li>
-						<img src={'./img/streamers/deujna.jpg'} />
+						<img src={'./img/streamers/ponce.png'} />
 					</li>
 				</ul>
                 </div>
@@ -284,7 +286,7 @@ export default class Launch extends Component {
 
 				<div class="heading-text heading-section text-center">
 					<h2>NOTRE BLOG </h2>
-					<span class="lead">The most happiest time of the day!. </span>
+					<span class="lead">Le meilleur moment de la journée. </span>
 				</div>
 			</div>
 

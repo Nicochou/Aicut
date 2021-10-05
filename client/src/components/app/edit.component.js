@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
+import { FiEdit, FiTrash2, FiSettings } from "react-icons/fi";
 import editService from "../../services/app/edit.service";
 
 export default class Edit extends Component {
@@ -15,15 +16,15 @@ export default class Edit extends Component {
   }
 
   componentDidMount() {
-    let clipsUser = editService.getEditClipByUserId();
-    if (!clipsUser) this.setState({ redirect: "/mount" });
-    
-    clipsUser
-      .then((clipsuser) => {
+    let response = editService.getEditClipByUserId();
+    if (!response) this.setState({ redirect: "/home" });
+    response
+      .then((clipUser) => {
+        console.log(clipUser);
         this.setState({
-          currentUser: clipsuser.data.clips[0],
+          currentUser: clipUser.data.clips[0],
           userReady: true,
-          clips: clipsuser.data.clips[0].clips,
+          clips: clipUser.data.clips[0].clips,
         });
       })
       .catch((error) => {
@@ -42,28 +43,81 @@ export default class Edit extends Component {
     return (
       <div className="container">
         <header className="jumbotron">
-          <h3>EDIT </h3>
+        <div class="col-lg-6">
+            <h4>Edit</h4>
+            <p>Add advanced interaction controls to your HTML tables</p>
+        </div>
         </header>
-        <table class="table table-hover">
-          <thead>
-            <tr>
-              <th scope="col">Status</th>
-              <th scope="col">Id</th>
-              <th scope="col">CreatedAt</th>
-              <th scope="col">Edit</th>
-            </tr>
-          </thead>
-          <tbody>
-          {clips.map((clips) => (
-            <tr>
-            <th scope="row">{clips.status}</th>
-            <td>{clips.id_twitch.substring(0,10)}...{clips.id_twitch.substring(clips.id_twitch.length - 10)}</td>
-            <td>{clips.createdAt}</td>
-            <td><a target="_blank" href={clips.url}>Edit</a></td>
-          </tr>
-            ))}
-          </tbody>
-        </table>
+        <div class="row mb-3">
+                    <div class="col-lg-12 text-right">
+                        <div class="p-dropdown ml-3 float-right">
+                            <a class="title btn btn-light"><FiSettings />Options</a>
+                            <div class="p-dropdown-content">
+                                <ul>
+                                    <li><a href="#"><FiEdit />Update Records</a></li>
+                                    <li><a href="#"><FiEdit />Edit</a></li>
+                                    <li><a href="#"><FiTrash2 />Delete</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div id="export_buttons" class="mt-2"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <table id="datatable" class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Position</th>
+                                    <th>Office</th>
+                                    <th>Age</th>
+                                    <th>Date</th>
+                                    <th>Salary</th>
+                                    <th>Status</th>
+                                    <th class="noExport">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {/* 
+                            <tr>
+                              <th scope="row">{clips.status}</th>
+                              <td>{clips.id_twitch.substring(0,10)}...{clips.id_twitch.substring(clips.id_twitch.length - 10)}</td>
+                              <td>{clips.createdAt}</td>
+                              <td><a target="_blank" href={clips.url}>Edit</a></td>
+                          </tr>                            
+                            */}
+                            {clips.map((clips) => (
+                                <tr>
+                                  <td>status</td>
+                                  <td>totototo</td>
+                                  <td>toto</td>
+                                  <td>status</td>
+                                  <td>totototo</td>
+                                  <td>toto</td>
+                                  <td><a target="_blank">Edit</a></td>
+                                  <td> <a class="ml-2" href="#" data-toggle="tooltip" data-original-title="Edit"><i class="icon-edit"></i></a>
+                                        <a class="ml-2" href="#" data-toggle="tooltip" data-original-title="Delete"><i class="icon-trash-2"></i></a>
+                                        <a class="ml-2" href="#" data-toggle="tooltip" data-original-title="Settings"><i class="icon-settings"></i></a>
+                                  </td>
+                              </tr>
+                            ))}
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Position</th>
+                                    <th>Office</th>
+                                    <th>Age</th>
+                                    <th>Date</th>
+                                    <th>Salary</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
       </div>
     );
   }
