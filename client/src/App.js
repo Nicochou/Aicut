@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import { Switch, Route, Link } from "react-router-dom";
+import { FaHome, FaHeadset, FaUserAlt, FaUserMd, FaUserTie, FaGlobeAmericas } from "react-icons/fa";
+import { AiOutlineLogin, AiOutlinePlusCircle, AiOutlineLogout } from "react-icons/ai";
+import { FcClapperboard, FcFilmReel, FcFilm } from "react-icons/fc";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./css/App.css";
 import "./css/Theme.css";
@@ -9,7 +12,6 @@ import "./css/Plugin.css";
 import AuthService from "./services/auth.service";
 
 // Components
-
 // - Boards
 import BoardUser from "./components/boards/board-user.component";
 import BoardModerator from "./components/boards/board-moderator.component";
@@ -35,6 +37,21 @@ import Launch from "./components/launch.component";
 import Cut from './components/app/cut.component';
 import Edit from "./components/app/edit.component";
 import Mount from "./components/app/mount.component";
+// - Page - Blog
+import Blog from "./components/pages/blog/blog.component";
+// - Page - Discover
+import Aboutus from "./components/pages/discover/aboutus.component";
+import Prices from "./components/pages/discover/prices.component";
+// - Page - Support
+import Contact from "./components/pages/support/contact.component";
+import Faq from "./components/pages/support/faq.component";
+import Bogue from "./components/pages/support/bogue.component";
+// - Page - Projet
+import News from "./components/pages/project/news.component";
+import Release from "./components/pages/project/release.component";
+import Licences from "./components/pages/project/licences.component";
+
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -73,79 +90,105 @@ class App extends Component {
         <ul class="navbar-nav mr-auto">
             <li className="nav-item">
               <Link to={"/home"} className="nav-link">
-                Home
+                  <FaHome />Home
               </Link>
             </li>
             {showModeratorBoard && (
               <li className="nav-item">
                 <Link to={"/mod"} className="nav-link">
-                  Moderator Board
+                  <FaUserMd />Moderator
                 </Link>
               </li>
             )}
             {showAdminBoard && (
               <li className="nav-item">
                 <Link to={"/admin"} className="nav-link">
-                  Admin Board
+                  <FaUserTie />Admin
                 </Link>
               </li>
             )}
             {showStreamerBoard && (
               <li className="nav-item">
                 <Link to={"/stre"} className="nav-link">
-                  Streamer Board
+                  <FaHeadset />Streamer
                 </Link>
               </li>
             )}
             {currentUser && (
               <li className="nav-item">
                 <Link to={"/user"} className="nav-link">
-                  User Board
+                  <FaUserAlt />User
                 </Link>
               </li>
             )}
         </ul>
-        <a class="navbar-brand mx-auto" href="/">AICUT
+        <a class="navbar-brand mx-auto" href="/"><img src={'./logoGPE.png'} />AICUT
         {currentUser && (
           <div id="appRoute">
           {showStreamerBoard && (
                 <li className="nav-item">
                   <Link to={"/cut"} className="nav-link">
-                    Cut
+                    <FcClapperboard />
                   </Link>
                 </li>
               )}
           {showStreamerBoard && (
             <li className="nav-item">
               <Link to={"/edit"} className="nav-link">
-                Edit
+                <FcFilmReel />
               </Link>
             </li>
             )}
           {showStreamerBoard && (
             <li className="nav-item">
               <Link to={"/mount"} className="nav-link">
-                Mount
+                <FcFilm />
               </Link>
             </li>
           )}
         </div>
          )}
         </a>
+        <ul class="navbar-nav ml-auto">
+            <li className="dropdown"><Link className="nav-link">Découvrir</Link>
+              <ul className="dropdown-menu">
+                <li className="nav-link text-dark"><Link to={"/aboutus"}>Nous concernant</Link></li>
+                <li className="nav-link text-dark"><Link to={"/prices"}>Prix</Link></li>
+              </ul>
+            </li>
+            <li className="ml-auto">
+                <Link to={"/blog"} className="nav-link">
+                  Blog
+                </Link>
+            </li>
+            <li className="ml-auto dropdown"><Link className="nav-link">Support</Link>
+              <ul class="dropdown-menu">
+                <li className="nav-link text-dark"><Link to={"/contact"} >Contact</Link></li>
+                <li className="nav-link text-dark"><Link to={"/faq"} >FAQ</Link></li>
+                <li className="nav-link text-dark"><Link to={"/bogue"} >Rapporter un bogue</Link></li>
+              </ul>
+            </li>
+            <li className="ml-auto dropdown"><Link className="nav-link">Projet</Link>
+              <ul class="dropdown-menu">
+                <li className="nav-link text-dark"><Link to={"/release"} >Ajout récent</Link></li>
+                <li className="nav-link text-dark"><Link to={"/news"} >News</Link></li>
+                <li className="nav-link text-dark"><Link to={"/licences"} >Licences</Link></li>
+              </ul>
+            </li>
+          </ul>
         {currentUser ? (
           <ul class="navbar-nav ml-auto">
             <li className="nav-item">
                 <Link to={"/profile"} className="nav-link">
                   <div>
-                  {currentUser.username}
-                  <img src={currentUser.profile_image_url} alt="Avatar" id="ProfilePic" align="center" />
+                    <img src={currentUser.profile_image_url} alt="Avatar" id="ProfilePic" align="center" />
                   </div>
                   
                 </Link>
             </li>
             <li className="nav-item ml-auto">
                 <a href="/login" className="nav-link" onClick={this.logOut}>
-                  LogOut
+                  <AiOutlineLogout />
                 </a>
             </li>
           </ul>
@@ -153,14 +196,27 @@ class App extends Component {
           <ul class="navbar-nav ml-auto">
             <li className="nav-item">
               <Link to={"/login"} className="nav-link">
-                Login
+                <AiOutlineLogin />
               </Link>
             </li>
             <li className="nav-item">
             <Link to={"/register"} className="nav-link">
-              Sign Up
+              <AiOutlinePlusCircle />
             </Link>
           </li>
+          <li className="nav-item">
+                  <div class="p-dropdown">
+                      <a className="nav-link" href="#"><FaGlobeAmericas /><span>FR</span></a>
+                      <ul class="p-dropdown-content">
+                          <li><a href="#">French</a></li>
+                          <li><a href="#">Spanish</a></li>
+                          <li><a href="#">English</a></li>
+                          <li><a href="#">Russian</a></li>
+                          <li><a href="#">Italian</a></li>
+                          <li><a href="#">中国人</a></li>
+                      </ul>
+                  </div>
+              </li>
         </ul>
         )}
       </nav>
@@ -169,6 +225,15 @@ class App extends Component {
           <Switch>
             <Route exact path="/" component={Launch} />
             <Route exact path="/home" component={Home} />
+            <Route exact path="/blog" component={Blog} />
+            <Route exact path="/contact" component={Contact} />
+            <Route exact path="/faq" component={Faq} />
+            <Route exact path="/bogue" component={Bogue} />
+            <Route exact path="/aboutus" component={Aboutus} />
+            <Route exact path="/prices" component={Prices} />
+            <Route exact path="/release" component={Release} />
+            <Route exact path="/news" component={News} />
+            <Route exact path="/licences" component={Licences} />
             <Route exact path="/game" component={Games} />
             <Route exact path="/clip" component={Clips} />
             <Route exact path="/game/:slug" component={GameStreams} />
@@ -195,13 +260,25 @@ class App extends Component {
           <div className="row">
             <div className="col-xl-2 col-lg-2 col-md-3">
               <div className="widget">
-                <h4>PROJECT</h4>
+                <h4>DECOUVRIR</h4>
                 <ul className="list text-light">
-                  <li>Latest Release</li>
-                  <li>Updates</li>
-                  <li>License</li>
+                  <li>Nous-concernant</li>
+                  <li>Prix</li>
+                </ul>
+              </div>
+            </div>
+            <div className="col-xl-2 col-lg-2 col-md-3">
+              <div className="widget">
+                <h4>BLOG</h4>
+              </div>
+            </div>
+            <div className="col-xl-2 col-lg-2 col-md-3">
+              <div className="widget">
+                <h4>PROJET</h4>
+                <ul className="list text-light">
+                  <li>Ajout récent</li>
                   <li>News</li>
-                  <li>Links</li>
+                  <li>Licences</li>
                 </ul>
               </div>
             </div>
@@ -209,35 +286,9 @@ class App extends Component {
               <div className="widget">
                 <h4>SUPPORT</h4>
                 <ul className="list text-light">
-                  <li>Troubleshooting</li>
-                  <li>Common Questions</li>
-                  <li>Report a Bug</li>
-                  <li>Get Help</li>
-                  <li>FAQS</li>
-                </ul>
-              </div>
-            </div>
-            <div className="col-xl-2 col-lg-2 col-md-3">
-              <div className="widget">
-                <h4>COMPANY</h4>
-                <ul className="list text-light">
-                  <li>About</li>
                   <li>Contact</li>
-                  <li>Home</li>
-                  <li>Blog</li>
-                  <li>Portfolio</li>
-                </ul>
-              </div>
-            </div>
-            <div className="col-xl-2 col-lg-2 col-md-3">
-              <div className="widget">
-                <h4>INFO</h4>
-                <ul className="list text-light">
-                  <li>Get Directions</li>
-                  <li>Call Us</li>
-                  <li>Our Staff</li>
-                  <li>Working Hours</li>
-                  <li>Offices</li>
+                  <li>Faq</li>
+                  <li>Bogue</li>
                 </ul>
               </div>
             </div>

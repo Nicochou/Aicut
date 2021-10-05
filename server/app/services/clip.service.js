@@ -55,33 +55,37 @@ exports.findAllPublishedClips = async function (query, limit, offset) {
     }
 };
 
-// service : update one clip by id
-exports.update = async function (where, params) {
-    try {
-        var clip = await Clip.update(params, where)
-        return clip;
-    } catch (e) {
-        // Log Errors
-        throw Error('Error while retriving the clip' + id)
-    }
-};
 
 // service : get edit clip by user id
-exports.getAllClipByUserId = (req, res) => {
-  let id = req.query.id;
-  User.findAll({ 
-    include: [{
-      model: Clip,
-      required: false
-     }],
-     where: {
-      id: id
-    }
-  })
-  .then(function (clips) {
-      res.send({clips});
-    });
-  };
+exports.getAllClipByUserId = async function (req, res) {
+  id 
+  try {
+    var clip = await User.findAll({ 
+      include: [{
+        model: Clip,
+        required: false
+       }],
+       where: {
+        id: id
+      }
+    })
+    return clip;
+  } catch (e) {
+      // Log Errors
+      throw Error('Error while retriving the clip from user' + id)
+  }
+};
+
+// service : update one clip by id
+exports.update = async function (where, params) {
+  try {
+      var clip = await Clip.update(params, where)
+      return clip;
+  } catch (e) {
+      // Log Errors
+      throw Error('Error while retriving the clip' + id)
+  }
+};
 
 // service : get clip by user id and status
  exports.getClipStatusByUserId = (req, res) => {

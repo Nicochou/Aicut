@@ -2,7 +2,10 @@ label {
   display: block;
   margin-top: 10px;
 }
-
+#carousel-launch{
+  height: 500px;
+  padding:0px;
+}
 .card {
   background-color: #f7f7f7;
   padding: 20px 25px 30px;
@@ -46,10 +49,9 @@ body {
   position:fixed;
   top: 15%;
   background-color: #A970FF;
-  width: 10%;
-  border-radius: 3%;
-  border: solid 4px black;
-  color:white;
+  width: 160px;
+  border-radius: 2%;
+  border: solid 2px white;
 }
 
 .headerTop {
@@ -96,6 +98,7 @@ body {
 }
 .logoLoupe {
   width: 20px;
+  height: 40px;
 }
 .inputRecherche {
   width: 50%;
@@ -110,7 +113,9 @@ body {
   padding: 4px 20px;
   border: none;
 }
-
+.navigation{
+  width: 250px;
+}
 .menuResBtn {
   display: none;
   position: fixed;
