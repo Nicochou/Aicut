@@ -7,17 +7,18 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./css/App.css";
 import "./css/Theme.css";
 import "./css/Plugin.css";
+// Languages
+import i18next from './config/i18nextConf';
+import { withTranslation } from 'react-i18next';
 
-// Services
+// Services - Auth
 import AuthService from "./services/auth.service";
-
-// Components
-// - Boards
+// Components - Boards
 import BoardUser from "./components/boards/board-user.component";
 import BoardModerator from "./components/boards/board-moderator.component";
 import BoardAdmin from "./components/boards/board-admin.component";
 import BoardStreamer from "./components/boards/board-streamer.component";
-// - Api
+// Components - Api
 import GameStreams from './components/api/GameStreams/GameStreams';
 import TopStreams from './components/api/TopStreams/TopStreams';
 import Header from './components/api/Header/Header';
@@ -26,37 +27,35 @@ import Erreur from './components/api/Erreur/Erreur';
 import Live from './components/api/Live/Live';
 import Games from './components/api/Games/Games';
 import Clips from './components/api/Clips/Clips';
-// - Commun
+// Components - Commun
 import Login from "./components/login.component";
 import Register from "./components/register.component";
 import Home from "./components/home.component";
 import Profile from "./components/profile.component";
 import Twitch from './components/twitch.component';
 import Launch from "./components/launch.component";
-// - App
+// Components - App
 import Cut from './components/app/cut.component';
 import Edit from "./components/app/edit.component";
 import Mount from "./components/app/mount.component";
-// - Page - Blog
+// Components - Page - Blog
 import Blog from "./components/pages/blog/blog.component";
-// - Page - Discover
+// Components - Page - Discover
 import Aboutus from "./components/pages/discover/aboutus.component";
 import Prices from "./components/pages/discover/prices.component";
-// - Page - Support
+// Components - Page - Support
 import Contact from "./components/pages/support/contact.component";
 import Faq from "./components/pages/support/faq.component";
 import Bogue from "./components/pages/support/bogue.component";
-// - Page - Projet
+// Components - Page - Projet
 import News from "./components/pages/project/news.component";
 import Release from "./components/pages/project/release.component";
 import Licences from "./components/pages/project/licences.component";
-
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.logOut = this.logOut.bind(this);
-
     this.state = {
       showModeratorBoard: false,
       showAdminBoard: false,
@@ -83,41 +82,44 @@ class App extends Component {
 
   render() {
     const { currentUser, showModeratorBoard, showAdminBoard, showStreamerBoard } = this.state;
-
+    const { t } = this.props;
+    const changeLanguage = (lng) => {
+      i18next.changeLanguage(lng);
+    }
     return (
       <div>
-      <nav class="navbar sticky-top navbar-expand-md navbar-dark bg-dark">
-        <ul class="navbar-nav mr-auto">
+      <nav className="navbar sticky-top navbar-expand-md navbar-dark bg-dark">
+        <ul className="navbar-nav mr-auto">
             <li className="nav-item">
               <Link to={"/home"} className="nav-link">
-                  <FaHome />Home
+                  <FaHome />{this.props.t('home_menu')}
               </Link>
             </li>
             {showModeratorBoard && (
               <li className="nav-item">
                 <Link to={"/mod"} className="nav-link">
-                  <FaUserMd />Moderator
+                  <FaUserMd />{this.props.t('moderator_menu')}
                 </Link>
               </li>
             )}
             {showAdminBoard && (
               <li className="nav-item">
                 <Link to={"/admin"} className="nav-link">
-                  <FaUserTie />Admin
+                  <FaUserTie />{this.props.t('admin_menu')}
                 </Link>
               </li>
             )}
             {showStreamerBoard && (
               <li className="nav-item">
                 <Link to={"/stre"} className="nav-link">
-                  <FaHeadset />Streamer
+                  <FaHeadset />{this.props.t('streamer_menu')}
                 </Link>
               </li>
             )}
             {currentUser && (
               <li className="nav-item">
                 <Link to={"/user"} className="nav-link">
-                  <FaUserAlt />User
+                  <FaUserAlt />{this.props.t('user_menu')}
                 </Link>
               </li>
             )}
@@ -150,29 +152,29 @@ class App extends Component {
          )}
         </a>
         <ul class="navbar-nav ml-auto">
-            <li className="dropdown"><Link className="nav-link">Découvrir</Link>
+            <li className="dropdown"><Link className="nav-link">{this.props.t('discover_menu')}</Link>
               <ul className="dropdown-menu">
-                <li className="nav-link text-dark"><Link to={"/aboutus"}>Nous concernant</Link></li>
-                <li className="nav-link text-dark"><Link to={"/prices"}>Prix</Link></li>
+                <li className="nav-link text-dark"><Link to={"/aboutus"}>{this.props.t('aboutus_menu')}</Link></li>
+                <li className="nav-link text-dark"><Link to={"/prices"}>{this.props.t('price_menu')}</Link></li>
               </ul>
             </li>
             <li className="ml-auto">
                 <Link to={"/blog"} className="nav-link">
-                  Blog
+                  {this.props.t('blog_menu')}
                 </Link>
             </li>
-            <li className="ml-auto dropdown"><Link className="nav-link">Support</Link>
+            <li className="ml-auto dropdown"><Link className="nav-link">{this.props.t('support_menu')}</Link>
               <ul class="dropdown-menu">
-                <li className="nav-link text-dark"><Link to={"/contact"} >Contact</Link></li>
-                <li className="nav-link text-dark"><Link to={"/faq"} >FAQ</Link></li>
-                <li className="nav-link text-dark"><Link to={"/bogue"} >Rapporter un bogue</Link></li>
+                <li className="nav-link text-dark"><Link to={"/contact"} >{this.props.t('contact_menu')}</Link></li>
+                <li className="nav-link text-dark"><Link to={"/faq"} >{this.props.t('faq_menu')}</Link></li>
+                <li className="nav-link text-dark"><Link to={"/bogue"} >{this.props.t('bug_menu')}</Link></li>
               </ul>
             </li>
-            <li className="ml-auto dropdown"><Link className="nav-link">Projet</Link>
+            <li className="ml-auto dropdown"><Link className="nav-link">{this.props.t('project_menu')}</Link>
               <ul class="dropdown-menu">
-                <li className="nav-link text-dark"><Link to={"/release"} >Ajout récent</Link></li>
-                <li className="nav-link text-dark"><Link to={"/news"} >News</Link></li>
-                <li className="nav-link text-dark"><Link to={"/licences"} >Licences</Link></li>
+                <li className="nav-link text-dark"><Link to={"/release"} >{this.props.t('features_menu')}</Link></li>
+                <li className="nav-link text-dark"><Link to={"/news"} >{this.props.t('news_menu')}</Link></li>
+                <li className="nav-link text-dark"><Link to={"/licences"} >{this.props.t('licenses_menu')}</Link></li>
               </ul>
             </li>
           </ul>
@@ -208,12 +210,12 @@ class App extends Component {
                   <div class="p-dropdown">
                       <a className="nav-link" href="#"><FaGlobeAmericas /><span>FR</span></a>
                       <ul class="p-dropdown-content">
-                          <li><a href="#">French</a></li>
-                          <li><a href="#">Spanish</a></li>
-                          <li><a href="#">English</a></li>
-                          <li><a href="#">Russian</a></li>
-                          <li><a href="#">Italian</a></li>
-                          <li><a href="#">中国人</a></li>
+                          <li><a href="" onClick={() => changeLanguage('fr')}>Français</a></li>
+                          <li><a href="" onClick={() => changeLanguage('en')}>English</a></li>
+                          <li><a href="" onClick={() => changeLanguage('sp')}>Español</a></li>
+                          <li><a href="" onClick={() => changeLanguage('ru')}>Pусский</a></li>
+                          <li><a href="" onClick={() => changeLanguage('ar')}>عربي</a></li>
+                          <li><a href="" onClick={() => changeLanguage('ch')}>中国人</a></li>
                       </ul>
                   </div>
               </li>
@@ -308,4 +310,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withTranslation()(App);

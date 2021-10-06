@@ -1,0 +1,20 @@
+{
+  "home_menu":"Home",
+  "user_menu":"User",
+  "streamer_menu":"Streamer",
+  "moderator_menu":"Moderator",
+  "admin_menu":"Admin",
+  "discover_menu":"Discover",
+  "aboutus_menu":"About Us",
+  "price_menu":"Prices",
+  "blog_menu":"Blog",
+  "support_menu":"Support",
+  "contact_menu":"Contact Us",
+  "faq_menu":"F.A.Q",
+  "bug_menu":"Report a Bug",
+  "project_menu":"Project",
+  "features_menu":"Last Features",
+  "news_menu":"News",
+  "licenses_menu":"Licenses"
+}
+  
