@@ -7,8 +7,8 @@ import { FcWebcam, FcOnlineSupport, FcStackOfPhotos, FcSms} from "react-icons/fc
 import { FcCollect, FcComboChart, FcCustomerSupport, FcLike, FcManager, FcLock, FcSettings, FcTreeStructure, FcAbout} from "react-icons/fc";
 import {Link} from 'react-router-dom';
 
-export default class Launch extends Component {
 
+export default class Launch extends Component {
 
   componentDidMount() {
     
@@ -153,7 +153,7 @@ export default class Launch extends Component {
         <section id="sectionAnnonce" className="background-grey">
             <div className="heading-text heading-section text-center">
                 <h2>NOS SERVICES</h2>
-                <span className="lead">Les services que propose not</span>
+                <span className="lead">Les services que nous proposons.</span>
             </div>
             <div className="container">
                 <div className="row">
@@ -162,7 +162,7 @@ export default class Launch extends Component {
                                 <div className="icon">
                                     <Link href="#"><FcCollect /></Link>
                                 </div>
-                                <h3>Free Updates & Support</h3>
+                                <h3>Centralisation clips</h3>
                                 <p>Lorem ipsum dolor sit amet, consecte adipiscing elit. Suspendisse condimentum porttitor cursumus.</p>
                         </div>
                     </div>
@@ -171,7 +171,7 @@ export default class Launch extends Component {
                                 <div className="icon">
                                     <Link href="#"><FcComboChart /></Link>
                                 </div>
-                                <h3>Free Updates & Support</h3>
+                                <h3>Récupération Twitch Data</h3>
                                 <p>Lorem ipsum dolor sit amet, consecte adipiscing elit. Suspendisse condimentum porttitor cursumus.</p>
                         </div>
                     </div>
@@ -180,7 +180,7 @@ export default class Launch extends Component {
                                 <div className="icon">
                                     <Link href="#"><FcCustomerSupport /></Link>
                                 </div>
-                                <h3>Free Updates & Support</h3>
+                                <h3>Support & Aides gratuites</h3>
                                 <p>Lorem ipsum dolor sit amet, consecte adipiscing elit. Suspendisse condimentum porttitor cursumus.</p>
                         </div>
                     </div>
@@ -189,7 +189,7 @@ export default class Launch extends Component {
                                 <div className="icon">
                                     <Link href="#"><FcLike /></Link>
                                 </div>
-                                <h3>Free Updates & Support</h3>
+                                <h3>Partage et visionnage</h3>
                                 <p>Lorem ipsum dolor sit amet, consecte adipiscing elit. Suspendisse condimentum porttitor cursumus.</p>
                         </div>
                     </div>
@@ -198,7 +198,7 @@ export default class Launch extends Component {
                                 <div className="icon">
                                     <Link href="#"><FcManager /></Link>
                                 </div>
-                                <h3>Free Updates & Support</h3>
+                                <h3>Organisation bibliothèque</h3>
                                 <p>Lorem ipsum dolor sit amet, consecte adipiscing elit. Suspendisse condimentum porttitor cursumus.</p>
                         </div>
                     </div>
@@ -207,7 +207,7 @@ export default class Launch extends Component {
                                 <div className="icon">
                                     <Link href="#"><FcLock /></Link>
                                 </div>
-                                <h3>Free Updates & Support</h3>
+                                <h3>Téléchargement et stockage</h3>
                                 <p>Lorem ipsum dolor sit amet, consecte adipiscing elit. Suspendisse condimentum porttitor cursumus.</p>
                         </div>
                     </div>
@@ -216,7 +216,7 @@ export default class Launch extends Component {
                                 <div className="icon">
                                     <Link href="#"><FcSettings /></Link>
                                 </div>
-                                <h3>Free Updates & Support</h3>
+                                <h3>Parametrage avancé</h3>
                                 <p>Lorem ipsum dolor sit amet, consecte adipiscing elit. Suspendisse condimentum porttitor cursumus.</p>
                         </div>
                     </div>
@@ -225,7 +225,7 @@ export default class Launch extends Component {
                                 <div className="icon">
                                     <Link href="#"><FcTreeStructure /></Link>
                                 </div>
-                                <h3>Free Updates & Support</h3>
+                                <h3>Pré-montage rapide</h3>
                                 <p>Lorem ipsum dolor sit amet, consecte adipiscing elit. Suspendisse condimentum porttitor cursumus.</p>
                         </div>
                     </div>
@@ -234,7 +234,7 @@ export default class Launch extends Component {
                                 <div className="icon">
                                     <Link href="#"><FcAbout /></Link>
                                 </div>
-                                <h3>Free Updates & Support</h3>
+                                <h3>Intelligence artificielle et machine learning</h3>
                                 <p>Lorem ipsum dolor sit amet, consecte adipiscing elit. Suspendisse condimentum porttitor cursumus.</p>
                         </div>
                     </div>

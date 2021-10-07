@@ -1,0 +1,20 @@
+{
+  "home_menu":"дом",
+  "user_menu":"Пользователь",
+  "streamer_menu":"стример",
+  "moderator_menu":"Модератор",
+  "admin_menu":"админ",
+  "discover_menu":"обнаружить",
+  "aboutus_menu":"о нас",
+  "price_menu":"приз",
+  "blog_menu":"блог",
+  "support_menu":"Служба поддержки",
+  "contact_menu":"связаться с нами",
+  "faq_menu":"часто задаваемые вопросы",
+  "bug_menu":"сообщить об ошибке",
+  "project_menu":"Проект",
+  "features_menu":"последние особенности",
+  "news_menu":"Новости",
+  "licenses_menu":"лицензия"
+  }
+  
