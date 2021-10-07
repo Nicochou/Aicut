@@ -7,6 +7,7 @@ import { FcWebcam, FcOnlineSupport, FcStackOfPhotos, FcSms} from "react-icons/fc
 import { FcCollect, FcComboChart, FcCustomerSupport, FcLike, FcManager, FcLock, FcSettings, FcTreeStructure, FcAbout} from "react-icons/fc";
 import {Link} from 'react-router-dom';
 
+
 export default class Launch extends Component {
 
   componentDidMount() {

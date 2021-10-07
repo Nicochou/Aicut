@@ -3,7 +3,6 @@ import AuthService from "../auth.service";
 import AuthHeader from '../auth-header';
 
 const API_URL = 'http://localhost:8082/api/getAllClipByUserId';
-const STATUS_EDITION = 101;
 
 let accessToken = AuthHeader();
 

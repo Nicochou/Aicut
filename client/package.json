@@ -25,6 +25,7 @@
     "react-scripts": "^4.0.3",
     "react-twitch-embed-video": "^3.0.0",
     "react-validation": "^3.0.7",
+    "sweetalert": "^2.1.2",
     "validator": "^13.6.0"
   },
   "scripts": {

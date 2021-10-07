@@ -8,16 +8,19 @@ import translationAR from '../locales/ar/translation.json'
 import translationCH from '../locales/ch/translation.json'
 import translationSP from '../locales/sp/translation.json'
 import translationRU from '../locales/ru/translation.json'
+import translationCR from '../locales/cr/translation.json'
+import translationPT from '../locales/pt/translation.json'
+import translationJP from '../locales/jp/translation.json'
 
 const fallbackLng = ['fr'];
-const availableLanguages = ['en', 'fr', 'ar', 'ch', 'ru', 'sp'];
+const availableLanguages = ['en', 'fr', 'ar', 'ch', 'ru', 'sp', 'pt', 'cr', 'jp'];
 
 const resources = {
     en: {
-      translation: translationEN
+        translation: translationEN
     },
     fr: {
-      translation: translationFR
+        translation: translationFR
     },
     sp: {
         translation: translationSP
@@ -30,7 +33,16 @@ const resources = {
     },
     ar: {
         translation: translationAR
-    } 
+    },
+    cr: {
+        translation: translationCR
+    },
+    jp: {
+        translation: translationJP
+    },
+    pt: {
+        translation: translationPT
+    }
   };
 
 i18n

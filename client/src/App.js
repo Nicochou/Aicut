@@ -51,7 +51,7 @@ import Bogue from "./components/pages/support/bogue.component";
 import News from "./components/pages/project/news.component";
 import Release from "./components/pages/project/release.component";
 import Licences from "./components/pages/project/licences.component";
-
+import swal from 'sweetalert';
 class App extends Component {
   constructor(props) {
     super(props);
@@ -78,6 +78,10 @@ class App extends Component {
 
   logOut() {
     AuthService.logout();
+  }
+
+  modal() {
+    swal("Hello world!");
   }
 
   render() {
@@ -124,7 +128,7 @@ class App extends Component {
               </li>
             )}
         </ul>
-        <a class="navbar-brand mx-auto" href="/"><img src={'./logoGPE.png'} />AICUT
+        <a class="navbar-brand mx-auto" href="/" onClick={this.modal}><img src={'./logoGPE.png'} />AICUT
         {currentUser && (
           <div id="appRoute">
           {showStreamerBoard && (
@@ -213,9 +217,12 @@ class App extends Component {
                           <li><a href="" onClick={() => changeLanguage('fr')}>Français</a></li>
                           <li><a href="" onClick={() => changeLanguage('en')}>English</a></li>
                           <li><a href="" onClick={() => changeLanguage('sp')}>Español</a></li>
+                          <li><a href="" onClick={() => changeLanguage('pt')}>português</a></li>
                           <li><a href="" onClick={() => changeLanguage('ru')}>Pусский</a></li>
                           <li><a href="" onClick={() => changeLanguage('ar')}>عربي</a></li>
                           <li><a href="" onClick={() => changeLanguage('ch')}>中国人</a></li>
+                          <li><a href="" onClick={() => changeLanguage('cr')}>한국인</a></li>
+                          <li><a href="" onClick={() => changeLanguage('jp')}>日本</a></li>
                       </ul>
                   </div>
               </li>
