@@ -1,8 +1,6 @@
 const db = require("../../models");
-const User = db.user;
-const Clip = db.clip;
-const Clipservices = require("../services/clip.service");
 const Op = db.Sequelize.Op;
+const Clipservices = require("../services/clip.service");
 
 // Manage Pagination Controller
 const getPagination = (page, size) => {
@@ -60,14 +58,13 @@ exports.getAllPublishedClips = async function (req, res, next) {
 
 // We get all clip by user id
 exports.getAllClipByUserId = async function (req, res) {
-  const { page, size, userid} = req.query;
-  const condition = userid ? { id: userid } : null;
-
+  const { page, size, userId} = req.query;
+  const condition = userId ? { userId: userId } : null;
   // We set the pagination
   const { limit, offset } = getPagination(page, size);
   try {
     var clips = await Clipservices.getAllClipByUserId(condition, limit, offset)
-    return res.status(200).json({ status: 200, data: clips, message: "Succesfully Clips Published By User Id Retrieved" });
+    return res.status(200).json({ status: 200, data: clips, message: "Succesfully Clips By User Id Retrieved" });
   } catch (e) {
         return res.status(400).json({ status: 400, message: e.message });
   }
@@ -121,6 +118,7 @@ exports.updateOneClip = async function (req, res, next) {
     created_at_on_twitch: req.body.created_at_on_twitch ? req.body.created_at_on_twitch : null,
     thumbnail_url: req.body.thumbnail_url ? req.body.thumbnail_url : null,
     tags: req.body.tags ? req.body.tags : null,
+    userId: req.body.userId ? req.body.userId : null
   };
   try {
       var clips = await Clipservices.update(condition, clip)
@@ -162,6 +160,7 @@ exports.addOneClip = async function (req, res, next) {
     created_at_on_twitch: req.body.created_at_on_twitch ? req.body.created_at_on_twitch : null,
     thumbnail_url: req.body.thumbnail_url ? req.body.thumbnail_url : null,
     tags: req.body.tags ? req.body.tags : null,
+    userId: req.body.userId ? req.body.userId : null,
   };
   // Call service
   try {
@@ -178,29 +177,9 @@ exports.addOneClip = async function (req, res, next) {
 // Delete one clip from the database
 exports.deleteOneClip = async function (req, res, next) {
   // We validate request parameters
-  const id = req.params.id;
-  const body = req.body;
-  var condition = `id:`+ id;
-  // We set the pagination
-  const { limit, offset } = getPagination(page, size);
+  const {id} = req.query;
   try {
-      var clips = await Clipservices.delOne({where : condition}, body)
-      return res.status(200).json({ status: 200, data: clips, message: "Succesfully Clips Published Retrieved" });
-  } catch (e) {
-      return res.status(400).json({ status: 400, message: e.message });
-  }
-};
-
-// Delete all clips by user id from the database
-exports.deleteAllClipByUserId = async function (req, res, next) {
-  // We validate request parameters
-  const id = req.params.id;
-  const body = req.body;
-  var condition = `id:`+ id;
-  // We set the pagination
-  const { limit, offset } = getPagination(page, size);
-  try {
-      var clips = await Clipservices.delAllByUserId({where : condition}, body)
+      var clips = await Clipservices.delOne(id)
       return res.status(200).json({ status: 200, data: clips, message: "Succesfully Clips Published Retrieved" });
   } catch (e) {
       return res.status(400).json({ status: 400, message: e.message });
@@ -209,14 +188,8 @@ exports.deleteAllClipByUserId = async function (req, res, next) {
 
 // Delete all clips the database
 exports.deleteAllClip = async function (req, res, next) {
-  // We validate request parameters
-  const id = req.params.id;
-  const body = req.body;
-  var condition = `id:`+ id;
-  // We set the pagination
-  const { limit, offset } = getPagination(page, size);
   try {
-      var clips = await Clipservices.delAll({where : condition}, body)
+      var clips = await Clipservices.delAll()
       return res.status(200).json({ status: 200, data: clips, message: "Succesfully Clips Published Retrieved" });
   } catch (e) {
       return res.status(400).json({ status: 400, message: e.message });

@@ -55,6 +55,9 @@ i18n
     detection: {
       checkWhitelist: true, 
     },
+    react: { 
+        useSuspense: false 
+    },
     debug: false,
     whitelist: availableLanguages,
   });
