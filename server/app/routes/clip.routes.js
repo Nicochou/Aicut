@@ -61,19 +61,14 @@ module.exports = function(app) {
   DELETE ROUTES
   */
   // Route : delete one clip by his id
-  app.post(
-    "/api/deleteOneClip/:id",
+  app.delete(
+    "/api/deleteOneClip",
     [authJwt.verifyToken],
     controller.deleteOneClip
   );
-  // Route : delete all clips by user id
-  app.post(
-    "/api/deleteAllClipByUserId",
-    [authJwt.verifyToken],
-    controller.deleteAllClipByUserId
-  );
+
   // Route : delete all clips
-  app.post(
+  app.delete(
     "/api/deleteAllClip",
     [authJwt.verifyToken],
     controller.deleteAllClip

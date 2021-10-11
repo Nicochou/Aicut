@@ -1,8 +1,7 @@
 const db = require("../../models");
 const User = db.user;
-const Role = db.role;
 const Clip = db.clip;
-const UserClips = db.user_clips;
+const Comment = db.comment;
 
 // Manage Pagination Service
 const getPagingData = (data, offset, limit) => {
@@ -62,16 +61,22 @@ exports.findAllPublishedClips = async function (query, limit, offset) {
 // service : get all clips by user id
 exports.getAllClipByUserId = async function (query, limit, offset) {
   try {
-    var clips = await User.findAndCountAll({ 
-      include: [{
-        model: Clip,
-        required: true
-       }],
+    var clips = await Clip.findAndCountAll({ 
+      include: [
+        {
+          model: User,
+          as: 'users',
+          attributes: []
+        },
+        {
+          model: Comment,
+          as:'comments'
+        }
+      ],
        where: query,
        limit,
        offset
     })
-    console.log(clips);
     response = getPagingData(clips, offset, limit);
     return response;
 
@@ -84,17 +89,23 @@ exports.getAllClipByUserId = async function (query, limit, offset) {
 // service : get all clips by user id
 exports.getAllPublishedClipByUserId = async function (queryClip, queryUser, limit, offset) {
   try {
-    var clips = await User.findAndCountAll({ 
-      include: [{
-        model: Clip,
-        required: true,
-        where:queryClip
-       }],
-       where: queryUser,
+    var clips = await Clip.findAndCountAll({ 
+      include: [
+        {
+          model: User,
+          as: 'users',
+          attributes: [],
+          where: queryUser,
+        },
+        {
+          model: Comment,
+          as:'comments'
+        }
+      ],
+       where: queryClip,
        limit,
        offset
     })
-    console.log(clips);
     response = getPagingData(clips, offset, limit);
     return response;
 
@@ -136,9 +147,9 @@ exports.update = async function (condition, clip) {
   DELETE SERVICE
 */
 // service : delete one clip
-exports.delOne = async function (where, params) {
+exports.delOne = async function (id, truncate) {
   try {
-    var clip = await Clip.update(params, where)
+    var clip = await Clip.destroy({where:{id}})
     return clip;
   } catch (e) {
       // Log Errors
@@ -147,20 +158,9 @@ exports.delOne = async function (where, params) {
 };
 
 // service : delete all clips by user id
-exports.delAllByUserId = async function (where, params) {
+exports.delAll = async function () {
   try {
-    var clip = await Clip.update(params, where)
-    return clip;
-  } catch (e) {
-      // Log Errors
-      throw Error('Error while retriving the clip' + e)
-  }
-};
-
-// service : delete all clips by user id
-exports.delAll = async function (where, params) {
-  try {
-    var clip = await Clip.update(params, where)
+    var clip = await Clip.destroy({ truncate: { cascade: true } })
     return clip;
   } catch (e) {
       // Log Errors
