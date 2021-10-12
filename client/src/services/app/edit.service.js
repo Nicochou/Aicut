@@ -1,8 +1,7 @@
 import axios from 'axios';
 import AuthService from "../auth.service";
 import AuthHeader from '../auth-header';
-
-const API_URL = 'http://localhost:8082/api/getAllClipByUserId';
+import {API_GETCLIP_ALL_PUB_BYUSERID} from '../../Const.js'
 
 let accessToken = AuthHeader();
 
@@ -14,7 +13,7 @@ class EditClipService {
     }
 
     return axios
-    .get(API_URL , {  
+    .get(API_GETCLIP_ALL_PUB_BYUSERID , {  
         params: {
             id: currentUser.id
         },
