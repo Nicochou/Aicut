@@ -1,6 +1,6 @@
 import axios from 'axios';
-import AuthService from "../auth.service";
-import AuthHeader from '../auth-header';
+import AuthService from "../auth/auth.service";
+import AuthHeader from '../auth/auth-header';
 import {API_GETCLIP_ALL_PUB_BYUSERID} from '../../Const.js'
 
 let accessToken = AuthHeader();

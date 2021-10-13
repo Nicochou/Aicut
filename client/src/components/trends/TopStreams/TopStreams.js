@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import api from '../../../api/api';
+import api from '../../../api/twitch';
 import {Link} from 'react-router-dom';
 
 function TopStreams(){

@@ -2,15 +2,15 @@ import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import Backend from 'i18next-http-backend';
 import LanguageDetector from 'i18next-browser-languagedetector';
-import translationFR from '../locales/fr/translation.json'
-import translationEN from '../locales/en/translation.json'
-import translationAR from '../locales/ar/translation.json'
-import translationCH from '../locales/ch/translation.json'
-import translationSP from '../locales/sp/translation.json'
-import translationRU from '../locales/ru/translation.json'
-import translationCR from '../locales/cr/translation.json'
-import translationPT from '../locales/pt/translation.json'
-import translationJP from '../locales/jp/translation.json'
+import translationFR from '../assets/locales/fr/translation.json'
+import translationEN from '../assets/locales/en/translation.json'
+import translationAR from '../assets/locales/ar/translation.json'
+import translationCH from '../assets/locales/ch/translation.json'
+import translationSP from '../assets/locales/sp/translation.json'
+import translationRU from '../assets/locales/ru/translation.json'
+import translationCR from '../assets/locales/cr/translation.json'
+import translationPT from '../assets/locales/pt/translation.json'
+import translationJP from '../assets/locales/jp/translation.json'
 
 const fallbackLng = ['fr'];
 const availableLanguages = ['en', 'fr', 'ar', 'ch', 'ru', 'sp', 'pt', 'cr', 'jp'];

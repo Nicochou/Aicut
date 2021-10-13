@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
-import AuthService from "../../services/auth.service";
-import api from '../../api/api';
+import AuthService from "../../services/auth/auth.service";
+import api from '../../api/twitch';
 
 export default class Mount extends Component {
   constructor(props) {

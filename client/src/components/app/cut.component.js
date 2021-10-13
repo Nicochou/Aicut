@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 
-import AuthService from "../../services/auth.service";
+import AuthService from "../../services/auth/auth.service";
 import CutService from "../../services/app/cut.service";
-import api from "../../api/api";
+import api from "../../api/twitch";
 
 export default class Cut extends Component {
   constructor(props) {
