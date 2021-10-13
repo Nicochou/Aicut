@@ -1,6 +1,6 @@
 import axios from 'axios';
-import AuthService from "../auth.service";
-import AuthHeader from '../auth-header';
+import AuthService from "../auth/auth.service";
+import AuthHeader from '../auth/auth-header';
 import {API_URL,API_URL_CREATECLIP} from '../../Const.js'
 const API_URL_MACHINELEARNING = 'http://localhost:8082/api/activateMl';
 

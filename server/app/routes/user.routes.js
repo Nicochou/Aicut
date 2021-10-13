@@ -7,14 +7,14 @@ module.exports = function(app) {
  */
  // Route : get all users
   app.get(
-    "/api/getAllUser",
+    "/api/user/getAllUser",
     [authJwt.verifyToken],
     controller.getAllUsers
   );
 
  // Route : get a user by his id
   app.get(
-    "/api/getUserById",
+    "/api/user/getUserById",
     [authJwt.verifyToken],
     controller.getOneUserById
   );
@@ -23,7 +23,7 @@ module.exports = function(app) {
   */
   // Route : update one user
   app.put(
-    "/api/updateOneUser",
+    "/api/user/updateOneUser",
     [authJwt.verifyToken],
     controller.updateOneUser
   );
@@ -32,14 +32,14 @@ module.exports = function(app) {
   */
   // Route : delete one user by his id
   app.delete(
-    "/api/deleteOneUser",
+    "/api/user/deleteOneUser",
     [authJwt.verifyToken],
     controller.deleteOneUser
   );
 
   // Route : delete all users
   app.delete(
-    "/api/deleteAllUser",
+    "/api/user/deleteAllUser",
     [authJwt.verifyToken],
     controller.deleteAllUser
   );

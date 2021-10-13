@@ -7,21 +7,21 @@ module.exports = function(app) {
  */
  // Route : get all comments
   app.get(
-    "/api/getAllcomment",
+    "/api/comment/getAllcomment",
     [authJwt.verifyToken],
     controller.getAllComments
   );
 
  // Route : get a comment by his id
   app.get(
-    "/api/getCommentById",
+    "/api/comment/getCommentById",
     [authJwt.verifyToken],
     controller.getOneCommentById
   );
 
  // Route : get all comments by user id
   app.get(
-    "/api/getAllCommentByUserId",
+    "/api/comment/getAllCommentByUserId",
     [authJwt.verifyToken],
     controller.getAllCommentByUserId
   );
@@ -30,7 +30,7 @@ module.exports = function(app) {
   */
   // Route : update one comment
   app.put(
-    "/api/updateOneComment",
+    "/api/comment/updateOneComment",
     [authJwt.verifyToken],
     controller.updateOneComment
   );
@@ -39,7 +39,7 @@ module.exports = function(app) {
   */
   // Route : update one comment
   app.post(
-    "/api/addOneComment",
+    "/api/comment/addOneComment",
     [authJwt.verifyToken],
     controller.addOneComment
   );
@@ -48,14 +48,14 @@ module.exports = function(app) {
   */
   // Route : delete one comment by his id
   app.delete(
-    "/api/deleteOneComment",
+    "/api/comment/deleteOneComment",
     [authJwt.verifyToken],
     controller.deleteOneComment
   );
 
   // Route : delete all comments
   app.delete(
-    "/api/deleteAllComment",
+    "/api/comment/deleteAllComment",
     [authJwt.verifyToken],
     controller.deleteAllComment
   );

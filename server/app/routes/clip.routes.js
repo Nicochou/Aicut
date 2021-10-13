@@ -7,35 +7,35 @@ module.exports = function(app) {
  */
  // Route : get all clips
   app.get(
-    "/api/getAllClip",
+    "/api/clip/getAllClip",
     [authJwt.verifyToken],
     controller.getAllClips
   );
 
  // Route : get a clip by his id
   app.get(
-    "/api/getClipById",
+    "/api/clip/getClipById",
     [authJwt.verifyToken],
     controller.getOneClipById
   );
 
    // Route : get all published clips
    app.get(
-    "/api/getAllPublishedClip",
+    "/api/clip/getAllPublishedClip",
     [authJwt.verifyToken],
     controller.getAllPublishedClips
   );
 
  // Route : get all clips by user id
   app.get(
-    "/api/getAllClipByUserId",
+    "/api/clip/getAllClipByUserId",
     [authJwt.verifyToken],
     controller.getAllClipByUserId
   );
 
  // Route : get all published clips by user id
    app.get(
-    "/api/getAllPublishedClipByUserId",
+    "/api/clip/getAllPublishedClipByUserId",
     [authJwt.verifyToken],
     controller.getAllPublishedClipByUserId
   );
@@ -44,7 +44,7 @@ module.exports = function(app) {
   */
   // Route : update one clip
   app.put(
-    "/api/updateOneClip",
+    "/api/clip/updateOneClip",
     [authJwt.verifyToken],
     controller.updateOneClip
   );
@@ -53,7 +53,7 @@ module.exports = function(app) {
   */
   // Route : update one clip
   app.post(
-    "/api/addOneClip",
+    "/api/clip/addOneClip",
     [authJwt.verifyToken],
     controller.addOneClip
   );
@@ -62,14 +62,14 @@ module.exports = function(app) {
   */
   // Route : delete one clip by his id
   app.delete(
-    "/api/deleteOneClip",
+    "/api/clip/deleteOneClip",
     [authJwt.verifyToken],
     controller.deleteOneClip
   );
 
   // Route : delete all clips
   app.delete(
-    "/api/deleteAllClip",
+    "/api/clip/deleteAllClip",
     [authJwt.verifyToken],
     controller.deleteAllClip
   );

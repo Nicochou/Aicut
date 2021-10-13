@@ -12,13 +12,13 @@ module.exports = function(app) {
   });
 
   // We test the api route Success
-  app.get("/api/testSuccess", controller.testSuccess);
+  app.get("/api/test/testSuccess", controller.testSuccess);
 
   // We test the api route Error
-  app.get("/api/testError", controller.testError);
+  app.get("/api/test/testError", controller.testError);
 
   // We test the api route Unauthorize
-  app.get("/api/testAuthorize", 
+  app.get("/api/test/testAuthorize", 
   [authJwt.verifyToken],
   controller.testAuthorize
   );

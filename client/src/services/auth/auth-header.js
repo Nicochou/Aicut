@@ -1,5 +1,7 @@
+import Authservice from './auth.service'
+
 export default function authHeader() {
-  const user = JSON.parse(localStorage.getItem('user'));
+  const user = Authservice.getCurrentUser();
   if (user && user.accessTokenJWT) {
     return { 'x-access-token': user.accessTokenJWT };
   } else {

@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import api from '../../../api/api';
+import api from '../../../api/twitch';
 import {Link, useParams} from 'react-router-dom';
 import Erreur from '../Erreur/Erreur';
 

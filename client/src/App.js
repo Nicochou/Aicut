@@ -1,33 +1,32 @@
 import React, { Component } from "react";
 import { Switch, Route, Link } from "react-router-dom";
-import {BASE_URL} from "./Const.js"
 import { FaHome, FaHeadset, FaUserAlt, FaUserMd, FaUserTie, FaGlobeAmericas } from "react-icons/fa";
 import { AiOutlineLogin, AiOutlinePlusCircle, AiOutlineLogout } from "react-icons/ai";
 import { FcClapperboard, FcFilmReel, FcFilm } from "react-icons/fc";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./css/App.css";
-import "./css/Theme.css";
-import "./css/Plugin.css";
+import "./assets/css/App.css";
+import "./assets/css/Theme.css";
+import "./assets/css/Plugin.css";
 // Languages
 import i18next from './config/i18nextConf';
 import { withTranslation } from 'react-i18next';
 
 // Services - Auth
-import AuthService from "./services/auth.service";
+import AuthService from "./services/auth/auth.service";
 // Components - Boards
 import BoardUser from "./components/boards/board-user.component";
 import BoardModerator from "./components/boards/board-moderator.component";
 import BoardAdmin from "./components/boards/board-admin.component";
 import BoardStreamer from "./components/boards/board-streamer.component";
-// Components - Api
-import GameStreams from './components/api/GameStreams/GameStreams';
-import TopStreams from './components/api/TopStreams/TopStreams';
-import Header from './components/api/Header/Header';
-import Resultats from './components/api/Resultats/Resultats'
-import Erreur from './components/api/Erreur/Erreur';
-import Live from './components/api/Live/Live';
-import Games from './components/api/Games/Games';
-import Clips from './components/api/Clips/Clips';
+// Components - trends
+import GameStreams from './components/trends/GameStreams/GameStreams';
+import TopStreams from './components/trends/TopStreams/TopStreams';
+import Header from './components/trends/Header/Header';
+import Resultats from './components/trends/Resultats/Resultats'
+import Erreur from './components/trends/Erreur/Erreur';
+import Live from './components/trends/Live/Live';
+import Games from './components/trends/Games/Games';
+import Clips from './components/trends/Clips/Clips';
 // Components - Commun
 import Login from "./components/login.component";
 import Register from "./components/register.component";
@@ -66,7 +65,6 @@ class App extends Component {
   }
 
   componentDidMount() {
-    console.log(process.env.REACT_APP_BASE_URL)
     const user = AuthService.getCurrentUser();
     if (user) {
       this.setState({
@@ -130,7 +128,7 @@ class App extends Component {
               </li>
             )}
         </ul>
-        <a class="navbar-brand mx-auto" href="/" onClick={this.modal}><img src={'./logoGPE.png'} />{BASE_URL}
+        <a class="navbar-brand mx-auto" href="/" onClick={this.modal}><img src={'./logoGPE.png'} />AICUT
         {currentUser && (
           <div id="appRoute">
           {showStreamerBoard && (
