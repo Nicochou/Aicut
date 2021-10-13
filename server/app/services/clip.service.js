@@ -1,25 +1,28 @@
 const db = require("../../models");
 const User = db.user;
-const Role = db.role;
 const Clip = db.clip;
-const UserClips = db.user_clips;
+const Comment = db.comment;
 
 // Manage Pagination Service
 const getPagingData = (data, offset, limit) => {
     const { count: totalItems, rows: clips } = data;
     const currentPage = offset ? +offset : 0;
     const totalPages = Math.ceil(totalItems / limit);
-  
+
     return { totalItems, clips, totalPages, currentPage };
   };
 
+/*
+  GET SERVICE
+*/
 // service : get all clips
 exports.findAllClips = async function (query, limit, offset) {
     try {
         var clips = await Clip.findAndCountAll({
             query, 
             limit, 
-            offset })
+            offset 
+        })
         response = getPagingData(clips, offset, limit);
         return response;
     } catch (e) {
@@ -35,18 +38,18 @@ exports.findOneClip = async function (id) {
         return clip;
     } catch (e) {
         // Log Errors
-        throw Error('Error while retriving the clip' + id)
+        throw Error('Error while retriving the clip' + e)
     }
 };
 
 // service : get all published clips
 exports.findAllPublishedClips = async function (query, limit, offset) {
     try {
-        console.log(query);
         var clips = await Clip.findAndCountAll({
-            query, 
-            limit, 
-            offset })
+            where: query,
+            limit,
+            offset
+        })
         response = getPagingData(clips, offset, limit);
         return response;
     } catch (e) {
@@ -55,71 +58,112 @@ exports.findAllPublishedClips = async function (query, limit, offset) {
     }
 };
 
-// service : update one clip by id
-exports.update = async function (where, params) {
-    try {
-        var clip = await Clip.update(params, where)
-        return clip;
-    } catch (e) {
-        // Log Errors
-        throw Error('Error while retriving the clip' + id)
-    }
+// service : get all clips by user id
+exports.getAllClipByUserId = async function (query, limit, offset) {
+  try {
+    var clips = await Clip.findAndCountAll({ 
+      include: [
+        {
+          model: User,
+          as: 'users',
+          attributes: []
+        },
+        {
+          model: Comment,
+          as:'comments'
+        }
+      ],
+       where: query,
+       limit,
+       offset
+    })
+    response = getPagingData(clips, offset, limit);
+    return response;
+
+  } catch (e) {
+      // Log Errors
+      throw Error('Error while retriving the clip from user' + e)
+  }
 };
 
-// service : get edit clip by user id
-exports.getAllClipByUserId = (req, res) => {
-  let id = req.query.id;
-  User.findAll({ 
-    include: [{
-      model: Clip,
-      required: false
-     }],
-     where: {
-      id: id
-    }
-  })
-  .then(function (clips) {
-      res.send({clips});
-    });
-  };
-
-// service : get clip by user id and status
- exports.getClipStatusByUserId = (req, res) => {
-    let id = req.query.id;
-    let status = req.query.status;
-    User.findAll({ 
-      include: [{
-        model: Clip,
-        required: false,
-        where: {
-          status: status
+// service : get all clips by user id
+exports.getAllPublishedClipByUserId = async function (queryClip, queryUser, limit, offset) {
+  try {
+    var clips = await Clip.findAndCountAll({ 
+      include: [
+        {
+          model: User,
+          as: 'users',
+          attributes: [],
+          where: queryUser,
+        },
+        {
+          model: Comment,
+          as:'comments'
         }
-      }],
-      where: {
-        id: id
-      }
+      ],
+       where: queryClip,
+       limit,
+       offset
     })
-    .then(function (clips) {
-        res.send({clips});
-      });
-  };
+    response = getPagingData(clips, offset, limit);
+    return response;
 
-// We get edit clip by user id
- exports.addClip = (req, res) => {
-  let id = req.query.id;
-  User.findAll({ 
-    include: [{
-      model: Clip,
-      required: false,
-      where: {
-        status_clip: '102'
-      }
-    }],
-    where: {
-      id: id
-    }
-  })
-  .then(function (clips) {
-      res.send({clips});
-    });
+  } catch (e) {
+      // Log Errors
+      throw Error('Error while retriving the clip from user' + e)
+  }
+};
+
+/*
+  PUT SERVICE
+*/
+// service : update one clip by id
+exports.update = async function (condition, clip) {
+  try {
+      var clip = await Clip.update(clip, {where: condition})
+      return clip;
+  } catch (e) {
+      // Log Errors
+      throw Error('Error while retriving the clip' + e)
+  }
+};
+
+/*
+  POST SERVICE
+*/
+// service : add one clip
+ exports.add = async function (clip) {
+  try {
+    var clip = await Clip.create(clip)
+    return clip;
+  } catch (e) {
+      // Log Errors
+      throw Error('Error while retriving the clip' + e)
+  }
+};
+
+/*
+  DELETE SERVICE
+*/
+// service : delete one clip
+exports.delOne = async function (id, truncate) {
+  try {
+    var clip = await Clip.destroy({where:{id}})
+    return clip;
+  } catch (e) {
+      // Log Errors
+      throw Error('Error while retriving the clip' + e)
+  }
+};
+
+// service : delete all clips by user id
+exports.delAll = async function () {
+  try {
+    var clip = await Clip.destroy({ truncate: { cascade: true } })
+    return clip;
+  } catch (e) {
+      // Log Errors
+      throw Error('Error while retriving the clip' + e)
+  }
 };

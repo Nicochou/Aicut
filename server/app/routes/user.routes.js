@@ -2,43 +2,45 @@ const { authJwt } = require("../middleware");
 const controller = require("../controllers/user.controller");
 
 module.exports = function(app) {
-  // We set the Headers
-  app.use(function(req, res, next) {
-    res.header(
-      "Access-Control-Allow-Headers",
-      "x-access-token, Origin, Content-Type, Accept"
-    );
-    next();
-  });
-
-  // We get the content without token
-  app.get("/api/test/all", controller.allAccess);
-
-  // We get the user content
+ /*
+  GET ROUTES
+ */
+ // Route : get all users
   app.get(
-    "/api/test/user",
+    "/api/user/getAllUser",
     [authJwt.verifyToken],
-    controller.userBoard
+    controller.getAllUsers
   );
 
-  // We get the moderator content
+ // Route : get a user by his id
   app.get(
-    "/api/test/mod",
-    [authJwt.verifyToken, authJwt.isModerator],
-    controller.moderatorBoard
+    "/api/user/getUserById",
+    [authJwt.verifyToken],
+    controller.getOneUserById
+  );
+  /*
+  UPDATE ROUTES
+  */
+  // Route : update one user
+  app.put(
+    "/api/user/updateOneUser",
+    [authJwt.verifyToken],
+    controller.updateOneUser
+  );
+  /*
+  DELETE ROUTES
+  */
+  // Route : delete one user by his id
+  app.delete(
+    "/api/user/deleteOneUser",
+    [authJwt.verifyToken],
+    controller.deleteOneUser
   );
 
-  // We get the admin content
-  app.get(
-    "/api/test/admin",
-    [authJwt.verifyToken, authJwt.isAdmin],
-    controller.adminBoard
-  );
-
-  // We get the streamer content
-  app.get(
-    "/api/test/stre",
-    [authJwt.verifyToken, authJwt.isStreamer],
-    controller.streamerBoard
+  // Route : delete all users
+  app.delete(
+    "/api/user/deleteAllUser",
+    [authJwt.verifyToken],
+    controller.deleteAllUser
   );
 };

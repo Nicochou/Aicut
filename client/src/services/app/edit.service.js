@@ -1,9 +1,7 @@
 import axios from 'axios';
-import AuthService from "../auth.service";
-import AuthHeader from '../auth-header';
-
-const API_URL = 'http://localhost:8082/api/getEditClipByUserId';
-const STATUS_EDITION = 101;
+import AuthService from "../auth/auth.service";
+import AuthHeader from '../auth/auth-header';
+import {API_GETCLIP_ALL_PUB_BYUSERID} from '../../Const.js'
 
 let accessToken = AuthHeader();
 
@@ -15,21 +13,18 @@ class EditClipService {
     }
 
     return axios
-    .get(API_URL , {  
+    .get(API_GETCLIP_ALL_PUB_BYUSERID , {  
         params: {
-            id: currentUser.id,
-            status: STATUS_EDITION
+            id: currentUser.id
         },
         headers: { 
           'x-access-token': accessToken['x-access-token']
         }
     })
     .then(response => {
-        console.log(response)
         return response;
       })
     .catch(err=> {
-        console.log(err)
     });
   }
 }

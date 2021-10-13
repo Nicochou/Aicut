@@ -14,9 +14,9 @@
   },
   "test": {
     "username": "root",
-    "password": "root",
+    "password": "",
     "database": "aicutdb_test",
-    "host": "db",
+    "host": "localhost",
     "dialect": "mysql",
     "pool": {
       "max": 5,

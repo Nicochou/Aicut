@@ -62,10 +62,11 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
-db.user = require("../models/user.model.js")(sequelize, Sequelize);
-db.role = require("../models/role.model.js")(sequelize, Sequelize);
-db.clip = require("../models/clip.model.js")(sequelize, Sequelize);
-db.userMl = require("../models/user-ml.model.js")(sequelize, Sequelize);
+db.user = require("./users.model.js")(sequelize, Sequelize);
+db.role = require("./roles.model.js")(sequelize, Sequelize);
+db.clip = require("./clips.model.js")(sequelize, Sequelize);
+db.comment = require("./comments.model.js")(sequelize, Sequelize);
+db.userMl = require("../models/user_ml.model.js")(sequelize, Sequelize);
 
 db.role.belongsToMany(db.user, {
   through: "user_roles",
@@ -77,15 +78,23 @@ db.user.belongsToMany(db.role, {
   foreignKey: "userId",
   otherKey: "roleId"
 });
-db.clip.belongsToMany(db.user, {
-  through: "user_clips",
-  foreignKey: "clipId",
-  otherKey: "userId"
-});
-db.user.belongsToMany(db.clip, {
-  through: "user_clips",
+
+db.user.hasMany(db.clip, { as: "clips" });
+db.clip.belongsTo(db.user, {
   foreignKey: "userId",
-  otherKey: "clipId"
+  as: "users",
+});
+
+db.user.hasMany(db.comment, { as: "comments" });
+db.comment.belongsTo(db.user, {
+  foreignKey: "userId",
+  as: "users",
+});
+
+db.clip.hasMany(db.comment, { as: "comments" });
+db.comment.belongsTo(db.clip, {
+  foreignKey: "clipId",
+  as: "clips",
 });
 
 db.ROLES = ["user", "admin", "moderator","streamer"];

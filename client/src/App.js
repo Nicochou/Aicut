@@ -1,43 +1,61 @@
 import React, { Component } from "react";
 import { Switch, Route, Link } from "react-router-dom";
+import { FaHome, FaHeadset, FaUserAlt, FaUserMd, FaUserTie, FaGlobeAmericas } from "react-icons/fa";
+import { AiOutlineLogin, AiOutlinePlusCircle, AiOutlineLogout } from "react-icons/ai";
+import { FcClapperboard, FcFilmReel, FcFilm } from "react-icons/fc";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./App.css";
+import "./assets/css/App.css";
+import "./assets/css/Theme.css";
+import "./assets/css/Plugin.css";
+// Languages
+import i18next from './config/i18nextConf';
+import { withTranslation } from 'react-i18next';
 
-// Services
-import AuthService from "./services/auth.service";
-
-// Components
-
-// - Boards
+// Services - Auth
+import AuthService from "./services/auth/auth.service";
+// Components - Boards
 import BoardUser from "./components/boards/board-user.component";
 import BoardModerator from "./components/boards/board-moderator.component";
 import BoardAdmin from "./components/boards/board-admin.component";
 import BoardStreamer from "./components/boards/board-streamer.component";
-// - Api
-import GameStreams from './components/api/GameStreams/GameStreams';
-import TopStreams from './components/api/TopStreams/TopStreams';
-import Header from './components/api/Header/Header';
-import Resultats from './components/api/Resultats/Resultats'
-import Erreur from './components/api/Erreur/Erreur';
-import Live from './components/api/Live/Live';
-import Games from './components/api/Games/Games';
-import Clips from './components/api/Clips/Clips';
-// - Commun
+// Components - trends
+import GameStreams from './components/trends/GameStreams/GameStreams';
+import TopStreams from './components/trends/TopStreams/TopStreams';
+import Header from './components/trends/Header/Header';
+import Resultats from './components/trends/Resultats/Resultats'
+import Erreur from './components/trends/Erreur/Erreur';
+import Live from './components/trends/Live/Live';
+import Games from './components/trends/Games/Games';
+import Clips from './components/trends/Clips/Clips';
+// Components - Commun
 import Login from "./components/login.component";
 import Register from "./components/register.component";
 import Home from "./components/home.component";
 import Profile from "./components/profile.component";
 import Twitch from './components/twitch.component';
 import Launch from "./components/launch.component";
-// - App
+// Components - App
 import Cut from './components/app/cut.component';
 import Edit from "./components/app/edit.component";
 import Mount from "./components/app/mount.component";
+// Components - Page - Blog
+import Blog from "./components/pages/blog/blog.component";
+// Components - Page - Discover
+import Aboutus from "./components/pages/discover/aboutus.component";
+import Prices from "./components/pages/discover/prices.component";
+// Components - Page - Support
+import Contact from "./components/pages/support/contact.component";
+import Faq from "./components/pages/support/faq.component";
+import Bogue from "./components/pages/support/bogue.component";
+// Components - Page - Projet
+import News from "./components/pages/project/news.component";
+import Release from "./components/pages/project/release.component";
+import Licences from "./components/pages/project/licences.component";
+import swal from 'sweetalert';
 class App extends Component {
   constructor(props) {
     super(props);
     this.logOut = this.logOut.bind(this);
-
     this.state = {
       showModeratorBoard: false,
       showAdminBoard: false,
@@ -62,186 +80,121 @@ class App extends Component {
     AuthService.logout();
   }
 
+  modal() {
+    swal("Hello world!");
+  }
+
   render() {
     const { currentUser, showModeratorBoard, showAdminBoard, showStreamerBoard } = this.state;
-
+    const { t } = this.props;
+    const changeLanguage = (lng) => {
+      i18next.changeLanguage(lng);
+    }
     return (
       <div>
-         {/* A modifier pour explication de création d'un clip 
-         <nav className="navbar sticky-top navbar-expand navbar-dark bg-dark">
-          <Link to={"/"} className="navbar-brand">
-            AICUT
-          </Link>
-          <div className="navbar-nav">
-            <ul className="navbar-nav mr-auto">
+      <nav className="navbar sticky-top navbar-expand-md navbar-dark bg-dark">
+        <ul className="navbar-nav mr-auto">
             <li className="nav-item">
               <Link to={"/home"} className="nav-link">
-                Home
-              </Link>
-            </li>
-
-            {showModeratorBoard && (
-              <li className="nav-item">
-                <Link to={"/mod"} className="nav-link">
-                  Moderator Board
-                </Link>
-              </li>
-            )}
-
-            {showAdminBoard && (
-              <li className="nav-item">
-                <Link to={"/admin"} className="nav-link">
-                  Admin Board
-                </Link>
-              </li>
-            )}
-
-            {showStreamerBoard && (
-              <li className="nav-item">
-                <Link to={"/stre"} className="nav-link">
-                  Streamer Board
-                </Link>
-              </li>
-            )}
-
-            {currentUser && (
-              <li className="nav-item">
-                <Link to={"/user"} className="nav-link">
-                  User Board
-                </Link>
-              </li>
-            )}
-            </ul>
-          </div>
-          {currentUser ? (
-            <div className="navbar-nav my-2">
-              {showStreamerBoard && (
-              <li className="nav-item">
-                <Link to={"/cut"} className="nav-link bg-primary">
-                  Cut
-                </Link>
-              </li>
-              )}
-              {showStreamerBoard && (
-              <li className="nav-item">
-                <Link to={"/edit"} className="nav-link bg-primary">
-                  Edit
-                </Link>
-              </li>
-              )}
-              {showStreamerBoard && (
-              <li className="nav-item">
-                <Link to={"/mount"} className="nav-link bg-primary">
-                  Mount
-                </Link>
-              </li>
-              )}
-              <li className="nav-item">
-                <Link to={"/profile"} className="nav-link">
-                  {currentUser.username}
-                  <img src={currentUser.profile_image_url} alt="Avatar" id="ProfilePic"/>
-                </Link>
-              </li>
-              
-              <li className="nav-item ml-auto">
-                <a href="/login" className="nav-link" onClick={this.logOut}>
-                  LogOut
-                </a>
-              </li>
-            </div>
-          ) : (
-            <div className="navbar-nav ml-auto">
-              <li className="nav-item">
-                <Link to={"/login"} className="nav-link">
-                  Login
-                </Link>
-              </li>
-
-              <li className="nav-item">
-                <Link to={"/register"} className="nav-link">
-                  Sign Up
-                </Link>
-              </li>
-            </div>
-          )}
-          </nav> */}
-      <nav class="navbar sticky-top navbar-expand-md navbar-dark bg-dark">
-        <ul class="navbar-nav mr-auto">
-            <li className="nav-item">
-              <Link to={"/home"} className="nav-link">
-                Home
+                  <FaHome />{this.props.t('home_menu')}
               </Link>
             </li>
             {showModeratorBoard && (
               <li className="nav-item">
                 <Link to={"/mod"} className="nav-link">
-                  Moderator Board
+                  <FaUserMd />{this.props.t('moderator_menu')}
                 </Link>
               </li>
             )}
             {showAdminBoard && (
               <li className="nav-item">
                 <Link to={"/admin"} className="nav-link">
-                  Admin Board
+                  <FaUserTie />{this.props.t('admin_menu')}
                 </Link>
               </li>
             )}
             {showStreamerBoard && (
               <li className="nav-item">
                 <Link to={"/stre"} className="nav-link">
-                  Streamer Board
+                  <FaHeadset />{this.props.t('streamer_menu')}
                 </Link>
               </li>
             )}
             {currentUser && (
               <li className="nav-item">
                 <Link to={"/user"} className="nav-link">
-                  User Board
+                  <FaUserAlt />{this.props.t('user_menu')}
                 </Link>
               </li>
             )}
         </ul>
-        <a class="navbar-brand mx-auto" href="/">AICUT
+        <a class="navbar-brand mx-auto" href="/" onClick={this.modal}><img src={'./logoGPE.png'} />AICUT
         {currentUser && (
           <div id="appRoute">
           {showStreamerBoard && (
                 <li className="nav-item">
                   <Link to={"/cut"} className="nav-link">
-                    Cut
+                    <FcClapperboard />
                   </Link>
                 </li>
               )}
           {showStreamerBoard && (
             <li className="nav-item">
               <Link to={"/edit"} className="nav-link">
-                Edit
+                <FcFilmReel />
               </Link>
             </li>
             )}
           {showStreamerBoard && (
             <li className="nav-item">
               <Link to={"/mount"} className="nav-link">
-                Mount
+                <FcFilm />
               </Link>
             </li>
           )}
         </div>
          )}
         </a>
+        <ul class="navbar-nav ml-auto">
+            <li className="dropdown"><Link className="nav-link">{this.props.t('discover_menu')}</Link>
+              <ul className="dropdown-menu">
+                <li className="nav-link text-dark"><Link to={"/aboutus"}>{this.props.t('aboutus_menu')}</Link></li>
+                <li className="nav-link text-dark"><Link to={"/prices"}>{this.props.t('price_menu')}</Link></li>
+              </ul>
+            </li>
+            <li className="ml-auto">
+                <Link to={"/blog"} className="nav-link">
+                  {this.props.t('blog_menu')}
+                </Link>
+            </li>
+            <li className="ml-auto dropdown"><Link className="nav-link">{this.props.t('support_menu')}</Link>
+              <ul class="dropdown-menu">
+                <li className="nav-link text-dark"><Link to={"/contact"} >{this.props.t('contact_menu')}</Link></li>
+                <li className="nav-link text-dark"><Link to={"/faq"} >{this.props.t('faq_menu')}</Link></li>
+                <li className="nav-link text-dark"><Link to={"/bogue"} >{this.props.t('bug_menu')}</Link></li>
+              </ul>
+            </li>
+            <li className="ml-auto dropdown"><Link className="nav-link">{this.props.t('project_menu')}</Link>
+              <ul class="dropdown-menu">
+                <li className="nav-link text-dark"><Link to={"/release"} >{this.props.t('features_menu')}</Link></li>
+                <li className="nav-link text-dark"><Link to={"/news"} >{this.props.t('news_menu')}</Link></li>
+                <li className="nav-link text-dark"><Link to={"/licences"} >{this.props.t('licenses_menu')}</Link></li>
+              </ul>
+            </li>
+          </ul>
         {currentUser ? (
           <ul class="navbar-nav ml-auto">
             <li className="nav-item">
                 <Link to={"/profile"} className="nav-link">
                   <div>
-                  {currentUser.username}
-                  <img src={currentUser.profile_image_url} alt="Avatar" id="ProfilePic" align="center" />
+                    <img src={currentUser.profile_image_url} alt="Avatar" id="ProfilePic" align="center" />
                   </div>
                   
                 </Link>
             </li>
             <li className="nav-item ml-auto">
                 <a href="/login" className="nav-link" onClick={this.logOut}>
-                  LogOut
+                  <AiOutlineLogout />
                 </a>
             </li>
           </ul>
@@ -249,22 +202,47 @@ class App extends Component {
           <ul class="navbar-nav ml-auto">
             <li className="nav-item">
               <Link to={"/login"} className="nav-link">
-                Login
+                <AiOutlineLogin />
               </Link>
             </li>
             <li className="nav-item">
             <Link to={"/register"} className="nav-link">
-              Sign Up
+              <AiOutlinePlusCircle />
             </Link>
           </li>
+          <li className="nav-item">
+                  <div class="p-dropdown">
+                      <a className="nav-link" href="#"><FaGlobeAmericas /><span>FR</span></a>
+                      <ul class="p-dropdown-content">
+                          <li><a href="" onClick={() => changeLanguage('fr')}>Français</a></li>
+                          <li><a href="" onClick={() => changeLanguage('en')}>English</a></li>
+                          <li><a href="" onClick={() => changeLanguage('sp')}>Español</a></li>
+                          <li><a href="" onClick={() => changeLanguage('pt')}>português</a></li>
+                          <li><a href="" onClick={() => changeLanguage('ru')}>Pусский</a></li>
+                          <li><a href="" onClick={() => changeLanguage('ar')}>عربي</a></li>
+                          <li><a href="" onClick={() => changeLanguage('ch')}>中国人</a></li>
+                          <li><a href="" onClick={() => changeLanguage('cr')}>한국인</a></li>
+                          <li><a href="" onClick={() => changeLanguage('jp')}>日本</a></li>
+                      </ul>
+                  </div>
+              </li>
         </ul>
         )}
       </nav>
         <Header />
-        <div className="container mt-3">
+        <div className="">
           <Switch>
             <Route exact path="/" component={Launch} />
             <Route exact path="/home" component={Home} />
+            <Route exact path="/blog" component={Blog} />
+            <Route exact path="/contact" component={Contact} />
+            <Route exact path="/faq" component={Faq} />
+            <Route exact path="/bogue" component={Bogue} />
+            <Route exact path="/aboutus" component={Aboutus} />
+            <Route exact path="/prices" component={Prices} />
+            <Route exact path="/release" component={Release} />
+            <Route exact path="/news" component={News} />
+            <Route exact path="/licences" component={Licences} />
             <Route exact path="/game" component={Games} />
             <Route exact path="/clip" component={Clips} />
             <Route exact path="/game/:slug" component={GameStreams} />
@@ -291,13 +269,25 @@ class App extends Component {
           <div className="row">
             <div className="col-xl-2 col-lg-2 col-md-3">
               <div className="widget">
-                <h4>PROJECT</h4>
+                <h4>DECOUVRIR</h4>
                 <ul className="list text-light">
-                  <li>Latest Release</li>
-                  <li>Updates</li>
-                  <li>License</li>
+                  <li>Nous-concernant</li>
+                  <li>Prix</li>
+                </ul>
+              </div>
+            </div>
+            <div className="col-xl-2 col-lg-2 col-md-3">
+              <div className="widget">
+                <h4>BLOG</h4>
+              </div>
+            </div>
+            <div className="col-xl-2 col-lg-2 col-md-3">
+              <div className="widget">
+                <h4>PROJET</h4>
+                <ul className="list text-light">
+                  <li>Ajout récent</li>
                   <li>News</li>
-                  <li>Links</li>
+                  <li>Licences</li>
                 </ul>
               </div>
             </div>
@@ -305,35 +295,9 @@ class App extends Component {
               <div className="widget">
                 <h4>SUPPORT</h4>
                 <ul className="list text-light">
-                  <li>Troubleshooting</li>
-                  <li>Common Questions</li>
-                  <li>Report a Bug</li>
-                  <li>Get Help</li>
-                  <li>FAQS</li>
-                </ul>
-              </div>
-            </div>
-            <div className="col-xl-2 col-lg-2 col-md-3">
-              <div className="widget">
-                <h4>COMPANY</h4>
-                <ul className="list text-light">
-                  <li>About</li>
                   <li>Contact</li>
-                  <li>Home</li>
-                  <li>Blog</li>
-                  <li>Portfolio</li>
-                </ul>
-              </div>
-            </div>
-            <div className="col-xl-2 col-lg-2 col-md-3">
-              <div className="widget">
-                <h4>INFO</h4>
-                <ul className="list text-light">
-                  <li>Get Directions</li>
-                  <li>Call Us</li>
-                  <li>Our Staff</li>
-                  <li>Working Hours</li>
-                  <li>Offices</li>
+                  <li>Faq</li>
+                  <li>Bogue</li>
                 </ul>
               </div>
             </div>
@@ -347,32 +311,10 @@ class App extends Component {
           </div>
         </div>
       </div>
-      <div className="copyright-content">
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-6">
-              <div className="social-icons social-icons">
-                <ul>
-                  <li className="social-rss"><i className="fa fa-rss"></i></li>
-                  <li className="social-facebook"><i className="fab fa-facebook-f"></i></li>
-                  <li className="social-twitter"><i className="fab fa-twitter"></i></li>
-                  <li className="social-vimeo"><i className="fab fa-vimeo"></i></li>
-                  <li className="social-youtube"><i className="fab fa-youtube"></i></li>
-                  <li className="social-pinterest"><i className="fab fa-pinterest"></i></li>
-                  <li className="social-gplus"><i className="fab fa-google-plus-g"></i></li>
-                </ul>
-              </div>
-            </div>
-            <div className="col-lg-6 text-light">
-              <div className="copyright-text">© 2019 POLO HTML5 Template. All Rights Reserved. </div>
-            </div>
-          </div>
-        </div>
-      </div>
     </footer>
     </div>
     );
   }
 }
 
-export default App;
+export default withTranslation()(App);

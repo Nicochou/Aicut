@@ -33,9 +33,11 @@ require('./app/passport/twitch')(passport);
 // routes
 require('./app/routes/authentications/auth.routes')(app);
 require('./app/routes/authentications/twitch.routes')(app, passport);
-require('./app/routes/user.routes')(app);
+require('./app/routes/content.routes')(app);
 require('./app/routes/default.routes')(app);
 require('./app/routes/clip.routes')(app);
+require('./app/routes/user.routes')(app);
+require('./app/routes/comment.routes')(app);
 require('./app/routes/twitch/create_clip.routes')(app);
 require('./app/routes/twitch/activate_ml.routes')(app);
 
